@@ -1,3 +1,13 @@
+@import "../node_modules/angular-bootstrap-md/assets/scss/core/bootstrap/rfs";
+.titulo {
+  @include responsive-font-size(6rem);
+  margin: 0 0 .5em;
+}
+
+
+button {
+    border-radius: 30px;
+}
 
 .navbar { box-shadow: none !important; } .btn { box-shadow: none !important; } 
 
