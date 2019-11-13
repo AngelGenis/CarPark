@@ -1,3 +1,4 @@
+(window as any).global = window; // add this line at the top of the polyfills.ts file
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.
