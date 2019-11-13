@@ -1,0 +1,41 @@
+<mdb-navbar
+    SideClass="navbar navbar-5 navbar-expand-lg navbar-dark mb-5 animated fadeIn delay-1s py-5"
+    [containerInside]="false">
+    <!-- <a class="navbar-brand py-5 px-5" href="#"><i class="fab fa-instagram px-2"></i><i class="fab fa-facebook-square px-2"></i></i></a> -->
+    <mdb-navbar-brand>
+        <a class="navbar-brand px-3" href="#">
+            <h4 class="text-justify text-white"><strong><b><i class="fas fa-parking mr-3"></i>
+                        Parking
+                        Lot</b></strong></h4>
+        </a>
+    </mdb-navbar-brand>
+
+    <links>
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item px-5 waves-light" id="btn1">
+                <a class="nav-link"  mdbwaveseffect (click)="onClickInicio()"><strong>Inicio</strong>
+                    <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item px-5 waves-light"id="btn2">
+                <a class="nav-link"  mdbwaveseffect (click)="onClickInstalaciones()"><strong>Instalaciones</strong></a>
+            </li>
+            <li class="nav-item px-5 waves-light"id="btn3">
+                <a class="nav-link"  mdbwaveseffect (click)="onClickUbicacion()"><strong>Ubicación</strong></a>
+            </li>
+            <li class="nav-item px-5 waves-light"id="btn4">
+                <a class="nav-link"  (click)="onClickAbout()"
+                    mdbwaveseffect><strong>¿Quiénes&nbsp;somos?</strong></a>
+            </li>
+            <li class="nav-item px-5">
+                <button mdbbtn mdbwaveseffect type="button" style="border-radius: 30px;" class="btn btn-sm btn-primary mx-2">
+                    <strong class="p-1">Iniciar&nbsp;sesión</strong>
+                </button>
+                <button mdbbtn mdbwaveseffect type="button" style="border-radius: 30px;" class="btn btn-sm btn-light mx-2">
+                    <strong class="p-1">Registro</strong>
+                </button>
+            </li>
+
+        </ul>
+
+    </links>
+</mdb-navbar>
