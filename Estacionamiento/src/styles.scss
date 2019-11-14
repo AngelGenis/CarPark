@@ -37,22 +37,32 @@
 button {
     border-radius: 30px;
 }
-
-.navbar { box-shadow: none !important; } .btn { box-shadow: none !important; } 
+.view {
+    background: url("https://mdbootstrap.com/img/Photos/Others/img (40).jpg")no-repeat center center;
+    background-size: cover;
+}
 
 .navbar {
     background-color: transparent;
 }
 
 .top-nav-collapse {
-    background-color: #4285F4;
+    background-color: transparent;
 }
 
 @media only screen and (max-width: 768px) {
     .navbar {
-        background-color: #4285F4;
+        background-color: transparent;
     }
 }
+
+html,
+body,
+header,
+.view {
+  height: 100%;
+}
+
 mdb-navbar .navbar.navbar-1 .navbar-toggler-icon {
     background-image: url('https://mdbootstrap.com/img/svg/hamburger6.svg?color=000');
 }

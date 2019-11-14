@@ -21,13 +21,15 @@ export class NavbarComponent implements OnInit {
     $("#login").removeClass("delay-2s");
     $("#login").removeClass("fadeOut");
     $("#login").addClass("fadeOut faster");
+    
     $("#registro").removeClass("delay-2s");
     $("#registro").removeClass("fadeOut");
     $("#registro").addClass("fadeOut faster");
 
     setTimeout(function(){
+      $("#registro").hide();
+
        $("#login").hide();
-       $("#registro").hide();
        $("#intro").removeClass("fadeOut");
        $("#intro").addClass("fadeIn");
        $("#intro").show();
@@ -46,6 +48,7 @@ export class NavbarComponent implements OnInit {
     $("#login").removeClass("delay-2s");
     $("#login").removeClass("fadeOut");
     $("#login").addClass("fadeOut faster");
+
     $("#registro").removeClass("delay-2s");
     $("#registro").removeClass("fadeOut");
     $("#registro").addClass("fadeOut faster");
@@ -108,6 +111,7 @@ export class NavbarComponent implements OnInit {
     $("#intro").removeClass("delay-2s");
     $("#intro").removeClass("fadeOut");
     $("#intro").addClass("fadeOut faster");
+
     $("#registro").removeClass("delay-2s");
     $("#registro").removeClass("fadeOut");
     $("#registro").addClass("fadeOut faster");
@@ -124,6 +128,7 @@ export class NavbarComponent implements OnInit {
     $("#intro").removeClass("delay-2s");
     $("#intro").removeClass("fadeOut");
     $("#intro").addClass("fadeOut faster");
+
     $("#login").removeClass("delay-2s");
     $("#login").removeClass("fadeOut");
     $("#login").removeClass("fadeInUpBig faster");

@@ -46,7 +46,7 @@ export class RegistroComponent implements OnInit {
             
             $("#intro").removeClass("delay-2s");
             $("#intro").removeClass("fadeOut");
-            $("#intro").addClass("fadeOut faster");
+
             $("#registro").removeClass("delay-2s");
             $("#registro").removeClass("fadeOut");
             $("#registro").addClass("fadeOut faster");
@@ -54,8 +54,11 @@ export class RegistroComponent implements OnInit {
             setTimeout(function(){
               $("#intro").hide();
               $("#registro").hide();
-              $("#login").show();
+              $("#intro").addClass("fadeInUp");
+              $("#intro").show();
             },500);
+
+
           }
         )
         .catch(
