@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
        $("#intro").removeClass("fadeOut");
        $("#intro").addClass("fadeIn");
        $("#intro").show();
-    },0);
+    },500);
 
   }
 
@@ -56,7 +56,7 @@ export class NavbarComponent implements OnInit {
        $("#intro").removeClass("fadeOut");
        $("#intro").addClass("fadeIn");
        $("#intro").show();
-    },0);
+    },500);
 
   }
 
@@ -115,6 +115,7 @@ export class NavbarComponent implements OnInit {
     setTimeout(function(){
        $("#intro").hide();
        $("#registro").hide();
+       $("#login").removeClass("fadeOut");
        $("#login").show();
     },500);
   }
@@ -125,11 +126,13 @@ export class NavbarComponent implements OnInit {
     $("#intro").addClass("fadeOut faster");
     $("#login").removeClass("delay-2s");
     $("#login").removeClass("fadeOut");
+    $("#login").removeClass("fadeInUpBig faster");
     $("#login").addClass("fadeOut faster");
     
     setTimeout(function(){
        $("#intro").hide();
        $("#login").hide();
+       $("#registro").removeClass("fadeOut");
        $("#registro").show();
     },500);
   }
