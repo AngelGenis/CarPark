@@ -1,17 +1,18 @@
-<div class="container-fluid" style="background-color: #ECECEC;">
+<div class="container-fluid" id="approot" style="background-color: #ECECEC;">
     <div class="row">
-        <div class="col-sm-12 p-0">
+        <div class="col-md-12 p-0">
             <div class="view jarallax">
                 <img alt="" src="../assets/img/img2.jpg">
                 <div class="mask rgba-black-strong">
-                    <app-navbar></app-navbar>
-                    <!-- <app-login></app-login> -->
-                    <app-intro></app-intro>
+                    <app-navbar class="animated fadeIn delay-1s"></app-navbar>
+                    <app-login id="login" class="animated fadeInUp faster"></app-login>
+                    <app-intro id="intro" class="animated fadeInUp delay-2s"></app-intro>
+                    <app-registro id="registro" class="animated fadeInUp faster"></app-registro>
                 </div>
             </div>
         </div>
     </div>
-    <app-about></app-about>
-    <app-instalaciones></app-instalaciones>
+    <app-about id="about" class="animated"></app-about>
+    <app-instalaciones id="instalaciones"></app-instalaciones>
 </div>
 <app-footer></app-footer>

@@ -8,11 +8,33 @@ import { AboutComponent } from '../about/about.component';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  @Input() about: AboutComponent;
 
-  constructor() { }
+  constructor() { 
+    
+  } 
 
   ngOnInit() {
+  }
+
+  onClickBrand(){
+
+    $("#login").removeClass("delay-2s");
+    $("#login").removeClass("fadeOut");
+    $("#login").addClass("fadeOut faster");
+    
+    $("#registro").removeClass("delay-2s");
+    $("#registro").removeClass("fadeOut");
+    $("#registro").addClass("fadeOut faster");
+
+    setTimeout(function(){
+      $("#registro").hide();
+
+       $("#login").hide();
+       $("#intro").removeClass("fadeOut");
+       $("#intro").addClass("fadeIn");
+       $("#intro").show();
+    },500);
+
   }
 
   onClickInicio(){
@@ -22,7 +44,22 @@ export class NavbarComponent implements OnInit {
 
       $("#btn"+i).removeClass('active');
     }
-    console.log("wokin");
+
+    $("#login").removeClass("delay-2s");
+    $("#login").removeClass("fadeOut");
+    $("#login").addClass("fadeOut faster");
+
+    $("#registro").removeClass("delay-2s");
+    $("#registro").removeClass("fadeOut");
+    $("#registro").addClass("fadeOut faster");
+
+    setTimeout(function(){
+       $("#login").hide();
+       $("#registro").hide();
+       $("#intro").removeClass("fadeOut");
+       $("#intro").addClass("fadeIn");
+       $("#intro").show();
+    },500);
 
   }
 
@@ -37,10 +74,7 @@ export class NavbarComponent implements OnInit {
       $("#btn"+i).removeClass('active');
     }
     console.log("wokin");
-    window.scroll({
-      top: 1000,
-      behavior: 'smooth'
-    });
+    document.getElementById("about").scrollIntoView({behavior:"smooth"}); 
   }
 
   onClickUbicacion(){
@@ -54,10 +88,7 @@ export class NavbarComponent implements OnInit {
       $("#btn"+i).removeClass('active');
     }
     console.log("wokin");
-    window.scroll({
-      top: 1000,
-      behavior: 'smooth'
-    });
+    document.getElementById("about").scrollIntoView({behavior:"smooth"}); 
   }
 
   onClickInstalaciones(){
@@ -72,11 +103,43 @@ export class NavbarComponent implements OnInit {
     }
     console.log("wokin");
 
-    window.scroll({
-      top: 2000,
-      behavior: 'smooth'
-    });
+    document.getElementById("instalaciones").scrollIntoView({behavior:"smooth"}); 
 
+  }
+
+  onClickLogin(){
+    $("#intro").removeClass("delay-2s");
+    $("#intro").removeClass("fadeOut");
+    $("#intro").addClass("fadeOut faster");
+
+    $("#registro").removeClass("delay-2s");
+    $("#registro").removeClass("fadeOut");
+    $("#registro").addClass("fadeOut faster");
+
+    setTimeout(function(){
+       $("#intro").hide();
+       $("#registro").hide();
+       $("#login").removeClass("fadeOut");
+       $("#login").show();
+    },500);
+  }
+
+  onClickRegistro(){
+    $("#intro").removeClass("delay-2s");
+    $("#intro").removeClass("fadeOut");
+    $("#intro").addClass("fadeOut faster");
+
+    $("#login").removeClass("delay-2s");
+    $("#login").removeClass("fadeOut");
+    $("#login").removeClass("fadeInUpBig faster");
+    $("#login").addClass("fadeOut faster");
+    
+    setTimeout(function(){
+       $("#intro").hide();
+       $("#login").hide();
+       $("#registro").removeClass("fadeOut");
+       $("#registro").show();
+    },500);
   }
 
 }
