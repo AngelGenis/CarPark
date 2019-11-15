@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { Component, OnInit,  } from '@angular/core';
+import { FirestoreService } from '../services/firestore.service';
+import { AuthService } from '../services/auth.service';
 import * as $ from 'jquery';
 
 @Component({
@@ -7,12 +8,17 @@ import * as $ from 'jquery';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(public db:FirestoreService,
+              public auth:AuthService
+              ) { }
 
   ngOnInit() {
   }
+
   aRegistro(){
 
     $("#intro").removeClass("delay-2s");
@@ -30,10 +36,29 @@ export class LoginComponent implements OnInit {
        $("#registro").removeClass("fadeOut");
        $("#registro").show();
     },500);
+
   }
 
   login(){
     
+    let log = $("#username").val();
+    let pass = $("#pass").val();
+    this.db.testLogin(log,pass);
+  
   }
+
+  glogin(){
+
+    this.auth.googleSignIn()
+             .then(res=>{
+               //Logica cuando el inicio de sesion jale
+              console.log(res);
+             })
+             .catch(e =>{
+              //cuando no 
+              console.log(e);
+             })
+
+    }
 
 }

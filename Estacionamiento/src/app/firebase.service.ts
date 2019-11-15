@@ -11,7 +11,7 @@ export class FirebaseService {
   constructor(public db: AngularFirestore) { }
 
   createUser(value){
-    return this.db.collection('Clientes').add({
+    return this.db.collection('Clientes').doc(value.user).set({
       apellido: value.apellido,
       nombre: value.nombre,
       correo: value.correo,
@@ -22,5 +22,18 @@ export class FirebaseService {
     });
   }
 
+  logearUsuario(value, pass){
+    return this.db.collection("Clientes", ref => ref.orderBy('user').startAt(value)).snapshotChanges();
+    
+  }
+
+  testing(){
+    return new Promise<any>((resolve, reject) => {
+      this.db.collection('/people').snapshotChanges()
+      .subscribe(snapshots => {
+        resolve(snapshots)
+      })
+    })
+  }
 
 }
