@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../firebase.service';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { FirestoreService } from '../services/firestore.service';
+
 import * as $ from 'jquery';
 
 @Component({
@@ -10,7 +11,8 @@ import * as $ from 'jquery';
 })
 export class RegistroComponent implements OnInit {
 
-  constructor(public firebaseService:FirebaseService) { }
+  constructor(public firebaseService:FirestoreService,
+              public auth:AuthService) { }
 
   ngOnInit() {
 
@@ -30,6 +32,7 @@ export class RegistroComponent implements OnInit {
     
     let value={};
 
+    value['user'] = $("#userIn").val();
     value['nombre'] =     $("#nombreIn").val();
     value['apellido'] =   $("#apellidoIn").val();
     value['direccion'] =  $("#direccionIn").val();
@@ -57,9 +60,7 @@ export class RegistroComponent implements OnInit {
               $("#intro").addClass("fadeInUp");
               $("#intro").show();
             },500);
-
-
-          }
+      }
         )
         .catch(
             e=>{
@@ -71,6 +72,9 @@ export class RegistroComponent implements OnInit {
             console.log('here');
           }
         );
+  }
+  gRegistro(){
+    this.auth.googleSignIn();
   }
 
 }

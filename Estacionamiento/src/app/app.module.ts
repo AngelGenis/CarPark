@@ -4,11 +4,14 @@ import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // MDBootstrap
+
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FooterComponent } from './footer/footer.component';
 import { IntroComponent } from './intro/intro.component';
@@ -36,7 +39,8 @@ import { RegistroComponent } from './registro/registro.component';
     MDBBootstrapModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
