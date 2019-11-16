@@ -1,51 +1,55 @@
 <div class="container-fluid ">
     <div class="row justify-content-center">
-        <div class="col-md-5 mt-5">
-            <form class="text-center text-black white border p-5" style="border-radius: 30px;">
+        <div class=" col-md-5 mt-5" >
+            <form class=" text-center text-black white border p-5" style="border-radius: 30px;">
 
                     <p class="h4 tituloLogin"><strong>Registro</strong></p>
                     
                     <!-- Email -->
                     <div class="container-fluid">
-                                <div class="md-form form-sm">
+                                <!-- <div class="md-form form-sm">
                                     <input mdbInput type="text" id="userIn" class="form-control">
-                                        <label for="form1 labelsLogin">
+                                            <label for="form1 labelsLogin">
                                         <strong>Nombre de usuario</strong></label>
-                                    </div>
+                                 </div> -->
                         
                         <div class="row py-0">
-                            <div class="col-md py-0" >
+                            <div class="col-md" >
                                 <div class="md-form form-sm">
-                                    <input mdbInput type="text" id="nombreIn" class="form-control">
+                                    <input mdbInput type="text" id="nombreIn" class="form-control" required>
                                         <label for="form1 labelsLogin"><strong>Nombre</strong></label>
                                 </div>
                             </div>
-                            <div class="col-md">
+                            <div class="col-md" >
                                 <div class="md-form form-sm">
                                     <input mdbInput type="text" id="apellidoIn" class="form-control">
                                     <label for="form1 labelsLogin" ><strong>Apellido</strong></label>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md">
-                                <div class="md-form form-sm">
-                                    <input mdbInput type="text" id="correoIn" class="form-control">
-                                    <label for="form1 labelsLogin" ><strong>Correo</strong></label>
-                                </div>
+                        <div class="row" >
+                            <div class="col-md" style="margin: 0px;">
+                                <form [formGroup]="validatingForm">
+                                    <div class="md-form form-sm">
+                                        <input mdbInput mdbValidate type="email" id="correoIn" class="form-control" formControlName="correoIn">
+                                        <label for="form1 labelsLogin" ><strong>Correo</strong></label>
+                                        <mdb-error *ngIf="input.invalid && (input.dirty || input.touched)">Correo Invalido</mdb-error>
+                                        <mdb-success *ngIf="input.valid && (input.dirty || input.touched)">Correo Valido</mdb-success>
+                                    </div>
+                                </form> 
                                 
                             </div>
                             <div class="col-md">
                                 <div class="md-form form-sm ">
-                                    <input mdbInput type="text" id="telefonoIn" class="form-control">
+                                    <input mdbInput type="text" id="telefonoIn" class="form-control" required>
                                     <label for="form1 labelsLogin" ><strong>Telefono</strong></label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md">
-                                <div class="md-form form-sm ">
-                                    <input mdbInput type="text" id="direccionIn" class="form-control">
+                                <div class="md-form form-sm">
+                                    <input mdbInput type="text" id="direccionIn" class="form-control" required>
                                     <label for="form1 labelsLogin" ><strong>Direccion</strong></label>
                                 </div>
 
@@ -53,16 +57,19 @@
                             <div class="col-md">
 
                                 <div class="md-form form-sm">
-                                    <input mdbInput type="text" id="tarjetaIn" class="form-control">
+                                    <input mdbInput type="text" id="tarjetaIn" class="form-control" required>
                                     <label for="form1 labelsLogin" ><strong>Numero de tarjeta</strong></label>
                                 </div>
                             </div>
                         </div>
-    
-                                <div class="md-form form-sm">
-                                    <input mdbInput type="password" id="passIn" class="form-control">
-                                    <label for="form1 labelsLogin" ><strong>Contraseña</strong></label>
-                                </div>
+                                <form [formGroup]="passVald">
+                                    <div class="md-form form-sm">
+                                        <input mdbInput mdbValidate type="password" id="passIn" class="form-control" formControlName="passIn">
+                                        <label for="form1 labelsLogin" ><strong>Contraseña</strong></label>
+                                        <mdb-error *ngIf="inputClave.invalid && (inputClave.dirty || inputClave.touched)">Correo Invalido</mdb-error>
+                                        <mdb-success *ngIf="inputClave.valid && (inputClave.dirty || inputClave.touched)">Correo Valido</mdb-success>
+                                    </div>
+                                </form> 
                     </div>
 
                     <!-- Sign in button -->

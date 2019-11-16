@@ -43,7 +43,24 @@ export class LoginComponent implements OnInit {
     
     let log = $("#username").val();
     let pass = $("#pass").val();
-    this.db.testLogin(log,pass);
+
+    this.auth.logearNuevoUsuario(log,pass)
+             .then( res => {
+               console.log(res);
+               console.log("here");
+             })
+             .catch( e =>{
+               console.log(e);
+             })
+    
+    // this.db.testLogin(log,pass)
+    //        .subscribe(res => {
+    //          if(res[0] && res[0].payload.doc.data()['user']){
+    //            console.log(res[0].payload.doc.data()['user']);
+    //          } else {
+    //            console.log("Cliente no identificado");
+    //          }
+    //        });
   
   }
 
@@ -53,6 +70,7 @@ export class LoginComponent implements OnInit {
              .then(res=>{
                //Logica cuando el inicio de sesion jale
               console.log(res);
+              
              })
              .catch(e =>{
               //cuando no 

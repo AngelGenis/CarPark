@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FirestoreService } from '../services/firestore.service';
-
+import { FormBuilder, FormGroup, FormControl, Validators, NgControl } from '@angular/forms';
 import * as $ from 'jquery';
 
 @Component({
@@ -10,13 +10,29 @@ import * as $ from 'jquery';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+ validatingForm:FormGroup;
+ passVald:FormGroup;
+
 
   constructor(public firebaseService:FirestoreService,
-              public auth:AuthService) { }
+              public auth:AuthService
+              ) { }
 
   ngOnInit() {
+    this.validatingForm = new FormGroup({
+      correoIn: new FormControl(null,[Validators.required, Validators.email])
+    });
 
+    this.passVald = new FormGroup({
+      passIn: new FormControl(null,[Validators.required, Validators.minLength(6)])
+    });
   }
+
+  get input() {return this.validatingForm.get('correoIn');}
+  get inputClave() {return this.passVald.get('passIn');}
+  
+ 
+
 
   limpiarImputs(){
   $("#nombreIn").val('');
@@ -40,7 +56,16 @@ export class RegistroComponent implements OnInit {
     value['telefono'] =   parseInt($("#telefonoIn").val());
     value['clave'] =      $("#passIn").val();
     value['cuenta'] =     parseInt($("#tarjetaIn").val());
+
     console.log(value);
+
+    this.auth.autenticarNuevoUsuario(value['correo'],value['clave'])
+             .then(res =>{
+                  console.log(res);
+              })
+              .catch(e => {
+                console.log(e);
+              })
 
     this.firebaseService.createUser(value)
         .then(
@@ -74,7 +99,16 @@ export class RegistroComponent implements OnInit {
         );
   }
   gRegistro(){
-    this.auth.googleSignIn();
+    this.auth.googleSignIn()
+             .then(res=>{
+               console.log(res);
+               $("#nombreIn").val(res.displayName);
+               $("#correoIn").val(res.email);
+               $("#telefonoIn").val(res.phoneNumber);
+             })
+             .catch(e => {
+               console.log(e);
+             })
   }
 
 }

@@ -4,7 +4,7 @@ import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-
+import {  ReactiveFormsModule, FormsModule }   from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -21,7 +21,6 @@ import { AboutComponent } from './about/about.component';
 import { InstalacionesComponent } from './instalaciones/instalaciones.component';
 import { RegistroComponent } from './registro/registro.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,13 +33,15 @@ import { RegistroComponent } from './registro/registro.component';
     RegistroComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
