@@ -36,7 +36,7 @@ export class AuthService {
     
   }
 
-  public async logearNuevoUsuario(email, pass){
+  public async logearUsuario(email, pass){
     const res = await this.afAuth.auth.signInWithEmailAndPassword(email,pass).then(res=>{
     }).catch(e=>{
       console.log(e); //si falla
