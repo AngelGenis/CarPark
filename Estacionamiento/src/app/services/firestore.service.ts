@@ -29,7 +29,8 @@ export class FirestoreService {
         direccion: value.direccion,
         telefono: value.telefono,
         clave: value.clave,
-        cuenta: value.cuenta
+        cuenta: value.cuenta,
+        displayName: value.displayName
       });
     }
   }

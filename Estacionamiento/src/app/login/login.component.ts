@@ -1,7 +1,9 @@
 import { Component, OnInit,  } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { FirestoreService } from '../services/firestore.service';
 import { AuthService } from '../services/auth.service';
 import * as $ from 'jquery';
+import { ElementSchemaRegistry } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +15,21 @@ import * as $ from 'jquery';
 export class LoginComponent implements OnInit {
 
   constructor(public db:FirestoreService,
-              public auth:AuthService
+              public auth:AuthService,
+              private toastr:ToastrService
               ) { }
 
   ngOnInit() {
+  }
+
+  showSuccess() {
+    
+    this.toastr.success('Sesion Iniciada!', `Bienvenido ${this.auth.user$.source}`);
+
+  }
+
+  showFailure(){
+    this.toastr.success('Error', `No se pudo iniciar sesion`);
   }
 
   aRegistro(){
@@ -44,14 +57,19 @@ export class LoginComponent implements OnInit {
     let log = $("#username").val();
     let pass = $("#pass").val();
 
-    this.auth.logearUsuario(log,pass)
+    let res = this.auth.logearUsuario(log,pass)
              .then( res => {
                console.log(res);
-               console.log("here");
              })
              .catch( e =>{
                console.log(e);
              })
+    console.log(res);
+    if(res['code']){
+      this.showFailure();
+    } else if(res['user']) {
+      this.showSuccess();
+    }
 
   }
 

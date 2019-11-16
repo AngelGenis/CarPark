@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { auth } from 'firebase/app';
 
+import { ToastrService, ToastRef } from 'ngx-toastr';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 import {
@@ -23,6 +24,7 @@ export class AuthService {
   constructor( 
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
+    private toastr:ToastrService
   ){
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user =>{
@@ -38,9 +40,9 @@ export class AuthService {
 
   public logearUsuario(email, pass){
     return this.afAuth.auth.signInWithEmailAndPassword(email,pass).then(res=>{
-      console.log(res," afsdasdasd");
+      this.toastr.success('Sesion Iniciada',`Bienvenido: ${res.user.email}`)
     }).catch(e=>{
-      console.log(e); //si falla
+      this.toastr.error('Error','No se encuentra registrado')
     })
 
   }
