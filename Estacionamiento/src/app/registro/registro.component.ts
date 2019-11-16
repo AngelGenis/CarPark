@@ -12,11 +12,11 @@ import * as $ from 'jquery';
 export class RegistroComponent implements OnInit {
  validatingForm:FormGroup;
  passVald:FormGroup;
-
+ tipoLogin: string;
 
   constructor(public firebaseService:FirestoreService,
               public auth:AuthService
-              ) { }
+              ) { this.tipoLogin='email';}
 
   ngOnInit() {
     this.validatingForm = new FormGroup({
@@ -67,7 +67,7 @@ export class RegistroComponent implements OnInit {
                 console.log(e);
               })
 
-    this.firebaseService.createUser(value)
+    this.firebaseService.createUser(value, this.tipoLogin)
         .then(
           res=>{
             this.limpiarImputs();
@@ -105,6 +105,7 @@ export class RegistroComponent implements OnInit {
                $("#nombreIn").val(res.displayName);
                $("#correoIn").val(res.email);
                $("#telefonoIn").val(res.phoneNumber);
+               this.tipoLogin='google';
              })
              .catch(e => {
                console.log(e);

@@ -8,21 +8,35 @@ export class FirestoreService {
 
   constructor(public db: AngularFirestore) { }
 
-  createUser(value){
-    return this.db.collection('Clientes').doc(value.correo).set({
-      apellido: value.apellido,
-      nombre: value.nombre,
-      correo: value.correo,
-      direccion: value.direccion,
-      telefono: value.telefono,
-      clave: value.clave,
-      cuenta: value.cuenta
-    });
+  createUser(value, flag){
+    if(flag === 'google'){
+
+      return this.db.collection('Clientes').doc(value.correo).update({
+        apellido: value.apellido,
+        nombre: value.nombre,
+        correo: value.correo,
+        direccion: value.direccion,
+        telefono: value.telefono,
+        clave: value.clave,
+        cuenta: value.cuenta
+      });
+    } else if (flag==='email'){
+
+      return this.db.collection('Clientes').doc(value.correo).set({
+        apellido: value.apellido,
+        nombre: value.nombre,
+        correo: value.correo,
+        direccion: value.direccion,
+        telefono: value.telefono,
+        clave: value.clave,
+        cuenta: value.cuenta
+      });
+    }
   }
 
   logearUsuario(value, pass){
     //Vonsultar la coleccion clientes, ordenara
-    return this.db.collection("Clientes", ref => ref.orderBy('user').startAt(value)).snapshotChanges();
+    return this.db.collection("Clientes", ref => ref.orderBy('').startAt(value)).snapshotChanges();
     
   }
 
@@ -44,5 +58,21 @@ export class FirestoreService {
 
       }
 
+    //    agregarTablas(){
+    //     let i = 1;
+    //     let str = 'c-'
+    //     let datos = {};
 
-  }
+    //     while(i <= 60){
+    //       datos[str+i] = { estado: 'disponible' }
+          
+    //       // capacidad:60,
+    //       // disponibles:60,
+    //       // ocupados:0,
+    //     }
+
+    //   return this.db.collection('Niveles/nivel-1/cajones').doc('kek').set(datos);
+    // }
+
+
+    }

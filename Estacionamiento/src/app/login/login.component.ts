@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login(){
+  async login(){
     
     let log = $("#username").val();
     let pass = $("#pass").val();
@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
              .catch( e =>{
                console.log(e);
              })
+
   }
 
   glogin(){
@@ -59,12 +60,13 @@ export class LoginComponent implements OnInit {
     this.auth.googleSignIn()
              .then(res=>{
                //Logica cuando el inicio de sesion jale
-              console.log(res);
+              console.log(res, 'success');
               
              })
              .catch(e =>{
               //cuando no 
-              console.log(e);
+              console.log(e,'fail');
+              
              })
 
     }

@@ -27,7 +27,7 @@ export class AuthService {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user =>{
         if(user){
-          return this.afs.doc<User>(`Clientes/${user.uid}`).valueChanges();
+          return this.afs.doc<User>(`Clientes/${user.email}`).valueChanges();
         } else {
           return of(null);
         }
@@ -36,8 +36,9 @@ export class AuthService {
     
   }
 
-  public async logearUsuario(email, pass){
-    const res = await this.afAuth.auth.signInWithEmailAndPassword(email,pass).then(res=>{
+  public logearUsuario(email, pass){
+    return this.afAuth.auth.signInWithEmailAndPassword(email,pass).then(res=>{
+      console.log(res," afsdasdasd");
     }).catch(e=>{
       console.log(e); //si falla
     })
@@ -90,7 +91,7 @@ export class AuthService {
       phoneNumber
     };
 
-    userRef.set(data, {merge:true});
+    userRef.update(data);
 
     return data;
   }
