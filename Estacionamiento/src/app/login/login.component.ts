@@ -43,8 +43,15 @@ export class LoginComponent implements OnInit {
     
     let log = $("#username").val();
     let pass = $("#pass").val();
-    this.db.testLogin(log,pass);
-  
+
+    this.auth.logearUsuario(log,pass)
+             .then( res => {
+               console.log(res);
+               console.log("here");
+             })
+             .catch( e =>{
+               console.log(e);
+             })
   }
 
   glogin(){
@@ -53,6 +60,7 @@ export class LoginComponent implements OnInit {
              .then(res=>{
                //Logica cuando el inicio de sesion jale
               console.log(res);
+              
              })
              .catch(e =>{
               //cuando no 

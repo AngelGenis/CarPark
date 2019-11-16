@@ -11,6 +11,7 @@ import {
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from './user.model';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Injectable({
   providedIn: 'root'
@@ -26,16 +27,35 @@ export class AuthService {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user =>{
         if(user){
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+          return this.afs.doc<User>(`Clientes/${user.uid}`).valueChanges();
         } else {
           return of(null);
         }
       })
     );
+    
   }
 
+  public async logearUsuario(email, pass){
+    const res = await this.afAuth.auth.signInWithEmailAndPassword(email,pass).then(res=>{
+    }).catch(e=>{
+      console.log(e); //si falla
+    })
+
+  }
+
+  public async autenticarNuevoUsuario(email, pass){
+    const res = await this.afAuth.auth.createUserWithEmailAndPassword(email,pass)
+                                      .then(res => {
+                                        this.verificaEmail();
+                                      }).catch(e=>{
+                                        console.log(e); //si falla
+                                      })
+
+  }
   public async googleSignIn() {
     const provider = new auth.GoogleAuthProvider();
+    this.afAuth.auth.languageCode= 'es';
     const credential = await this.afAuth.auth.signInWithPopup(provider);
     console.log(credential);
     return this.updateUserData(credential.user);
@@ -46,17 +66,33 @@ export class AuthService {
     await this.afAuth.auth.signOut();
   }
 
-  private updateUserData({uid,email,displayName,photoURL}: User){
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
+  private async verificaEmail(){
+    var user = this.afAuth.auth.currentUser;
+
+    await user.sendEmailVerification().then(function() {
+      // Email sent.
+    }).catch(function(error) {
+      // An error happened.
+    });
+
+  }
+
+  private updateUserData({uid,email,displayName,photoURL,phoneNumber}: User){
+
+    this.verificaEmail();
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`Clientes/${email}`);
 
     const data = {
       uid,
       email,
       displayName,
-      photoURL
+      photoURL,
+      phoneNumber
     };
 
-    return userRef.set(data, {merge:true});
+    userRef.set(data, {merge:true});
+
+    return data;
   }
 
 }

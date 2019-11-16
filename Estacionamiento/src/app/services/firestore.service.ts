@@ -9,8 +9,7 @@ export class FirestoreService {
   constructor(public db: AngularFirestore) { }
 
   createUser(value){
-//Consultarla coleccion Clientes, el documento con la llave value.user y escribir los siguientes pares de datos
-    return this.db.collection('Clientes').doc(value.user).set({
+    return this.db.collection('Clientes').doc(value.correo).set({
       apellido: value.apellido,
       nombre: value.nombre,
       correo: value.correo,
@@ -28,9 +27,22 @@ export class FirestoreService {
   }
 
   testLogin(usuario, clave){
-    let test = this.db.collection('users',ref => ref.where('uid','==',usuario)
-                                         .where('clave','==',clave));
+      // this.db.collection('Clientes')
+      //     .valueChanges()
+      //     .subscribe( val => {
+      //       val.map( e => {
+      //         if(e['user'] == usuario && e['clave'] == clave){
+      //           return true;
+      //         }
+      //         console.log(e);
+      //       });
+      //     });  
+      // return false;
+      return this.db.collection('Clientes',ref => ref.where('user', '==', usuario)
+                                                  .where('clave', '==', clave))
+                                                  .snapshotChanges()
 
-    console.log(test);
+      }
+
+
   }
-}
