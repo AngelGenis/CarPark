@@ -24,6 +24,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
 import { InstalacionesComponent } from './instalaciones/instalaciones.component';
 import { RegistroComponent } from './registro/registro.component';
+import { PreciosComponent } from './precios/precios.component';
+import { ReservarComponent } from './reservar/reservar.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { RegistroComponent } from './registro/registro.component';
     NavbarComponent,
     AboutComponent,
     InstalacionesComponent,
-    RegistroComponent
+    RegistroComponent,
+    PreciosComponent,
+    ReservarComponent
   ],
   imports: [
     CommonModule,

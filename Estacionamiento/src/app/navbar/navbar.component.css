@@ -1,0 +1,124 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+header{
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    height: 50px;
+}
+.logo{
+    color: white;
+    position: relative;
+    display: inline-block;
+}
+.logo i{
+    font-size: 25px;
+    display: inline-block;
+}
+.logo h4{
+    font-weight: 800;
+    display: inline-block;
+}
+
+.menu-btn {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    top: 0px;
+    right: 30px;
+    /* border: 3px solid #fff; */
+  }
+  .menu-btn__burger {
+    width: 30px;
+    height: 3.5px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(255,101,47,.2);
+    transition: all .5s ease-in-out;
+  }
+  .menu-btn__burger::before,
+  .menu-btn__burger::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 3.5px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(255,101,47,.2);
+    transition: all .5s ease-in-out;
+  }
+  .menu-btn__burger::before {
+    transform: translateY(-10px);
+  }
+  .menu-btn__burger::after {
+    transform: translateY(10px);
+  }
+  /* ANIMATION */
+  .menu-btn.open .menu-btn__burger {
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+  }
+  .menu-btn.open .menu-btn__burger::before {
+    transform: rotate(45deg) translate(35px, -35px);
+  }
+  .menu-btn.open .menu-btn__burger::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+  }
+
+
+#Menu1{
+   
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+#Menu1 ul li{
+    display: inline-block;
+    padding: 8px;
+}
+
+#Menu1 ul li a{
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+
+@media (min-width: 769px) {
+    .contenedor{
+        width: 90%;
+    }
+    header{
+        padding-left: 50px;
+    }
+
+    #Menu1{
+        position: absolute;
+        top: -10px;
+        width: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+    #Menu1 ul li{
+        position: relative;
+        margin: 0px 20px;
+    }
+    #Menu1 ul li a{
+        font-size: .9em;
+
+    }
+    
+}
+
+@media (min-width: 900px) {
+
+}

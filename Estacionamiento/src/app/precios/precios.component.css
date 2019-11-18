@@ -1,0 +1,60 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    color: #3B3B3B;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.contenedor{
+    position: relative;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 10px 0;
+    padding: 5px;
+}
+h2{
+    font-size: 1.5em;
+    font-weight: 800;
+    text-align: center;
+    margin: 20px 0;
+}
+
+p{
+    margin: 5px;
+    font-size: .9em;
+}
+
+table{
+    margin-top: 30px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+tr, th, td{
+    border: 1px solid #C4C4C4;
+}
+th{
+    background: #3E64FF;
+    width: 50%;
+}
+#UsuarioPremium{
+    position: relative;
+    width: 100%;
+    margin: 40px 0;
+
+}
+.margen{
+    margin: 10px 0;
+}
+
+@media (min-width: 769px) {
+    .contenedor{
+        width: 80%;
+    }
+}
+
+@media (min-width: 900px) {
+    .contenedor{
+        width: 50%;
+    }
+}
