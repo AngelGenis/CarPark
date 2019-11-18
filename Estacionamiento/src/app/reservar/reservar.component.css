@@ -103,3 +103,15 @@ td button{
     border: none;
     
 }
+
+@media (min-width: 769px) {
+    .contenedor{
+        width: 80%;
+    }
+}
+
+@media (min-width: 900px) {
+    .contenedor{
+        width: 50%;
+    }
+}

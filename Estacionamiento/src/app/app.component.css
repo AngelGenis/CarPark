@@ -1,0 +1,12 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+#PagInicio{
+    width: 100%;
+    background: royalblue;
+    height: 100vh;
+}
+#ImagenInicio{
+    display: none;
+}
