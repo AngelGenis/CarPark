@@ -70,4 +70,7 @@ p{
     .contenedor{
         width: 50%;
     }
+    #CarroImg{
+        width: 350px;
+    }
 }

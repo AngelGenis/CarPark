@@ -4,21 +4,37 @@
         <h4>Parking Lot</h4>
     </div>
     
-    <div class="icon">
-        <div class="hamburguer"></div>
+    <div class="menu-btn">
+        <div class="menu-btn__burger"></div>
     </div>
 
 
     <nav id="Menu1">
         <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Instalaciones</a></li>
-            <li><a href="#">Ubicación</a></li>
-            <li><a href="#">¿Quienes Somos?</a></li>
+            <li><a mdbwaveseffect (click)="onClickInicio()">Inicio</a></li>
+            <li><a mdbwaveseffect (click)="onClickInstalaciones()">Instalaciones</a></li>
+            <li><a mdbwaveseffect (click)="onClickUbicacion()">Ubicación</a></li>
+            <li><a mdbwaveseffect (click)="onClickAbout()">¿Quienes Somos?</a></li>
         </ul>
     </nav>
+
     
 </header>
+<script>
+    const menuBtn = document.querySelector('.menu-btn');
+    let menuOpen = false;
+        menuBtn.addEventListener('click', () => {
+        if(!menuOpen) {
+            menuBtn.classList.add('open');
+            menuOpen = true;
+        } else {
+            menuBtn.classList.remove('open');
+            menuOpen = false;
+        }
+    });
+
+</script>
+
    
 
    
