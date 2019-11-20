@@ -12,8 +12,23 @@ const app = express();
 
 app.use(cors({ origin: true}));
 
-app.post('/register/:object',async(req: { param: { object: any; }; },res: { send: (arg0: FirebaseFirestore.WriteResult) => void; }) =>{
+app.post('cliente/register/:object',async(req: { param: { object: any; }; },res: { send: (arg0: FirebaseFirestore.WriteResult) => void; }) =>{
 
+    try{
+        let obj = req.param.object;
+        
+        const clientes = await admin.firestore().doc(`Clientes/${obj.body.email}`).set({
+            
+        });
+        res.send(clientes);
+    } catch(e){
+        console.log(e);
+        response.status(500).send(e);
+        }
+});
+
+
+app.post('/cliente/login/:object',async(req: { param: { object: any; }; },res: { send: (arg0: FirebaseFirestore.WriteResult) => void; }) =>{
     try{
         let obj = req.param.object;
         const clientes = await admin.firestore().doc(`Clientes/${obj.email}`).set({
@@ -25,7 +40,6 @@ app.post('/register/:object',async(req: { param: { object: any; }; },res: { send
         response.status(500).send(e);
     }
 });
-
 
 app.get('/login/:email', async (req: { params: { email: any; }; }, res: { send: (arg0: FirebaseFirestore.DocumentData | undefined) => void; }) => {
     try{

@@ -1,15 +1,15 @@
-<div class="container-fluid" id="approot" style="background-color: #ECECEC;">
+<div class="container-fluid" id="approot">
     <div class="row">
-        <div class="col-md-12 p-0">
+        <div class="col-md-12">
             <div class="view jarallax">
                 <div id="PagInicio">
                     <img id="ImagenInicio" alt="" src="../assets/img/img2.jpg">
                 </div>
                 
-                <div class="mask rgba-black-strong">
-                    <app-navbar></app-navbar>     
-                    <app-intro id="intro" class="animated fadeInUp delay-2s"></app-intro>
-                    <!--<app-registro id="registro" class="animated fadeInUp faster"></app-registro>
+                <div class="mask">
+                    <app-navbar class="animated fadeIn"></app-navbar>     
+                    <app-intro id="intro" class="animated fadeInUp my-auto"></app-intro>
+                    <!-- <app-registro id="registro" class="animated fadeInUp faster"></app-registro>
                     <app-login id="login" class="animated fadeInUp faster"></app-login>
                     -->
                 </div>
@@ -19,7 +19,7 @@
     </div>
     <app-about id="about" class="animated"></app-about>
     <app-instalaciones id="instalaciones"></app-instalaciones>
-    <app-precios></app-precios>
-    <app-reservar></app-reservar>
+    <app-precios id="precio"></app-precios>
+    <!-- <app-reservar></app-reservar> -->
 </div>
 <app-footer></app-footer>

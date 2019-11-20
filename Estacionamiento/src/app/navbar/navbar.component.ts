@@ -22,12 +22,18 @@ export class NavbarComponent implements OnInit {
     
       if(!this.menuOpen) {
         document.querySelector('.menu-btn').classList.add('open');
-        document.querySelector('#Menu2').style.display = "block";
+        document.getElementById('Menu2').style.display = "block";
+        document.getElementById('Menu2').classList.add('slideInRight');
+        document.getElementById('Menu2').classList.remove('slideOutRight');
         this.menuOpen = true;
 
       } else {
         document.querySelector('.menu-btn').classList.remove('open');
-        document.querySelector('#Menu2').style.display="none";
+        document.getElementById('Menu2').classList.remove('slideInRight');
+        document.getElementById('Menu2').classList.add('slideOutRight');
+        setTimeout(function(){
+          document.getElementById('Menu2').style.display="none";
+        },700);
         this.menuOpen = false;
       }
 
@@ -78,6 +84,11 @@ export class NavbarComponent implements OnInit {
        $("#intro").show();
     },500);
 
+  }
+
+  onClickPrecio(){
+
+    document.getElementById("precio").scrollIntoView({behavior:"smooth"}); 
   }
 
   onClickAbout(){

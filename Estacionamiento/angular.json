@@ -42,8 +42,7 @@
               "node_modules/hammerjs/hammer.min.js",
               "node_modules/jarallax/dist/jarallax.min.js",
               "node_modules/jarallax/dist/jarallax-element.min.js",
-              "node_modules/jarallax/dist/jarallax-video.min.js",
-              "src/utils.js"
+              "node_modules/jarallax/dist/jarallax-video.min.js"
             ]
           },
           "configurations": {

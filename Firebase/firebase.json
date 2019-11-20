@@ -13,7 +13,7 @@
     ]
   },
   "hosting": {
-    "public": "",
+    "public": "Estacionamiento/dist/Estacionamiento",
     "ignore": [
       "firebase.json",
       "**/.*",
