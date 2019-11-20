@@ -8,12 +8,29 @@ import { AboutComponent } from '../about/about.component';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  menuBtn = document.querySelector('.menu-btn');
+  menuOpen = false;
 
   constructor() { 
     
   } 
 
   ngOnInit() {
+     
+  }
+  onClickMenu(){
+    
+      if(!this.menuOpen) {
+        document.querySelector('.menu-btn').classList.add('open');
+        document.querySelector('#Menu2').style.display = "block";
+        this.menuOpen = true;
+
+      } else {
+        document.querySelector('.menu-btn').classList.remove('open');
+        document.querySelector('#Menu2').style.display="none";
+        this.menuOpen = false;
+      }
+
   }
 
   onClickBrand(){

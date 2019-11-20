@@ -4,7 +4,7 @@
         <h4>Parking Lot</h4>
     </div>
     
-    <div class="menu-btn">
+    <div class="menu-btn" (click)="onClickMenu()">
         <div class="menu-btn__burger"></div>
     </div>
 
@@ -18,22 +18,21 @@
         </ul>
     </nav>
 
-    
-</header>
-<script>
-    const menuBtn = document.querySelector('.menu-btn');
-    let menuOpen = false;
-        menuBtn.addEventListener('click', () => {
-        if(!menuOpen) {
-            menuBtn.classList.add('open');
-            menuOpen = true;
-        } else {
-            menuBtn.classList.remove('open');
-            menuOpen = false;
-        }
-    });
+    <div id="Menu2">
+        <ul>
+            <li><a href="#">Precios</a></li>
+            <li><a href="#">Reservar</a></li>
+            <li><a href="#">Historial</a></li>
+            <li><a href="#">Editar Perfil</a></li>
+            <li><a href="#">Darse de Baja</a></li>
+            <li><a href="#">Reservaciones</a></li>
+            <li><a href="#">Registrar Vehiculos</a></li>
+            <li><a href="#">Salir</a></li>
+        </ul>
+    </div>
 
-</script>
+</header>
+
 
    
 
