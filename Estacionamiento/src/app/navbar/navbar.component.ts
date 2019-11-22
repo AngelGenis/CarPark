@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
         document.getElementById('Menu2').classList.add('slideOutRight');
         setTimeout(function(){
           document.getElementById('Menu2').style.display="none";
-        },700);
+        },400);
         this.menuOpen = false;
       }
 

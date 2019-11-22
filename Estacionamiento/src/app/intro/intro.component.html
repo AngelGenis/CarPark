@@ -5,14 +5,15 @@
                 <img id="CarroImg" src="../assets/img/car2.png" alt="">
                 <h1 id="Titulo">Parking Lot</h1>
                 <p>
-                    Whether you're looking for a spot in the moment  or want to reserve a 
-                    space ahead of time, Car Park puts the power in the palm of your hand.
+                    <strong>
+
+                        Whether you're looking for a spot in the moment  or want to reserve a 
+                        space ahead of time, Car Park puts the power in the palm of your hand.
+                    </strong>
                 </p>
             </div>
         </div>
-            <button id="Premium">
-                Ingresar
-            </button>
-            <p> ¿No tienes cuenta? <a class='text-primary'>Registro.</a></p>
+            <button (click)="onClickLogin()" type="button" mdbBtn color="primary" id="Premium" mdbWavesEffect>Ingresar</button>
+            <p> ¿No tienes cuenta? <a (click)="onClickRegistro()" class='text-primary'>Registro.</a></p>
     </div>
 </div>
