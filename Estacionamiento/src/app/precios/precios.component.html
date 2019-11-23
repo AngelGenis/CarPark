@@ -1,32 +1,65 @@
 <div class="contenedor">
     <h2>Precios</h2>    
-    <div id="UsuarioNormal"> 
-        <p>Usuario Normal</p>
-        <table>
-            <tr>
-                <th>Tiempo en hrs</th>
-                <th>Costo</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>$15</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>$30</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>$45</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>$55</td>
-            </tr>
+    <p>Usuario Normal</p>
+    <!-- <table>
+        <tr>
+            <th>Tiempo en hrs</th>
+            <th>Costo</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>$15</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>$30</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>$45</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>$55</td>
+        </tr>
         
-        </table>
-            
-    </div>
+        
+    </table> -->
+    <div class='container-fluid'>
+        <div class='row justify-content-center'>
+                
+                <div class='col-md-7'>
+                    <table mdbTable class='w-100'>
+                            <thead>
+                              <tr>
+                                <th>Tiempo en horas.</th>
+                                <th>Costo</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr mdbTableCol>
+                            <td>1</td>
+                            <td>$15</td>
+                              </tr>
+                              <tr mdbTableCol>
+                            <td>2</td>
+                            <td>$30</td>
+                              </tr>
+                              <tr mdbTableCol>
+                            <td>3</td>
+                            <td>$45</td>
+                              </tr>
+                              <tr>
+                            <td>4</td>
+                            <td>$55</td>
+                                </tr>
+                        </tbody>
+                          </table>
+                </div>
+            </div>
+        </div>
+
+    <!-- </div> -->
     <div id="UsuarioPremium">
         <p class="margen">Usuario Premium</p>
         <p class="margen">Se paga una mensualidad de $1000, con este

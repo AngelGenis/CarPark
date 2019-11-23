@@ -24,7 +24,7 @@ p{
     font-size: .9em;
 }
 
-table{
+/* table{
     margin-top: 30px;
     text-align: center;
     position: relative;
@@ -36,7 +36,7 @@ tr, th, td{
 th{
     background: #3E64FF;
     width: 50%;
-}
+} */
 #UsuarioPremium{
     position: relative;
     width: 100%;

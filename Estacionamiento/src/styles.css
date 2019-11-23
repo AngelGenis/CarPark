@@ -203,3 +203,19 @@ font-size: 1.6rem;
             top: 21px;
             left: 8px;
         }
+
+app-registro{
+    display: inline-block;
+}
+
+app-login{
+    display: inline-block;
+}
+
+app-intro{
+    display: inline-block;
+}
+
+app-navbar{
+    display: inline-block;
+}
