@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FirestoreService } from '../services/firestore.service';
 import { FormBuilder, FormGroup, FormControl, Validators, NgControl } from '@angular/forms';
@@ -11,16 +11,40 @@ import * as $ from 'jquery';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
- validatingForm:FormGroup;
- passVald:FormGroup;
- tipoLogin: string;
-
+  validatingForm:FormGroup;
+  passVald:FormGroup;
+  tipoLogin: string;
+  
   constructor(public firebaseService:FirestoreService,
-              public auth:AuthService,
-              public toastr:ToastrService
-              ) { this.tipoLogin='email';}
-
+    public auth:AuthService,
+    public toastr:ToastrService
+    ) { this.tipoLogin='email';
+    
+  }
+  
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    // this.innerWidth = window.innerWidth;
+    if ( window.innerWidth <= 1000){
+      $("#form").addClass('example-1');
+      $("#form").addClass('scrollbar-ripe-malinka');
+    } 
+    else{
+      $("#form").removeClass('example-1');
+      $("#form").removeClass('scrollbar-ripe-malinka');
+    }
+  } 
+  
   ngOnInit() {
+
+    if ( window.innerWidth <= 1000){
+      $("#form").addClass('example-1');
+      $("#form").addClass('scrollbar-ripe-malinka');
+    } 
+    else{
+      $("#form").removeClass('example-1');
+      $("#form").removeClass('scrollbar-ripe-malinka');
+    }
     this.validatingForm = new FormGroup({
       correoIn: new FormControl(null,[Validators.required, Validators.email])
     });
@@ -28,13 +52,13 @@ export class RegistroComponent implements OnInit {
     this.passVald = new FormGroup({
       passIn: new FormControl(null,[Validators.required, Validators.minLength(6)])
     });
+
+
   }
+
 
   get input() {return this.validatingForm.get('correoIn');}
   get inputClave() {return this.passVald.get('passIn');}
-  
- 
-
 
   limpiarImputs(){
   $("#nombreIn").val('');
