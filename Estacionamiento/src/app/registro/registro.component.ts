@@ -3,7 +3,11 @@ import { AuthService } from '../services/auth.service';
 import { FirestoreService } from '../services/firestore.service';
 import { FormBuilder, FormGroup, FormControl, Validators, NgControl } from '@angular/forms';
 import { ToastrService, ToastRef } from 'ngx-toastr';
+
 import * as $ from 'jquery';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import { PathLocationStrategy } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-registro',
@@ -15,9 +19,11 @@ export class RegistroComponent implements OnInit {
   passVald:FormGroup;
   tipoLogin: string;
   
+  
   constructor(public firebaseService:FirestoreService,
     public auth:AuthService,
-    public toastr:ToastrService
+    public toastr:ToastrService,
+    private http: HttpClient
     ) { this.tipoLogin='email';
     
   }
@@ -68,6 +74,53 @@ export class RegistroComponent implements OnInit {
   $("#telefonoIn").val('');
   $("#passIn").val('');
   $("#tarjetaIn").val('');
+  }
+
+  testregistro(){
+    let value={}
+    value['nombre'] =     $("#nombreIn").val();
+    value['apellido'] =   $("#apellidoIn").val();
+    value['direccion'] =  $("#direccionIn").val();
+    value['correo'] =     $("#correoIn").val();
+    value['telefono'] =   parseInt($("#telefonoIn").val());
+    value['clave'] =      $("#passIn").val();
+    value['cuenta'] =     parseInt($("#tarjetaIn").val());
+    value['displayName'] = $("#nombreIn").val();
+
+    const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
+
+    return this.http.post(
+          'https://us-central1-hellofirebase-f0dc5.cloudfunctions.net/widgets/cliente/register/', 
+          value,
+          httpOptions
+      )
+      .subscribe(
+        data  => {
+        console.log("POST Request is successful ", data);
+        },
+        error  => {
+        
+        console.log("Error", error);
+        
+        });
+
+    // $.ajax({
+    //   async: true,
+    //   type: "POST",
+    //   datatype: "json",
+    //   contentType: "application/json",
+    //   url: "http://us-central1-hellofirebase-f0dc5.cloudfunctions.net/widgets/cliente/register",
+    //   data: {object:value},
+    //   beforeSend: function(){},
+    //   success: function(data){console.log(data);},
+    //   timeout:5000,
+    //   error:function(err){console.log(err);}
+    // });
+
   }
 
   crearUsuario(){

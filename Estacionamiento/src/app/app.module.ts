@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
+
  
 
 import {  ReactiveFormsModule, FormsModule }   from '@angular/forms';
@@ -42,6 +44,7 @@ import { ReservarComponent } from './reservar/reservar.component';
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     FormsModule,
