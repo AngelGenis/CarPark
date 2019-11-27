@@ -1,0 +1,27 @@
+[debug] [2019-11-27T16:29:13.314Z] ----------------------------------------------------------------------
+[debug] [2019-11-27T16:29:13.326Z] Command:       /usr/bin/node /usr/bin/firebase deploy
+[debug] [2019-11-27T16:29:13.326Z] CLI Version:   7.7.0
+[debug] [2019-11-27T16:29:13.327Z] Platform:      linux
+[debug] [2019-11-27T16:29:13.327Z] Node Version:  v10.16.3
+[debug] [2019-11-27T16:29:13.328Z] Time:          Wed Nov 27 2019 10:29:13 GMT-0600 (Central Standard Time)
+[debug] [2019-11-27T16:29:13.328Z] ----------------------------------------------------------------------
+[debug] [2019-11-27T16:29:13.328Z] 
+[debug] [2019-11-27T16:29:13.378Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-27T16:29:13.379Z] > authorizing via signed-in user
+[debug] [2019-11-27T16:29:13.379Z] [iam] checking project hellofirebase-f0dc5 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2019-11-27T16:29:13.386Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-11-27T16:29:13.387Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-11-27T16:29:14.426Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-27T16:29:14.431Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/hellofirebase-f0dc5:testIamPermissions  
+
+[debug] [2019-11-27T16:29:15.244Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-27T16:29:15.253Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/hellofirebase-f0dc5  
+ 
+[debug] [2019-11-27T16:29:15.611Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'hellofirebase-f0dc5'...
+[info] 
+[info] i  deploying database, storage, firestore, functions, hosting
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
