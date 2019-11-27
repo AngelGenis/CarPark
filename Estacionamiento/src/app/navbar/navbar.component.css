@@ -74,24 +74,6 @@ header{
     transform: rotate(-45deg) translate(35px, 35px);
   }
 
-
-#Menu1{
-   
-    position: relative;
-    width: 100%;
-    margin-top: 20px;
-
-}
-#Menu1 ul li{
-    display: inline-block;
-    padding: 8px;
-}
-
-#Menu1 ul li a{
-    color: black;
-    text-decoration: none;
-    font-size: 12px;
-}
 .mostrar{
   display: block;
 }
