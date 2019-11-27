@@ -19,10 +19,9 @@ app.use(bodyParser.json());
 app.use(cors({ origin: true}));
 
 
-app.post('cliente/register/',async(req: { body: any; },res: { send: (arg0: FirebaseFirestore.WriteResult) => void; }) =>{
-
+app.post('cliente/register/:object',async(req: { body: any; },res: { send: (arg0: FirebaseFirestore.WriteResult) => void; }) =>{
     try{
-        const obj = req.body;
+        const obj = req.body.object;
         const exists = await admin.firestore().doc(`Clientes/${obj.email}`).get();
         
         if(exists){
