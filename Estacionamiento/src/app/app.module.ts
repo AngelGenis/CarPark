@@ -28,6 +28,7 @@ import { InstalacionesComponent } from './instalaciones/instalaciones.component'
 import { RegistroComponent } from './registro/registro.component';
 import { PreciosComponent } from './precios/precios.component';
 import { ReservarComponent } from './reservar/reservar.component';
+import { PresentacionComponent } from './presentacion/presentacion.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ReservarComponent } from './reservar/reservar.component';
     InstalacionesComponent,
     RegistroComponent,
     PreciosComponent,
-    ReservarComponent
+    ReservarComponent,
+    PresentacionComponent
   ],
   imports: [
     CommonModule,
