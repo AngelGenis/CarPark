@@ -10,12 +10,15 @@ import { AboutComponent } from '../about/about.component';
 export class NavbarComponent implements OnInit {
   menuBtn = document.querySelector('.menu-btn');
   menuOpen = false;
+  links = document.querySelector('.menu-btn');
+
 
   constructor() { 
     
   } 
 
-  ngOnInit() {
+  ngOnInit(){
+  
      
   }
   onClickMenu(){
@@ -95,6 +98,19 @@ export class NavbarComponent implements OnInit {
        $("#registro").show();
     },500);
   }
+
+  onClickLinks(){
+      document.querySelector('.menu-btn').classList.remove('open');
+      document.getElementById('Menu2').classList.remove('slideInRight');
+      document.getElementById('Menu2').classList.add('slideOutRight');
+      setTimeout(function(){
+        document.getElementById('Menu2').style.display="none";
+      },400);
+      this.menuOpen = false;
+}
+
+
+  
 
   
 

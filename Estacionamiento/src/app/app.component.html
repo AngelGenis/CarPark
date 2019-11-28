@@ -3,13 +3,14 @@
         <app-navbar class="animated fadeIn"></app-navbar>
         <nav id="Menu1">
                 <ul>
-                    <li><a mdbwaveseffect (click)="onClickInicio()" id='btn1'>Inicio</a></li>
+                    <li><a mdbwaveseffect (click)="onClickInicio()" routerLink="inicio" id='btn1'>Inicio</a></li>
                     <li><a mdbwaveseffect (click)="onClickInstalaciones()" id='btn2'>Instalaciones</a></li>
                     <li><a mdbwaveseffect (click)="onClickUbicacion()" id='btn3'>¿Quienes Somos?</a></li>
                     <li><a mdbwaveseffect (click)="onClickPrecio()" id='btn4'>Precios</a></li>
                 </ul>
         </nav> 
     </header>
-    <app-presentacion></app-presentacion>
+    
 </div>
-<app-footer></app-footer>
+
+<router-outlet></router-outlet>
