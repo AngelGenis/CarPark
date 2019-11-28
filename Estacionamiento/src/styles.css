@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 *:focus{
     outline:none;
 }
@@ -25,9 +25,13 @@ html {
 font-size: 1.6rem;
 }
 } */
-    * {
-            font-family: Montserrat;
-        }
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
 
         /* Icon 1 */
 
