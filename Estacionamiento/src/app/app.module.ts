@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+// import { bcrypt } from 'bcrypt';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -47,9 +48,11 @@ import { FirestoreService } from './services/firestore.service';
     ReservarComponent,
     PresentacionComponent,
     VisualizarperfilComponent
+    // bcrypt
   ],
   imports: [
     CommonModule,
+    // bcrypt,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added

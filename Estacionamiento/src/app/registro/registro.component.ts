@@ -136,7 +136,6 @@ export class RegistroComponent implements OnInit {
     value['cuenta'] =     parseInt($("#tarjetaIn").val());
     value['displayName'] = $("#nombreIn").val();
 
-    console.log(value);
 
     this.auth.autenticarNuevoUsuario(value['correo'],value['clave'])
              .then(res =>{
@@ -177,7 +176,7 @@ export class RegistroComponent implements OnInit {
               })
             
               .catch(e => {
-
+                  console.log(e);
                   this.toastr.error('Error','Verifique su email');
               })
               
