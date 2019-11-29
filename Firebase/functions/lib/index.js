@@ -13,10 +13,9 @@ admin.initializeApp();
 const app = express();
 app.use(bodyParser.json());
 app.use(cors({ origin: true }));
-app.post('cliente/register', async (req, res) => {
+app.post('cliente/register/:object', async (req, res) => {
     try {
-        console.log("object");
-        const obj = req.body;
+        const obj = req.body.object;
         const exists = await admin.firestore().doc(`Clientes/${obj.email}`).get();
         if (exists) {
             express_1.response.status(500).send('Ya se encuentra registrado');
