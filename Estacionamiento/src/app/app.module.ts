@@ -29,6 +29,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { PreciosComponent } from './precios/precios.component';
 import { ReservarComponent } from './reservar/reservar.component';
 import { PresentacionComponent } from './presentacion/presentacion.component';
+import { VisualizarperfilComponent } from './visualizarperfil/visualizarperfil.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PresentacionComponent } from './presentacion/presentacion.component';
     RegistroComponent,
     PreciosComponent,
     ReservarComponent,
-    PresentacionComponent
+    PresentacionComponent,
+    VisualizarperfilComponent
   ],
   imports: [
     CommonModule,
