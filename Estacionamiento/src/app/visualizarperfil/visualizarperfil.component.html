@@ -6,18 +6,29 @@
         
         <nav>
             <ul>
-                <li><a href="#">Datos Personales</a></li>
-                <li><a href="#">Autos</a></li>
-                <li><a href="#">Tarjetas</a></li>
+                <li><a (click)="onClickDatosPersonales()">Datos Personales</a></li>
+                <li><a (click)="onClickDatosAutos()">Autos</a></li>
+                <li><a (click)="onClickDatosTarjetas()">Tarjetas</a></li>
             </ul>
         </nav>
     </div>
 
-    <div id="DatosPersonales">
-        <p>Nombre</p>
-        <p>Telefono</p>
-        <p>Correo</p>
-        <p>Dirección</p>
+    <div class="container">
+        <ng-template [ngIf]="bandcontenedor == 1">
+                <p>Nombre</p>
+                <p>Telefono</p>
+                <p>Correo</p>
+                <p>Dirección</p>
+        </ng-template>
+
+        <ng-template [ngIf]="bandcontenedor == 2">
+            <p>Estos son los autos</p>
+        </ng-template>
+
+        <ng-template [ngIf]="bandcontenedor == 3">
+            <p>Estos son las tarjetas</p>
+        </ng-template>
+       
     </div>
 
 </div>
