@@ -1,23 +1,27 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
 
-  constructor(public db: AngularFirestore) { }
+  constructor(public db: AngularFirestore,
+              ) { 
+              }
 
   createUser(value, flag){
-    if(flag === 'google'){
+    let hash = bcrypt.hashSync(value.clave, 8);
 
+    if(flag === 'google'){
       return this.db.collection('Clientes').doc(value.correo).update({
         apellido: value.apellido,
         nombre: value.nombre,
         correo: value.correo,
         direccion: value.direccion,
         telefono: value.telefono,
-        clave: value.clave,
+        clave: hash,
         cuenta: value.cuenta
       });
     } else if (flag==='email'){
@@ -28,7 +32,7 @@ export class FirestoreService {
         correo: value.correo,
         direccion: value.direccion,
         telefono: value.telefono,
-        clave: value.clave,
+        clave: hash,
         cuenta: value.cuenta,
         displayName: value.displayName
       });
