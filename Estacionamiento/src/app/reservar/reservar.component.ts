@@ -29,7 +29,6 @@ export class ReservarComponent implements OnInit {
       this.banderaAutos = true;
       document.getElementById('ArrowVehiculos').classList.add('down');
       document.getElementById('ArrowVehiculos').classList.remove('up');
-      
     }
     
   }
