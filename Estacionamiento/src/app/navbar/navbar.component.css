@@ -6,7 +6,6 @@ header{
     position: relative;
     width: 100%;
     padding: 10px;
-    height: 50px;
 }
 .logo{
     color: black;
@@ -117,21 +116,10 @@ header{
         padding-left: 50px;
     }
 
-    #Menu1{
-        position: absolute;
-        top: -10px;
-        width: 50%;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-    }
-    #Menu1 ul li{
-        position: relative;
-        margin: 0px 20px;
-    }
-    #Menu1 ul li a{
-        font-size: .9em;
-
+    #Menu2 ul{
+      margin-top: 10%;
+      height: 80%;
+      list-style: none;
     }
     
 }
