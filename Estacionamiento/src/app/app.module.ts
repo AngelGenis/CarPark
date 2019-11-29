@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { environment } from './../environments/environment';
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+
 
  
 
@@ -30,6 +31,7 @@ import { PreciosComponent } from './precios/precios.component';
 import { ReservarComponent } from './reservar/reservar.component';
 import { PresentacionComponent } from './presentacion/presentacion.component';
 import { VisualizarperfilComponent } from './visualizarperfil/visualizarperfil.component';
+import { FirestoreService } from './services/firestore.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,7 @@ import { VisualizarperfilComponent } from './visualizarperfil/visualizarperfil.c
     AngularFireAuthModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [FirestoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

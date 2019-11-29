@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Cliente } from '../services/cliente.model';
+import { FirebaseService } from '../firebase.service';
 import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-visualizarperfil',
@@ -10,10 +13,13 @@ export class VisualizarperfilComponent implements OnInit {
   public bandcontenedor: number = 1;
 
 
-  constructor() { }
+  constructor( private perfilService: FirebaseService) { }
 
   ngOnInit() {
-
+    this.perfilService.getPerfiles().subscribe(perfiles => {
+      console.log(perfiles);
+      
+    })
   }
 
   onClickDatosPersonales(){
