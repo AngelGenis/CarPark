@@ -11,14 +11,14 @@ import * as $ from 'jquery';
 })
 export class VisualizarperfilComponent implements OnInit {
   public bandcontenedor: number = 1;
+  perfiles: Cliente[];
 
 
   constructor( private perfilService: FirebaseService) { }
 
   ngOnInit() {
     this.perfilService.getPerfiles().subscribe(perfiles => {
-      console.log(perfiles);
-      
+      this.perfiles = perfiles
     })
   }
 

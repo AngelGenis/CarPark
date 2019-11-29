@@ -15,10 +15,18 @@ export class FirebaseService {
   perfilDocument: AngularFirestoreDocument<Cliente>
 
   constructor(public db: AngularFirestore) { 
-    this.perfil = db.collection('Clientes').valueChanges();
+    //his.perfil = db.collection('Clientes').valueChanges();
+    this.perfilCollection = db.collection<Cliente>('Clientes');
+    this.perfil = this.perfilCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a =>{
+        const data = a.payload.doc.data() as Cliente;
+        const id = a.payload.doc.id;
+        return {id, ...data};
+      }))
+    );
   }
 
-  getPerfiles(){
+  getPerfiles(){ 
     return this.perfil;
   }
 

@@ -68,7 +68,7 @@ a{
     transform: translateX(-50%);
     padding-top: 50px;
 }
-.container p{
+.container ul p{
     text-align: center;
     margin: 20px 0;
 }

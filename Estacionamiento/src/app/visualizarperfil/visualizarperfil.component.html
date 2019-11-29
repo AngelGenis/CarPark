@@ -15,10 +15,15 @@
 
     <div class="container">
         <ng-template [ngIf]="bandcontenedor == 1">
-                <p>Nombre</p>
-                <p>Telefono</p>
-                <p>Correo</p>
-                <p>Dirección</p>
+            <ul *ngFor="let perfil of perfiles">
+                <p>{{perfil.nombre}}</p>
+                <p>{{perfil.telefono}}</p>
+                <p>{{perfil.correo}}</p>
+                <p>{{perfil.direccion}}</p>
+                
+            </ul>
+          
+               
         </ng-template>
 
         <ng-template [ngIf]="bandcontenedor == 2">
