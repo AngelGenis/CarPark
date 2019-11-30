@@ -33,6 +33,7 @@ import { ReservarComponent } from './reservar/reservar.component';
 import { PresentacionComponent } from './presentacion/presentacion.component';
 import { VisualizarperfilComponent } from './visualizarperfil/visualizarperfil.component';
 import { FirestoreService } from './services/firestore.service';
+import { CdarsebajaComponent } from './cdarsebaja/cdarsebaja.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { FirestoreService } from './services/firestore.service';
     PreciosComponent,
     ReservarComponent,
     PresentacionComponent,
-    VisualizarperfilComponent
+    VisualizarperfilComponent,
+    CdarsebajaComponent
     // bcrypt
   ],
   imports: [

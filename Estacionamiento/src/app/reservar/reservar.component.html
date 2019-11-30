@@ -1,15 +1,15 @@
 <div class="contenedor animated fadeIn faster">
     <h1>Realizar Reservación</h1>
 
-    <div id="ContenedorForm">
+    <form class="form-container" id="ContenedorForm" [formGroup]="formReservas" (ngSubmit)="onGuardarFormulario()">
         <label for="">Fecha</label>
-        <input type="text" >
+        <input type="text"  formControlName="fecha">
         
         <label for="">Hora de llegada</label>
-        <input type="text" >
+        <input type="text" formControlName="llegada">
         
         <label for="">Hora de salida</label>
-        <input type="text" >
+        <input type="text" formControlName="salida">
 
 
         <div class="contenedores-titulos">
@@ -44,10 +44,11 @@
             </div>
         </div>
     
-    </div>
+        <button type="submit" class="btn">Reservar</button>
+    </form>
     
 
-    <button class="btn">Reservar</button>
+ 
 
     
 
