@@ -5,6 +5,7 @@ import { ReservarComponent } from './reservar/reservar.component';
 import { LoginComponent } from './login/login.component';
 import { VisualizarperfilComponent } from './visualizarperfil/visualizarperfil.component'
 import { RegistroComponent } from './registro/registro.component'
+import { CdarsebajaComponent } from './cdarsebaja/cdarsebaja.component';
 
 const routes: Routes = [
   { path: '', component: PresentacionComponent},
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'inicio', component: PresentacionComponent},
   { path: 'login', component: LoginComponent},
   { path: 'perfil', component: VisualizarperfilComponent},
-  { path: 'registro', component: RegistroComponent}
+  { path: 'registro', component: RegistroComponent},
+  { path: 'darsebaja', component: CdarsebajaComponent}
 ];
 
 @NgModule({
