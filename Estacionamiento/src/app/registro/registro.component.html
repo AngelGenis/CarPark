@@ -1,79 +1,84 @@
-<div class="container-fluid animated fadeIn faster ">
-    <div class="row justify-content-center">
-        <div class=" col-md-7 mt-5 " id="form">
-            <form class=" text-center text-black white border p-5">
+<div class="container-fluid animated fadeIn faster">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-4 mt-5">
+      <form class="text-center border border-light p-5 m-1">
 
-                    <p class="h4 tituloLogin"><strong>Registro</strong></p>
-                    
-                    <!-- Email -->
-                    <div class="container-fluid">
-                        
-                        <div class="row py-0">
-                            <div class="col-md">
-                                <div class="md-form form-sm">
-                                    <input mdbInput type="text" id="nombreIn" class="form-control" required>
-                                        <label for="form1 labelsLogin"><strong>Nombre</strong></label>
-                                </div>
-                            </div>
-                            <div class="col-md" >
-                                <div class="md-form form-sm">
-                                    <input mdbInput type="text" id="apellidoIn" class="form-control">
-                                    <label for="form1 labelsLogin" ><strong>Apellido</strong></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" >
-                            <div class="col-md" style="margin: 0px;">
-                                <form [formGroup]="validatingForm">
-                                    <div class="md-form form-sm">
-                                        <input mdbInput mdbValidate type="email" id="correoIn" class="form-control" formControlName="correoIn">
-                                        <label for="form1 labelsLogin" ><strong>Correo</strong></label>
-                                        <mdb-error *ngIf="input.invalid && (input.dirty || input.touched)">Correo Invalido</mdb-error>
-                                        <mdb-success *ngIf="input.valid && (input.dirty || input.touched)">Correo Valido</mdb-success>
-                                    </div>
-                                </form> 
-                                
-                            </div>
-                            <div class="col-md">
-                                <div class="md-form form-sm ">
-                                    <input mdbInput type="text" id="telefonoIn" class="form-control" required>
-                                    <label for="form1 labelsLogin" ><strong>Telefono</strong></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md">
-                                <div class="md-form form-sm">
-                                    <input mdbInput type="text" id="direccionIn" class="form-control" required>
-                                    <label for="form1 labelsLogin" ><strong>Direccion</strong></label>
-                                </div>
+        <p class="h4 mb-4">Registro</p>
 
-                            </div>
-                            <div class="col-md">
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- First name -->
+            <input type="text" id="nombreIn" class="form-control" placeholder="Nombre">
+          </div>
+          <div class="col">
+            <!-- Last name -->
+            <input type="text" id="apellidoIn" class="form-control" placeholder="Apellido">
+          </div>
+        </div>
 
-                                <div class="md-form form-sm">
-                                    <input mdbInput type="text" id="tarjetaIn" class="form-control" required>
-                                    <label for="form1 labelsLogin" ><strong>Num de tarjeta</strong></label>
-                                </div>
-                            </div>
-                        </div>
-                                <form [formGroup]="passVald">
-                                    <div class="md-form form-sm">
-                                        <input mdbInput mdbValidate type="password" id="passIn" class="form-control" formControlName="passIn">
-                                        <label for="form1 labelsLogin" ><strong>Contraseña</strong></label>
-                                        <mdb-error *ngIf="inputClave.invalid && (inputClave.dirty || inputClave.touched)">Correo Invalido</mdb-error>
-                                        <mdb-success *ngIf="inputClave.valid && (inputClave.dirty || inputClave.touched)">Correo Valido</mdb-success>
-                                    </div>
-                                </form> 
-                    </div>
+        <!-- E-mail -->
+        <input type="email"  id="correoIn" class="form-control mb-4" placeholder="E-mail">
 
-                    <!-- Sign in button -->
-                    <button mdbBtn mdbwaveseffect (click)="crearUsuario()"  class="pt-2 w-75 labelsLogin my-4 mx-auto" color="primary" block="true"  type="button"><strong class='text-dark'>Registrar</strong></button>
+        <!-- Password -->
+        <input type="password"  id="passIn" class="form-control" placeholder="Contraseña"
+          aria-describedby="defaultRegisterFormPasswordHelpBlock">
+        <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+          Por lo menos 6 digitos.
+        </small>
 
-                    <button mdbBtn mdbwaveseffect (click)="gRegistro()"  color="light" block="true" class="w-75 labelsLogin center mx-auto" type="button"><strong>Registrar con Google</strong><mdb-icon fab class="pl-1" icon="google"></mdb-icon></button>
-                    
-                    <!-- Register -->
-                    </form>
-        </div> 
+        <!-- Phone number -->
+        <input type="text" id="telefonoIn" class="form-control mb-4" placeholder="Teléfono"
+          aria-describedby="defaultRegisterFormPhoneHelpBlock">
+        <!-- <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+        
+      </small> -->
+
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- First name -->
+            <input type="text" id="calleIn" class="form-control" placeholder="Calle">
+          </div>
+          <div class="col">
+            <!-- Last name -->
+            <input type="number" id="numeroIn" class="form-control" placeholder="Numero">
+          </div>
+
+          <div class="col">
+            <!-- Last name -->
+            <input type="number" id="cpIn" class="form-control" placeholder="C.P.">
+          </div>
+        </div>
+
+        <input type="text" id="coloniaIn" class="form-control mb-4" placeholder="Colonia">
+
+        <input type="number" id="tarjetaIn" class="form-control mb-4" placeholder="Numero de Tarjeta"
+          aria-describedby="defaultRegisterFormPasswordHelpBlock">
+
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- First name -->
+            <input type="number" id="cvvIn" class="form-control" placeholder="CVV">
+          </div>
+          <div class="col">
+            <!-- First name -->
+            <input type="text" id="dateIn" class="form-control" placeholder="Fecha">
+          </div>
+
+        </div>
+        <!-- Sign up button -->
+
+        <button mdbBtn mdbwaveseffect (click)="crearUsuario()" color="primary" block="true"
+          class="my-4 labelsLogin text-dark" type="button"><strong>Registro</strong></button>
+
+        <button mdbBtn mdbwaveseffect (click)="gRegistro()" color="light" block="true"
+          class="my-4 labelsLogin text-dark" type="button"><strong>Registro con Google</strong>
+          <mdb-icon fab class="pl-1" icon="google"></mdb-icon>
+        </button>
+        <p>Haciendo click en
+          <em>Registro</em> esta de acuerdo con nuestros
+          <a href="" target="_blank">terminos de servicio</a></p>
+
+      </form>
     </div>
+  </div>
 </div>
