@@ -35,6 +35,7 @@ import { VisualizarperfilComponent } from './visualizarperfil/visualizarperfil.c
 import { FirestoreService } from './services/firestore.service';
 import { CdarsebajaComponent } from './cdarsebaja/cdarsebaja.component';
 import { ReservacionesComponent } from './reservaciones/reservaciones.component';
+import { ElevadorComponent } from './elevador/elevador.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ReservacionesComponent } from './reservaciones/reservaciones.component'
     PresentacionComponent,
     VisualizarperfilComponent,
     CdarsebajaComponent,
-    ReservacionesComponent
+    ReservacionesComponent,
+    ElevadorComponent
     // bcrypt
   ],
   imports: [
