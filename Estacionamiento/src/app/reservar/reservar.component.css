@@ -16,6 +16,7 @@
     margin-top: 20px;
 
 }
+
 h1{
     font-size: 1.2em;
     text-align: center;
@@ -102,8 +103,29 @@ i{
     border-radius: 30px;
     font-weight: bold;
     color: white;
+    box-shadow: 1px 1px 3px lightgray;
 }
 
+.form-container input[type="text"]:focus{
+    border: none;
+    box-shadow: 0 0 5px #0066FF;
+    padding: 5px;
+    border-bottom: 1px solid #0066FF;
+}
+
+@media (min-width: 769px) {
+    #ContenedorForm{
+        width: 30%;
+        box-shadow: 1px 1px 1px lightgrey;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .btn:hover{
+        color: #0066FF;
+        background: white;
+        border: 1px solid #0066FF;
+    }
+}
 
 
 

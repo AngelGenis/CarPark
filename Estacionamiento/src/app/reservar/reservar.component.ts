@@ -1,19 +1,45 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup  } from '@angular/forms';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+
 import * as $ from 'jquery';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-reservar',
   templateUrl: './reservar.component.html',
   styleUrls: ['./reservar.component.css']
 })
+
 export class ReservarComponent implements OnInit {
   banderaAutos: boolean = true;
   banderaTarjetas: boolean = true;
 
+  crearFormReservas(){
+    return new FormGroup({
+      usuario: new FormControl(''),
+      fecha: new FormControl(''),
+      llegada: new FormControl(''),
+      salida: new FormControl(''),
+      auto: new FormControl(''),
+      pago: new FormControl('')
+    })
+  }
 
-  constructor() { }
+  formReservas: FormGroup;
+
+  constructor(private dbData: AngularFirestore) { 
+    this.formReservas = this.crearFormReservas();
+  }
 
   ngOnInit() {
+  }
+  onLimpiarFormulario(){
+    this.formReservas.reset();
+  }
+  onGuardarFormulario(value){
+    console.log("saved");
+
   }
 
   onClickAutos(){
