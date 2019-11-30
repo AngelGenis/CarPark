@@ -8,6 +8,10 @@
   width: 100%;
   height: 100vh;
 }
+.contenedor:nth-of-type(2) {
+  background: red;
+  display: none;
+}
 .piso {
   width: 100%;
   height: 20%;
@@ -31,7 +35,6 @@
   height: 20px;
   background: #3e64ff;
   border-radius: 10px;
-  
 }
 .rectangulo-elevador {
   background: #4c4c4c;
@@ -40,37 +43,36 @@
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  
 }
-.subirprimero{
-    animation-name: subir1erpiso ;
-    animation-duration: 4s;
-    height: 40vh;
+.subirprimero {
+  animation-name: subir1erpiso;
+  animation-duration: 4s;
+  height: 40vh;
 }
-.subirsegundo{
-    animation-name: subir2dopiso ;
-    animation-duration: 4s;
-    height: 60vh;
+.subirsegundo {
+  animation-name: subir2dopiso;
+  animation-duration: 4s;
+  height: 60vh;
 }
-.subirtercero{
-    animation-name: subir3erpiso ;
-    animation-duration: 4s;
-    height: 80vh;
+.subirtercero {
+  animation-name: subir3erpiso;
+  animation-duration: 4s;
+  height: 80vh;
 }
-.bajar1{
-    animation-name: bajarpiso1;
-    animation-duration: 4s;
-    height: 10vh;
+.bajar1 {
+  animation-name: bajarpiso1;
+  animation-duration: 4s;
+  height: 10vh;
 }
-.bajar2{
-    animation-name: bajarpiso2 ;
-    animation-duration: 4s;
-    height: 10vh;
+.bajar2 {
+  animation-name: bajarpiso2;
+  animation-duration: 4s;
+  height: 10vh;
 }
-.bajar3{
-    animation-name: bajarpiso3 ;
-    animation-duration: 4s;
-    height: 10vh;
+.bajar3 {
+  animation-name: bajarpiso3;
+  animation-duration: 4s;
+  height: 10vh;
 }
 
 #Control {
@@ -89,11 +91,67 @@
   height: 40px;
 }
 
+#Piso {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  padding-top: 50px;
+}
+.col1 {
+  width: 50%;
+  height: 50px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  display: inline-block;
+  text-align: center;
+}
+.cajon {
+  width: 30px;
+  height: 30px;
+  background: #e5e5e5;
+  border: 1px solid #0066ff;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
+.col1 .cajon, .col2 .cajon, .col3 .cajon, .col4 .cajon {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+}
 
+.col2 {
+    position: relative;
+    text-align: center;
+    width: 50%;
+    height: 50px;
+    margin-top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+.col3{
+    position: relative;
+    width: 60%;
+    height: 50px;
+    left: 50%;
+    transform: translate(-40%);
+    margin-top: 80px;
+}
+
+.col4{
+    position: absolute;
+    width: 50px;
+    height: 60%;
+    top: 50px;
+    right: 0px;
+}
+
+/*Animaciones*/
 @keyframes subir1erpiso {
   0% {
-   height: 10vh;
+    height: 10vh;
   }
   100% {
     height: 40vh;
@@ -101,47 +159,46 @@
 }
 
 @keyframes subir2dopiso {
-    0% {
-     height: 10vh;
-    }
-    100% {
-      height: 60vh;
-    }
+  0% {
+    height: 10vh;
   }
+  100% {
+    height: 60vh;
+  }
+}
 
-  @keyframes subir3erpiso {
-    0% {
-     height: 10vh;
-    }
-    100% {
-      height: 80vh;
-    }
+@keyframes subir3erpiso {
+  0% {
+    height: 10vh;
   }
+  100% {
+    height: 80vh;
+  }
+}
 
-  @keyframes bajarpiso1 {
-    0% {
-        height: 40vh;
-    }
-    100% {
-      height: 10vh;
-    }
+@keyframes bajarpiso1 {
+  0% {
+    height: 40vh;
   }
-  
-  @keyframes bajarpiso2 {
-    0% {
-        height: 60vh;
-    }
-    100% {
-      height: 10vh;
-    }
+  100% {
+    height: 10vh;
   }
-  
-  @keyframes bajarpiso3 {
-    0% {
-        height: 80vh;
+}
 
-    }
-    100% {
-      height: 10vh;
-    }
+@keyframes bajarpiso2 {
+  0% {
+    height: 60vh;
   }
+  100% {
+    height: 10vh;
+  }
+}
+
+@keyframes bajarpiso3 {
+  0% {
+    height: 80vh;
+  }
+  100% {
+    height: 10vh;
+  }
+}
