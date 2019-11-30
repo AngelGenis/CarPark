@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from '../services/cliente.model';
-import { FirebaseService } from '../firebase.service';
+// import { FirebaseService } from '../firebase.service';
+import { FirestoreService } from '../services/firestore.service';
+import { AuthService } from '../services/auth.service';
 import * as $ from 'jquery';
 
 
@@ -11,15 +12,38 @@ import * as $ from 'jquery';
 })
 export class VisualizarperfilComponent implements OnInit {
   public bandcontenedor: number = 1;
-  perfiles: Cliente[];
+  public perfiles: any;
+  autos: any;
+  color: any;
+  pagos: any;
 
-
-  constructor( private perfilService: FirebaseService) { }
+  constructor(public db:FirestoreService,
+              public auth:AuthService
+              ) { }
 
   ngOnInit() {
-    this.perfilService.getPerfiles().subscribe(perfiles => {
-      this.perfiles = perfiles
-    })
+    this.auth.user$.subscribe(e => {
+      console.log(e);
+      this.db.getPerfil(e.email).subscribe(perfiles => this.perfiles = [perfiles.payload.data()]);
+    });
+
+
+    this.auth.user$.subscribe(e => {
+      console.log(e);
+      this.db.getAutos(e.email).subscribe(res => this.autos =res);
+    });
+
+    
+    this.auth.user$.subscribe(e => {
+      console.log(e);
+      this.db.getPagos(e.email).subscribe(res => {this.pagos =res; console.log(res);});
+    });
+    // this.db.getPerfil(this.email).subscribe(perfil => {
+    //   this.perfiles = perfil;
+    // })
+    // this.perfilService.getPerfiles().subscribe(perfiles => {
+    //   this.perfiles = perfiles
+    // })
   }
 
   onClickDatosPersonales(){
@@ -31,6 +55,24 @@ export class VisualizarperfilComponent implements OnInit {
   onClickDatosTarjetas(){
     this.bandcontenedor = 3;
   }
+  
+  agregarAuto(){
+    let auto = {}
 
+    auto['modelo'] = $("#modelo").val();
+    auto['placas'] = $("#placas").val();
+    auto['color'] = this.color;
+    this.auth.user$.subscribe(e => {
+      console.log(e);
+      this.db.setAuto(auto,e.email)
+             .then(res => console.log("succ",res))
+             .catch(e => console.log("error",e))
+    })
+
+  }
+
+  colores(value){
+    this.color = value;
+  }
 
 }
