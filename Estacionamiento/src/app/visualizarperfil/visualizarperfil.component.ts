@@ -28,7 +28,6 @@ export class VisualizarperfilComponent implements OnInit {
       console.log(e);
       this.db.getPerfil(e.email).subscribe(perfiles => {
         this.perfiles = [perfiles.payload.data()];
-        this.auth.actualizaNombre(this.perfiles.nombre + ' ' + this.perfiles.apellido);
       });
     });
 
@@ -43,14 +42,6 @@ export class VisualizarperfilComponent implements OnInit {
       console.log(e);
       this.db.getPagos(e.email).subscribe(res => {this.pagos =res; console.log(res);});
     });
-
-    
-    // this.db.getPerfil(this.email).subscribe(perfil => {
-    //   this.perfiles = perfil;
-    // })
-    // this.perfilService.getPerfiles().subscribe(perfiles => {
-    //   this.perfiles = perfiles
-    // })
   }
 
   onClickDatosPersonales(){
@@ -69,19 +60,17 @@ export class VisualizarperfilComponent implements OnInit {
     auto['modelo'] = $("#modelo").val();
     auto['placas'] = $("#placas").val();
     auto['color'] =  $("#color").val();
-    this.auth.user$.subscribe(e => {
+    this.auth.user$.subscribe( async (e) => {
       console.log(e);
-      this.db.setAuto(auto,e.email)
-             .then(res => {
-               console.log("succ",res);
-               this.toastr.success('Auto registrado con exito','Listo');
-             })
-             .catch(e => {
-               console.log("error",e);
-                this.toastr.error('Error al registrar auto', 'Error');
-              })
+      await this.db.setAuto(auto,e.email)
     })
-
+  }
+  
+  eliminarAuto(modelo){
+    this.auth.user$.subscribe(async (res)=>{
+      await this.db.delAuto(modelo, res.email);
+    })
+    
   }
 
   colores(value){

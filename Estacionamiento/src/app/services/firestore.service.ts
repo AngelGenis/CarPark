@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore  } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
-import * as bcrypt from 'bcryptjs';
 import { User } from './user.model';
-import { userInfo } from 'os';
+import { ToastrService } from 'ngx-toastr';
+import { ActivationEnd } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,8 @@ export class FirestoreService {
 
   usr: User;
   constructor(public db: AngularFirestore,
-              public auth:AuthService
+              public auth:AuthService,
+              public toastr:ToastrService
               ) { 
               }
 
@@ -72,15 +73,65 @@ export class FirestoreService {
   }
 
   setAuto(auto,email){
-    return this.db.collection('Clientes').doc(email).collection('Autos').doc(auto.modelo).set({
-      modelo:auto.modelo,
-      placas: auto.placas,
-      color: auto.color
-    })
+      
+    this.db.collection('Clientes').doc(email).collection('Autos',ref => ref.where('estado', '==','activo')).snapshotChanges().subscribe(  res => {
+      if(res.length > 3){
+        this.toastr.warning('El limite de autos es 3.', 'Limite alcanzado');
+        return 0;
+      }
+      else {
+        let docRef =  this.db.firestore.doc(`Clientes/${email}/Autos/${auto.modelo}`);
+
+        docRef.get()
+              .then(res => {
+                if(res.exists){
+                  return this.db.collection('Clientes').doc(email).collection('Autos').doc(auto.modelo).update({
+                    estado: 'activo'
+                  }).then(res=>{
+                  this.toastr.success('Auto registrado con exito','Listo');
+                  }).catch(e => {
+                    console.log(e);
+                  }).finally(()=>{
+
+                  })
+                } else { 
+                  return this.db.collection('Clientes').doc(email).collection('Autos').doc(auto.modelo).set({
+                    estado: 'activo',
+                    modelo:auto.modelo,
+                    placas: auto.placas,
+                    color: auto.color
+                  }).then(res=>{
+                    console.log("succ",res);
+                    this.toastr.success('Auto registrado con exito','Listo');
+                  }).catch(e=>{
+                    console.log(e);
+                  }).finally(()=>{
+                    
+                  })
+                }
+              })
+              .catch(e => {
+
+              })
+              .finally(()=>{
+
+              })
+        }});
+      }
+
+  delAuto(modelo,email){
+    this.db.collection('Clientes').doc(email).collection('Autos').doc(modelo).set({
+      estado: 'inactivo'
+    },{merge:true}).then(res=>{
+      this.toastr.info('Auto eliminado con exito','Listo');
+      
+    }).catch(e=>{
+      console.log(e);
+    });
   }
 
   getAutos(email){
-    return this.db.collection('Clientes').doc(email).collection('Autos').snapshotChanges();
+    return this.db.collection('Clientes').doc(email).collection('Autos', ref => ref.where('estado', '==', 'activo')).snapshotChanges();
   }
 
   getPagos(email){

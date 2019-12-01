@@ -18,6 +18,11 @@ export class TransicionlogComponent implements OnInit {
     private router: Router
     ) {
       this.operacion = this.route.snapshot.paramMap.get('operacion');
+      setTimeout(()=>{
+
+      $("#logot").addClass('animated');
+      $("#logot").addClass('tada');
+      },500);
       setTimeout(() => {
         $("#transroot").removeClass('fadeInLeft');
         $("#transroot").removeClass('animated');
@@ -34,7 +39,7 @@ export class TransicionlogComponent implements OnInit {
         }
       },2500);
     }
-
+    
     ngOnInit() {
     }
 }
