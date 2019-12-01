@@ -63,7 +63,7 @@ export class VisualizarperfilComponent implements OnInit {
 
     auto['modelo'] = $("#modelo").val();
     auto['placas'] = $("#placas").val();
-    auto['color'] = this.color;
+    auto['color'] =  $("#color").val();
     this.auth.user$.subscribe(e => {
       console.log(e);
       this.db.setAuto(auto,e.email)
