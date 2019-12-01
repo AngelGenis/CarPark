@@ -24,6 +24,7 @@ export class FirestoreService {
             correo: value.correo,
             direccion: value.direccion,
             telefono: value.telefono,
+            email:value.correo,
             clave: hash
           });
         } else if (flag==='email'){
@@ -34,6 +35,7 @@ export class FirestoreService {
             correo: value.correo,
             direccion: value.direccion,
             telefono: value.telefono,
+            email:value.correo,
             clave: hash
             // displayName: value.displayName,
           });

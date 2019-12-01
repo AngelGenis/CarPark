@@ -61,12 +61,6 @@ export class LoginComponent implements OnInit {
     let res = this.auth.logearUsuario(log,pass)
              .then( res => {
               console.log(res); 
-              if(res !== undefined){
-                 
-                $("#Menu1").hide();
-                $(".menu-btn").show();
-                this.router.navigate(['/transicionlog','in'])
-               }
              })
              .catch( e =>{
                console.log(e);
@@ -78,7 +72,7 @@ export class LoginComponent implements OnInit {
              .then(res=>{
               $("#Menu1").hide();
               $(".menu-btn").show();
-              this.toastr.success('Secion Iniciada', 'Listo!');
+              this.toastr.success('Secion Iniciada', `Bienvenido: ${res.user.displayName}`);
               console.log(res, 'success');
               this.router.navigate(['/transicionlog','in'])
              })
