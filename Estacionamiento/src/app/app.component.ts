@@ -1,5 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { AuthService } from './services/auth.service'
+import { ToastrService } from 'ngx-toastr';
 import * as $ from 'jquery';
 import 'jarallax';
 declare var jarallax: any;
@@ -13,8 +14,9 @@ declare var jarallax: any;
 export class AppComponent implements AfterViewInit {
   title = 'Estacionamiento';
 
-  constructor(private auth:AuthService){
-
+  constructor(private auth:AuthService,
+              private toastr:ToastrService){
+    this.toastr.toastrConfig.timeOut = 1500;
   }
 
   ngOnInit(){

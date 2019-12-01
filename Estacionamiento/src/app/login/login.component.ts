@@ -70,10 +70,15 @@ export class LoginComponent implements OnInit {
   glogin(){
     this.auth.googleLogIn()
              .then(res=>{
-              $("#Menu1").hide();
               $(".menu-btn").show();
+              setTimeout(()=>{
+                $(".menu-btn").addClass('animated');
+                $(".menu-btn").addClass('heartBeat');
+              },3000)
+              
               this.toastr.success('Secion Iniciada', `Bienvenido: ${res.user.displayName}`);
               console.log(res, 'success');
+
               this.router.navigate(['/transicionlog','in'])
              })
              .catch(e =>{
