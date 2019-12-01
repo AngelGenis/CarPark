@@ -78,7 +78,7 @@
                     <div class="row">
                         <div class="col-md mx-1">
                             <mdb-card-title>
-                                <h4>E-mail</h4>
+                                <h4>Correo Electronico</h4>
                             </mdb-card-title>
                             <hr>
                             <mdb-card-text class="mt-2">
@@ -97,47 +97,54 @@
                         </div>
                     </div>
                     <br>
-                    <div class="mx-1">
+                    <div class="row mx-1">
+                        <div class="col-md">
+                            <mdb-card-title>
+                                <h4>Direccion</h4>
+                            </mdb-card-title>
+                            <hr>
+                            
+                            <mdb-card-text class="mt-2">
+                                Calle: {{perfil.direccion.calle}}
+                            </mdb-card-text>
+                            <mdb-card-text class="mt-2">
+                                Numero: {{perfil.direccion.numero}}
+                            </mdb-card-text>
+                            <mdb-card-text class="mt-2">
+                                Colonia: {{perfil.direccion.colonia}}
+                            </mdb-card-text>
+                            <mdb-card-text class="mt-2">
+                                C.P.: {{perfil.direccion.cp}}
+                            </mdb-card-text>
 
-                        <mdb-card-title>
-                            <h4>Direccion</h4>
-                        </mdb-card-title>
-                        <hr>
-                        <mdb-card-text class="mt-2">
-                            Calle: {{perfil.direccion.calle}}
-                        </mdb-card-text>
-                        <mdb-card-text class="mt-2">
-                            Numero: {{perfil.direccion.numero}}
-                        </mdb-card-text>
-                        <mdb-card-text class="mt-2">
-                            Colonia: {{perfil.direccion.colonia}}
-                        </mdb-card-text>
-                        <mdb-card-text class="mt-2">
-                            C.P.: {{perfil.direccion.cp}}
-                        </mdb-card-text>
+                        </div>
+                        <div class="col-md mx-1">
+                            <mdb-card-title>
+                                <h4>Informacion Bancaria</h4>
+                            </mdb-card-title>
+                            <hr>
+                            <mdb-card-text class="mt-2" *ngFor="let cuentas of pagos">
+                                <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,2) === '55' || cuentas.payload.doc.data().numero.slice(0,2) === '54' || cuentas.payload.doc.data().numero.slice(0,2) === '53' || cuentas.payload.doc.data().numero.slice(0,2) === '52'  || cuentas.payload.doc.data().numero.slice(0,2) === '51'">
+                                        <mdb-icon size="1x" fab icon="cc-mastercard"></mdb-icon>
+                                </ng-template> 
+                                <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,1) === '4'">
+                                        <mdb-icon fab icon="cc-visa"></mdb-icon>
+                                </ng-template> 
+                                ••••-x {{cuentas.payload.doc.data().numero.slice(12)}}
+                            </mdb-card-text>
+
+                        </div>
                         <br>
     
-                        <mdb-card-title>
-                            <h4>Informacion Bancaria</h4>
-                        </mdb-card-title>
-                        <hr>
-                        <mdb-card-text class="mt-2" *ngFor="let cuentas of pagos">
-                            <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,2) === '55' || cuentas.payload.doc.data().numero.slice(0,2) === '54' || cuentas.payload.doc.data().numero.slice(0,2) === '53' || cuentas.payload.doc.data().numero.slice(0,2) === '52'  || cuentas.payload.doc.data().numero.slice(0,2) === '51'">
-                                    <mdb-icon fab icon="cc-mastercard"></mdb-icon>
-                            </ng-template> 
-                            <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,1) === '4'">
-                                    <mdb-icon fab icon="cc-visa"></mdb-icon>
-                            </ng-template> 
-                            ••••-x {{cuentas.payload.doc.data().numero.slice(12)}}
-                        </mdb-card-text>
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-md-3">
-                            <button mdbBtn mdbwaveseffect (click)="login()"  color="primary" block="true" class="my-4 labelsLogin text-dark" type="button"><strong >Editar Perfil</strong></button>
+                            <button mdbBtn mdbwaveseffect routerLink='/transicionlog' routerLinkActive="router-link-active"  color="primary" block="true" class="my-4 labelsLogin text-dark" type="button"><strong >Editar Perfil</strong></button>
                         </div>
                     </div>
                 </mdb-card-body>
             </mdb-card>
+            <br>
         </ng-template>
 
         <ng-template [ngIf]="bandcontenedor == 2">
@@ -166,8 +173,11 @@
                                 <label for="form1" class="">Placas</label>
                             </div> 
                         </div>
-                        <div class="col-md mx-2">
-                            <div class="custom-control custom-radio mx-4">
+                        <div class="col-md mx-2 pt-1">
+                            <input type="color" class="pl-5 ml-5" id="color" name="color"
+                                value="#f6b73c">
+                            <label for="body" class="mx-2 pb-5">Color</label>
+                            <!-- <div class="custom-control custom-radio mx-4">
                                 <input type="radio" (click)="colores(1)" class="custom-control-input" id="radio1" name="defaultExampleRadios" mdbInput>
                                 <label class="custom-control-label mx-2" for="radio1">Negro</label>
                             </div>
@@ -180,7 +190,7 @@
                             <div class="custom-control custom-radio mx-4">
                                 <input type="radio" (click)="colores(2)" class="custom-control-input" id="radio3" name="defaultExampleRadios" mdbInput>
                                 <label class="custom-control-label mx-2" for="radio3">Rojo</label>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </mdb-card-body>
@@ -219,5 +229,10 @@
         </ng-template>
        
     </div>
-
 </div>
+
+    <!-- <div class="row">
+        <div class="col-md">
+            <app-footer></app-footer>
+        </div>
+    </div> -->

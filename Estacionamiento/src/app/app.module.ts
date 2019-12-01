@@ -36,6 +36,8 @@ import { FirestoreService } from './services/firestore.service';
 import { CdarsebajaComponent } from './cdarsebaja/cdarsebaja.component';
 import { ReservacionesComponent } from './reservaciones/reservaciones.component';
 import { ElevadorComponent } from './elevador/elevador.component';
+import { TransicionlogComponent } from './transicionlog/transicionlog.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { ElevadorComponent } from './elevador/elevador.component';
     VisualizarperfilComponent,
     CdarsebajaComponent,
     ReservacionesComponent,
-    ElevadorComponent
+    ElevadorComponent,
+    TransicionlogComponent
     // bcrypt
   ],
   imports: [
@@ -70,7 +73,8 @@ import { ElevadorComponent } from './elevador/elevador.component';
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [FirestoreService],
   bootstrap: [AppComponent]

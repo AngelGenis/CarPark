@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { FirestoreService } from '../services/firestore.service';
 import { FormBuilder, FormGroup, FormControl, Validators, NgControl } from '@angular/forms';
 import { ToastrService, ToastRef } from 'ngx-toastr';
-
+import {Router} from '@angular/router';
 import * as $ from 'jquery';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { PathLocationStrategy } from '@angular/common';
@@ -23,7 +23,8 @@ export class RegistroComponent implements OnInit {
   constructor(public firebaseService:FirestoreService,
     public auth:AuthService,
     public toastr:ToastrService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
     ) { this.tipoLogin='email';
     
   }
@@ -103,6 +104,7 @@ export class RegistroComponent implements OnInit {
                        },500);
            
                        this.toastr.success('Registro exitoso','Bienvenido');
+                       this.router.navigate(['/login'])
                  }
                    )
                    .catch(

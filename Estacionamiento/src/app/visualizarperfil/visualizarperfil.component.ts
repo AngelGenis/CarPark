@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { FirebaseService } from '../firebase.service';
+import { ToastrService } from 'ngx-toastr';
 import { FirestoreService } from '../services/firestore.service';
 import { AuthService } from '../services/auth.service';
 import * as $ from 'jquery';
@@ -18,7 +19,8 @@ export class VisualizarperfilComponent implements OnInit {
   pagos: any;
 
   constructor(public db:FirestoreService,
-              public auth:AuthService
+              public auth:AuthService,
+              private toastr:ToastrService
               ) { }
 
   ngOnInit() {
@@ -65,8 +67,14 @@ export class VisualizarperfilComponent implements OnInit {
     this.auth.user$.subscribe(e => {
       console.log(e);
       this.db.setAuto(auto,e.email)
-             .then(res => console.log("succ",res))
-             .catch(e => console.log("error",e))
+             .then(res => {
+               console.log("succ",res);
+               this.toastr.success('Auto registrado con exito','Listo');
+             })
+             .catch(e => {
+               console.log("error",e);
+                this.toastr.error('Error al registrar auto', 'Error');
+              })
     })
 
   }
