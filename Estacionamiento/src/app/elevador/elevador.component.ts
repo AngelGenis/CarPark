@@ -9,9 +9,13 @@ import * as $ from 'jquery';
 export class ElevadorComponent implements OnInit {
 
   public piso: number = 1;
+  public cajon: number = 15;
+  public idcajon: string = "";
+  cajones = new Array();
   constructor() { }
 
   ngOnInit() {
+    this.LlenarArray();
   }
 
   onClickSubir() {
@@ -67,5 +71,11 @@ export class ElevadorComponent implements OnInit {
     }, 2000);
   }
 
+  LlenarArray(){
+    this.idcajon="#Cajon"+this.cajon;
+    console.log(this.idcajon);
+    $(this.idcajon).css("background", "blue");
+    $(this.idcajon).css("color", "white");
+  }
 
 }

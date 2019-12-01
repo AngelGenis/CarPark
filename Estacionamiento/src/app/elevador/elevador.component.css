@@ -113,6 +113,7 @@ h1{
   position: relative;
   display: inline-block;
   margin: 5px;
+  text-align: center;
 }
 
 .col2 {
