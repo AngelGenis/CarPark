@@ -195,24 +195,42 @@
                 </mdb-card-body>
             </mdb-card>
             <br>
-            <mdb-card class="p-5 my-2 animated fadeIn" *ngFor="let item of autos">
-                <mdb-card-body>
-                    <div class="row">
-                        <div class="col-md">
-                            <h1><strong class="tituloAddAuto">{{item.payload.doc.data().modelo}}</strong></h1>
-                        </div>
-                        <div class="col-md">
-                            <h1 class="text-right" ><strong class="tituloAddAuto"><mdb-icon class="text-right" [style.color]="item.payload.doc.data().color" fas icon="car-side" size="2x"></mdb-icon></strong> </h1>
-                        </div>
+            <div class="container-fluid" >
+                <div class="row" >
+                    <div class="col-md-4" *ngFor="let item of autos">
+                            <mdb-card class="p-3 mx-3 my-3 animated fadeIn">
+                                <mdb-card-body>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md">
+                                                <h1><strong class="tituloAddAuto">{{item.payload.doc.data().modelo}}</strong></h1>
+                                            </div>
+                                            <div class="col-md-1 text-md-right">
+                                                <h1 class="" ><strong class="tituloAddAuto"><mdb-icon class="text-right" [style.color]="item.payload.doc.data().color" fas icon="car-side" size="2x"></mdb-icon></strong> </h1>
+                                            </div>
+                                            <div class="col-md-1 text-md-right">
+                                                    <div class="btn-group mx-4" mdbDropdown>
+                                                            <mdb-icon fas icon="ellipsis-v"  classInside="" mdbDropdownToggle class="waves-effect"
+                                                                      mdbWavesEffect></mdb-icon>
+                                                            <div class="dropdown-menu dropdown-primary p-3">
+                                                              <a class="dropdown-item" (click)='eliminarAuto(item.payload.doc.data().modelo)' >Eliminar auto</a>
+                                                            </div>
+                                                     </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md">
+                                                <p class="mt-2"> Placa: {{item.payload.doc.data().placas}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </mdb-card-body>
+                            </mdb-card>
                     </div>
-                    <div class="row">
-                        <div class="col-md">
-                            <p class="mt-2"> Placa: {{item.payload.doc.data().placas}}</p>
-                        </div>
-                    </div>
-                    
-                </mdb-card-body>
-            </mdb-card>
+
+                </div>
+            </div>
         </ng-template>
 
         <ng-template [ngIf]="bandcontenedor == 3">
