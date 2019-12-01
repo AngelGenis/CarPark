@@ -84,49 +84,39 @@ export class RegistroComponent implements OnInit {
                       }
 
 
-    this.auth.autenticarNuevoUsuario(value['correo'],value['clave'])
-             .then(res =>{
-               this.firebaseService.createUser(value, this.tipoLogin)
-                   .then(
-                     res=>{
-                       this.limpiarImputs();
-                       
-                       $("#intro").removeClass("delay-2s");
-                       $("#intro").removeClass("fadeOut");
-           
-                       $("#registro").removeClass("delay-2s");
-                       $("#registro").removeClass("fadeOut");
-                       $("#registro").addClass("fadeOut faster");
-           
-                       setTimeout(function(){
-                         $("#intro").hide();
-                         $("#registro").hide();
-                         $("#intro").addClass("fadeInUp");
-                         $("#intro").show();
-                       },500);
-           
-                       this.toastr.success('Registro exitoso','Bienvenido');
-                       this.router.navigate(['/login'])
-                 }
-                   )
-                   .catch(
-                       e=>{
-                         
-                         console.log(e);
-           
-                         this.toastr.error('Error','Verifique su email');
-                       }
-                   )
-                   .finally(
-                     function(){
-                     }
-                   );
-              })
-            
-              .catch(e => {
-                  console.log(e);
-                  this.toastr.error('Error','Verifique su email');
-              })
+    this.auth.autenticarNuevoUsuario(value)
+             .then(ret =>{
+                          this.limpiarImputs();
+                          
+                          $("#intro").removeClass("delay-2s");
+                          $("#intro").removeClass("fadeOut");
+              
+                          $("#registro").removeClass("delay-2s");
+                          $("#registro").removeClass("fadeOut");
+                          $("#registro").addClass("fadeOut faster");
+              
+                          setTimeout(function(){
+                            $("#intro").hide();
+                            $("#registro").hide();
+                            $("#intro").addClass("fadeInUp");
+                            $("#intro").show();
+                          },500);
+              
+                          this.toastr.success('Registro exitoso','Bienvenido');
+                          this.router.navigate(['/login'])
+                        })
+                        .catch(
+                            e=>{
+                              
+                              console.log(e);
+                
+                              this.toastr.error('Error','Verifique su email');
+                            }
+                        )
+                        .finally(
+                          function(){
+                          }
+                        );
               
   }
 

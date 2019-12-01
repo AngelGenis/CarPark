@@ -26,7 +26,10 @@ export class VisualizarperfilComponent implements OnInit {
   ngOnInit() {
     this.auth.user$.subscribe(e => {
       console.log(e);
-      this.db.getPerfil(e.email).subscribe(perfiles => this.perfiles = [perfiles.payload.data()]);
+      this.db.getPerfil(e.email).subscribe(perfiles => {
+        this.perfiles = [perfiles.payload.data()];
+        this.auth.actualizaNombre(this.perfiles.nombre + ' ' + this.perfiles.apellido);
+      });
     });
 
 
@@ -40,6 +43,8 @@ export class VisualizarperfilComponent implements OnInit {
       console.log(e);
       this.db.getPagos(e.email).subscribe(res => {this.pagos =res; console.log(res);});
     });
+
+    
     // this.db.getPerfil(this.email).subscribe(perfil => {
     //   this.perfiles = perfil;
     // })

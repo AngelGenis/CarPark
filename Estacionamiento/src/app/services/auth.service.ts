@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { auth } from 'firebase/app';
 import * as $ from 'jquery';
+import * as bcrypt from 'bcryptjs';
 import { ToastrService, ToastRef } from 'ngx-toastr';
 
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -56,10 +57,16 @@ export class AuthService {
 
   }
 
-  public async autenticarNuevoUsuario(email, pass){
-    const res = await this.afAuth.auth.createUserWithEmailAndPassword(email,pass)
+  public async autenticarNuevoUsuario(value){
+    const res = await this.afAuth.auth.createUserWithEmailAndPassword(value.correo,value.clave)
     .then(res => {
       this.verificaEmail();
+      this.createUser(value,'email')
+      .then(res => { console.log(res)
+      })    
+      .catch(res => console.log(res))
+      this.updateUserData({uid:res.user.uid, email: value.correo, phoneNumber:value.telefono, displayName: value.nombre + ' ' + value.apellido,photoURL:'none'})
+          
     }).catch(e=>{
       console.log(e); //si falla
     })
@@ -96,7 +103,7 @@ export class AuthService {
     
   }
   
-  private updateUserData({uid,email,displayName,photoURL,phoneNumber}: User){
+  public updateUserData({uid,email,displayName,photoURL,phoneNumber}: User){
     
     this.verificaEmail();
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`Clientes/${email}`);
@@ -114,4 +121,49 @@ export class AuthService {
     return data;
   }
 
+  createUser(value, flag){
+    console.log(value);
+    let hash = bcrypt.hashSync(value.clave, 8);
+    return this.actualizaPagos(value.pagos,value.correo)
+      .then(res => {
+        console.log(res);
+        if(flag === 'google'){
+          return this.afs.collection('Clientes').doc(value.correo).update({
+            apellido: value.apellido,
+            nombre: value.nombre,
+            correo: value.correo,
+            direccion: value.direccion,
+            telefono: value.telefono,
+            email:value.correo,
+            sexo:value.sexo,
+            clave: hash
+          });
+        } else if (flag==='email'){
+
+          return this.afs.collection('Clientes').doc(value.correo).set({
+            apellido: value.apellido,
+            nombre: value.nombre,
+            correo: value.correo,
+            direccion: value.direccion,
+            telefono: value.telefono,
+            email:value.correo,
+            sexo:value.sexo,
+            clave: hash
+          });
+        }
+      })
+      .catch(e=>console.log(e))
+  }
+
+  actualizaPagos(pago,email){
+    return this.afs.collection('Clientes').doc(email).collection('Pagos').doc(pago.numero).set({
+      numero: pago.numero,
+      cvv:pago.cvv,
+      fecha:pago.expiracion
+    });
+  }
+
+  actualizaNombre(nombre){
+    return this.afAuth.auth.currentUser.updateProfile({displayName:nombre}).then(res => console.log(res)).catch(e => console.log(e));
+  }
 }
