@@ -35,7 +35,6 @@ export class TransicionlogComponent implements OnInit {
       },2500);
     }
 
-  ngOnInit() {
-  }
-
+    ngOnInit() {
+    }
 }

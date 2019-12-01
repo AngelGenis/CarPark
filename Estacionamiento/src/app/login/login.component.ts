@@ -60,7 +60,9 @@ export class LoginComponent implements OnInit {
 
     let res = this.auth.logearUsuario(log,pass)
              .then( res => {
-               if(res !== undefined){
+              console.log(res); 
+              if(res !== undefined){
+                 
                 $("#Menu1").hide();
                 $(".menu-btn").show();
                 this.router.navigate(['/transicionlog','in'])
@@ -74,11 +76,8 @@ export class LoginComponent implements OnInit {
   glogin(){
     this.auth.googleLogIn()
              .then(res=>{
-               //Logica cuando el inicio de sesion jale
-
-               $("#Menu1").hide();
-
-    $(".menu-btn").show();
+              $("#Menu1").hide();
+              $(".menu-btn").show();
               this.toastr.success('Secion Iniciada', 'Listo!');
               console.log(res, 'success');
               this.router.navigate(['/transicionlog','in'])
