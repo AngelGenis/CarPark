@@ -45,7 +45,7 @@ export class AuthService {
 
                 $("#Menu1").hide();
                 $(".menu-btn").show();
-      this.toastr.success('Sesion Iniciada',`Bienvenido: ${res.user.email}`)
+      this.toastr.success('Sesion Iniciada',`Bienvenido: ${res.user.displayName}`)
       this.router.navigate(['/transicionlog','in']);
     }).catch(e=>{
       this.toastr.error('Error','No se encuentra registrado')
