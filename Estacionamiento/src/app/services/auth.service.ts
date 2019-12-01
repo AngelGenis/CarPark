@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { auth } from 'firebase/app';
-
+import * as $ from 'jquery';
 import { ToastrService, ToastRef } from 'ngx-toastr';
 
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -42,8 +42,11 @@ export class AuthService {
 
   public logearUsuario(email, pass){
     return this.afAuth.auth.signInWithEmailAndPassword(email,pass).then(res=>{
+
+                $("#Menu1").hide();
+                $(".menu-btn").show();
       this.toastr.success('Sesion Iniciada',`Bienvenido: ${res.user.email}`)
-      this.router.navigate(['/transicionlog']);
+      this.router.navigate(['/transicionlog','in']);
     }).catch(e=>{
       this.toastr.error('Error','No se encuentra registrado')
     })
