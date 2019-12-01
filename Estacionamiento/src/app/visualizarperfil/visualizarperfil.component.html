@@ -167,15 +167,14 @@
                                 <label for="form1" class="">Modelo</label>
                             </div> 
                         </div>
-                        <div class="col-md mx-1">
+                        <div class="col-md ml-1 mr-5">
                             <div class="md-form form-sm">
                                 <input mdbInput type="text" id="placas" class="form-control form-control-sm">
                                 <label for="form1" class="">Placas</label>
                             </div> 
                         </div>
                         <div class="col-md mx-2 pt-1">
-                            <input type="color" class="pl-5 ml-5" id="color" name="color"
-                                value="#f6b73c">
+                            <input type="color"  id="color" name="color">
                             <label for="body" class="mx-2 pb-5">Color</label>
                             <!-- <div class="custom-control custom-radio mx-4">
                                 <input type="radio" (click)="colores(1)" class="custom-control-input" id="radio1" name="defaultExampleRadios" mdbInput>
@@ -203,15 +202,7 @@
                             <h1><strong class="tituloAddAuto">{{item.payload.doc.data().modelo}}</strong></h1>
                         </div>
                         <div class="col-md">
-                            <ng-template [ngIf]="item.payload.doc.data().color == 0">
-                                <h1 class="text-right" ><strong class="tituloAddAuto"><mdb-icon class="text-primary text-right" fas icon="car-side" size="2x"></mdb-icon></strong> </h1>
-                            </ng-template>
-                            <ng-template [ngIf]="item.payload.doc.data().color == 1">
-                                <h1 class="text-right" ><strong class="tituloAddAuto"><mdb-icon class="text-dark text-right" fas icon="car-side" size="2x"></mdb-icon></strong> </h1>
-                            </ng-template>
-                            <ng-template [ngIf]="item.payload.doc.data().color == 2">
-                                <h1 class="text-right" ><strong class="tituloAddAuto"><mdb-icon class="text-danger text-right" fas icon="car-side" size="2x"></mdb-icon></strong> </h1>
-                            </ng-template>
+                            <h1 class="text-right" ><strong class="tituloAddAuto"><mdb-icon class="text-right" [style.color]="item.payload.doc.data().color" fas icon="car-side" size="2x"></mdb-icon></strong> </h1>
                         </div>
                     </div>
                     <div class="row">

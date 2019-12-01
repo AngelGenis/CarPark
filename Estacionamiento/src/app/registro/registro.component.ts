@@ -63,8 +63,10 @@ export class RegistroComponent implements OnInit {
   crearUsuario(){
     
     let value={};
+    
+    console.log($('#sexo1').is(':checked'));
 
-
+    value['sexo'] = $('#sexo1').is(':checked') ? 'M' : 'F';
     value['nombre'] =     $("#nombreIn").val();
     value['apellido'] =   $("#apellidoIn").val();
     value['correo'] =     $("#correoIn").val();
