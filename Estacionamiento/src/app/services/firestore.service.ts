@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore  } from '@angular/fire/firestore';
 import * as bcrypt from 'bcryptjs';
 
 @Injectable({
@@ -12,31 +12,38 @@ export class FirestoreService {
               }
 
   createUser(value, flag){
+    console.log(value);
     let hash = bcrypt.hashSync(value.clave, 8);
+    return this.actualizaPagos(value.pagos,value.correo)
+      .then(res => {
+        console.log(res);
+        if(flag === 'google'){
+          return this.db.collection('Clientes').doc(value.correo).update({
+            apellido: value.apellido,
+            nombre: value.nombre,
+            correo: value.correo,
+            direccion: value.direccion,
+            telefono: value.telefono,
+            clave: hash
+          });
+        } else if (flag==='email'){
+    
+          return this.db.collection('Clientes').doc(value.correo).set({
+            apellido: value.apellido,
+            nombre: value.nombre,
+            correo: value.correo,
+            direccion: value.direccion,
+            telefono: value.telefono,
+            clave: hash
+            // displayName: value.displayName,
+          });
+        }
+      })
+      .catch(e=>console.log(e))
+  }
 
-    if(flag === 'google'){
-      return this.db.collection('Clientes').doc(value.correo).update({
-        apellido: value.apellido,
-        nombre: value.nombre,
-        correo: value.correo,
-        direccion: value.direccion,
-        telefono: value.telefono,
-        clave: hash,
-        cuenta: value.cuenta
-      });
-    } else if (flag==='email'){
-
-      return this.db.collection('Clientes').doc(value.correo).set({
-        apellido: value.apellido,
-        nombre: value.nombre,
-        correo: value.correo,
-        direccion: value.direccion,
-        telefono: value.telefono,
-        clave: hash,
-        cuenta: value.cuenta,
-        displayName: value.displayName
-      });
-    }
+  getPerfil(email){
+    return this.db.collection('Clientes').doc(email).snapshotChanges();
   }
 
   logearUsuario(value, pass){
@@ -46,38 +53,32 @@ export class FirestoreService {
   }
 
   testLogin(usuario, clave){
-      // this.db.collection('Clientes')
-      //     .valueChanges()
-      //     .subscribe( val => {
-      //       val.map( e => {
-      //         if(e['user'] == usuario && e['clave'] == clave){
-      //           return true;
-      //         }
-      //         console.log(e);
-      //       });
-      //     });  
-      // return false;
       return this.db.collection('Clientes',ref => ref.where('user', '==', usuario)
                                                   .where('clave', '==', clave))
                                                   .snapshotChanges()
+  }
 
-      }
+  setAuto(auto,email){
+    return this.db.collection('Clientes').doc(email).collection('Autos').doc(auto.modelo).set({
+      modelo:auto.modelo,
+      placas: auto.placas,
+      color: auto.color
+    })
+  }
 
-    //    agregarTablas(){
-    //     let i = 1;
-    //     let str = 'c-'
-    //     let datos = {};
+  getAutos(email){
+    return this.db.collection('Clientes').doc(email).collection('Autos').snapshotChanges();
+  }
 
-    //     while(i <= 60){
-    //       datos[str+i] = { estado: 'disponible' }
-          
-    //       // capacidad:60,
-    //       // disponibles:60,
-    //       // ocupados:0,
-    //     }
-
-    //   return this.db.collection('Niveles/nivel-1/cajones').doc('kek').set(datos);
-    // }
-
-
-    }
+  getPagos(email){
+    return this.db.collection('Clientes').doc(email).collection('Pagos').snapshotChanges();
+  }
+  actualizaPagos(pago,email){
+    return this.db.collection('Clientes').doc(email).collection('Pagos').doc(pago.numero).set({
+      numero: pago.numero,
+      cvv:pago.cvv,
+      fecha:pago.expiracion
+    });
+  }
+}
+  

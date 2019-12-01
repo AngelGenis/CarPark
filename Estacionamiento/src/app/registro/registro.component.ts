@@ -27,30 +27,8 @@ export class RegistroComponent implements OnInit {
     ) { this.tipoLogin='email';
     
   }
-  
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    // this.innerWidth = window.innerWidth;
-    if ( window.innerWidth <= 1000){
-      $("#form").addClass('example-1');
-      $("#form").addClass('scrollbar-ripe-malinka');
-    } 
-    else{
-      $("#form").removeClass('example-1');
-      $("#form").removeClass('scrollbar-ripe-malinka');
-    }
-  } 
-  
-  ngOnInit() {
 
-    if ( window.innerWidth <= 1000){
-      $("#form").addClass('example-1');
-      $("#form").addClass('scrollbar-ripe-malinka');
-    } 
-    else{
-      $("#form").removeClass('example-1');
-      $("#form").removeClass('scrollbar-ripe-malinka');
-    }
+  ngOnInit() {
     this.validatingForm = new FormGroup({
       correoIn: new FormControl(null,[Validators.required, Validators.email])
     });
@@ -58,8 +36,6 @@ export class RegistroComponent implements OnInit {
     this.passVald = new FormGroup({
       passIn: new FormControl(null,[Validators.required, Validators.minLength(6)])
     });
-
-
   }
 
 
@@ -67,74 +43,42 @@ export class RegistroComponent implements OnInit {
   get inputClave() {return this.passVald.get('passIn');}
 
   limpiarImputs(){
-  $("#nombreIn").val('');
-  $("#apellidoIn").val('');
-  $("#direccionIn").val('');
-  $("#correoIn").val('');
-  $("#telefonoIn").val('');
-  $("#passIn").val('');
-  $("#tarjetaIn").val('');
-  }
 
-  testregistro(){
-    let value={}
-    value['nombre'] =     $("#nombreIn").val();
-    value['apellido'] =   $("#apellidoIn").val();
-    value['direccion'] =  $("#direccionIn").val();
-    value['correo'] =     $("#correoIn").val();
-    value['telefono'] =   parseInt($("#telefonoIn").val());
-    value['clave'] =      $("#passIn").val();
-    value['cuenta'] =     parseInt($("#tarjetaIn").val());
-    value['displayName'] = $("#nombreIn").val();
-
-    const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json'
-  })
-};
-
-    return this.http.post(
-          'https://us-central1-hellofirebase-f0dc5.cloudfunctions.net/widgets/cliente/register/', 
-          value,
-          httpOptions
-      )
-      .subscribe(
-        data  => {
-        console.log("POST Request is successful ", data);
-        },
-        error  => {
-        
-        console.log("Error", error);
-        
-        });
-
-    // $.ajax({
-    //   async: true,
-    //   type: "POST",
-    //   datatype: "json",
-    //   contentType: "application/json",
-    //   url: "http://us-central1-hellofirebase-f0dc5.cloudfunctions.net/widgets/cliente/register",
-    //   data: {object:value},
-    //   beforeSend: function(){},
-    //   success: function(data){console.log(data);},
-    //   timeout:5000,
-    //   error:function(err){console.log(err);}
-    // });
-
+    $("#nombreIn").val('')
+    $("#apellidoIn").val('')
+    $("#correoIn").val('')
+    $("#telefonoIn").val('')
+    $("#passIn").val('')
+    $("#nombreIn").val('')
+    $("#calleIn").val('')
+    $("#numeroIn").val('')
+    $("#cpIn").val('')
+    $("#tarjetaIn").val('')
+    $("#cvvIn").val('')
+    $("#fechaIn").val('')
+    
   }
 
   crearUsuario(){
     
     let value={};
 
+
     value['nombre'] =     $("#nombreIn").val();
     value['apellido'] =   $("#apellidoIn").val();
-    value['direccion'] =  $("#direccionIn").val();
     value['correo'] =     $("#correoIn").val();
     value['telefono'] =   parseInt($("#telefonoIn").val());
     value['clave'] =      $("#passIn").val();
-    value['cuenta'] =     parseInt($("#tarjetaIn").val());
     value['displayName'] = $("#nombreIn").val();
+    value['direccion'] = { calle: $("#calleIn").val(),
+                           numero: $("#numeroIn").val(),
+                           cp: $("#cpIn").val()
+                          };
+    value['pagos'] = {
+                        numero: $("#tarjetaIn").val(),
+                        cvv: $("#cvvIn").val(),
+                        expiracion: $("#dateIn").val()
+                      }
 
 
     this.auth.autenticarNuevoUsuario(value['correo'],value['clave'])
@@ -190,6 +134,7 @@ export class RegistroComponent implements OnInit {
                $("#correoIn").val(res.email);
                $("#telefonoIn").val(res.phoneNumber);
                this.tipoLogin='google';
+               this.toastr.info('Complete el formulario','Autenticado');
              })
              .catch(e => {
                console.log(e);

@@ -51,17 +51,167 @@
 
     <div class="container">
         <ng-template [ngIf]="bandcontenedor == 1">
-            <ul *ngFor="let perfil of perfiles">
-                <p>{{perfil.nombre}}</p>
-                <p>{{perfil.telefono}}</p>
-                <p>{{perfil.correo}}</p>
-                <p>{{perfil.direccion}}</p>  
-            </ul>
-        
+            <mdb-card class="p-5 animated fadeIn" *ngFor="let perfil of perfiles">
+                <mdb-card-body>
+                    <div class="row">
+                       <div class="col-md mx-2">
+                           <mdb-card-title>
+                               <h4>Nombre</h4>
+                           </mdb-card-title>
+                           <hr>
+                           <mdb-card-text class="mt-1">
+                               {{perfil.nombre}}
+                           </mdb-card-text>
+                       </div> 
+                       <div class="col-md mx-1">
+                           <mdb-card-title>
+                               <h4>Apellido</h4>
+                           </mdb-card-title>
+                           <hr>
+                           <mdb-card-text class="mt-2">
+                               {{perfil.apellido}}
+                           </mdb-card-text>
+                       </div>
+                    </div>
+                    <br>
+                    
+                    <div class="row">
+                        <div class="col-md mx-1">
+                            <mdb-card-title>
+                                <h4>E-mail</h4>
+                            </mdb-card-title>
+                            <hr>
+                            <mdb-card-text class="mt-2">
+                                {{perfil.email}}
+                            </mdb-card-text>
+                        </div>
+                        <div class="col-md mx-1">
+                            <mdb-card-title>
+                                <h4>Telefono</h4>
+                            </mdb-card-title>
+                            <hr>
+                            <mdb-card-text class="mt-2">
+                                {{perfil.telefono}}
+                            </mdb-card-text>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="mx-1">
+
+                        <mdb-card-title>
+                            <h4>Direccion</h4>
+                        </mdb-card-title>
+                        <hr>
+                        <mdb-card-text class="mt-2">
+                            Calle: {{perfil.direccion.calle}}
+                        </mdb-card-text>
+                        <mdb-card-text class="mt-2">
+                            Numero: {{perfil.direccion.numero}}
+                        </mdb-card-text>
+                        <mdb-card-text class="mt-2">
+                            Colonia: {{perfil.direccion.colonia}}
+                        </mdb-card-text>
+                        <mdb-card-text class="mt-2">
+                            C.P.: {{perfil.direccion.cp}}
+                        </mdb-card-text>
+                        <br>
+    
+                        <mdb-card-title>
+                            <h4>Informacion Bancaria</h4>
+                        </mdb-card-title>
+                        <hr>
+                        <mdb-card-text class="mt-2" *ngFor="let cuentas of pagos">
+                            <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,2) === '55' || cuentas.payload.doc.data().numero.slice(0,2) === '54' || cuentas.payload.doc.data().numero.slice(0,2) === '53' || cuentas.payload.doc.data().numero.slice(0,2) === '52'  || cuentas.payload.doc.data().numero.slice(0,2) === '51'">
+                                    <mdb-icon fab icon="cc-mastercard"></mdb-icon>
+                            </ng-template> 
+                            <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,1) === '4'">
+                                    <mdb-icon fab icon="cc-visa"></mdb-icon>
+                            </ng-template> 
+                            ••••-x {{cuentas.payload.doc.data().numero.slice(12)}}
+                        </mdb-card-text>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-md-3">
+                            <button mdbBtn mdbwaveseffect (click)="login()"  color="primary" block="true" class="my-4 labelsLogin text-dark" type="button"><strong >Editar Perfil</strong></button>
+                        </div>
+                    </div>
+                </mdb-card-body>
+            </mdb-card>
         </ng-template>
 
         <ng-template [ngIf]="bandcontenedor == 2">
-            <p>Estos son los autos</p>
+            <mdb-card class="p-5 animated fadeIn" *ngFor="let perfil of perfiles">
+                <mdb-card-body>
+                    <div class ="row">
+                        <div class="col-md">
+                            <h1 ><strong class="tituloAddAuto">Agregar Auto</strong> </h1>
+                        </div>
+                        <div class="col-md">
+                            <a (click)="agregarAuto()">
+                                <h1 class="text-right" ><strong class="tituloAddAuto"><mdb-icon class="text-primary text-right" fas icon="plus-circle" size="2x"></mdb-icon></strong> </h1>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md mx-1">
+                            <div class="md-form form-sm">
+                                <input mdbInput type="text" id="modelo" class="form-control form-control-sm">
+                                <label for="form1" class="">Modelo</label>
+                            </div> 
+                        </div>
+                        <div class="col-md mx-1">
+                            <div class="md-form form-sm">
+                                <input mdbInput type="text" id="placas" class="form-control form-control-sm">
+                                <label for="form1" class="">Placas</label>
+                            </div> 
+                        </div>
+                        <div class="col-md mx-2">
+                            <div class="custom-control custom-radio mx-4">
+                                <input type="radio" (click)="colores(1)" class="custom-control-input" id="radio1" name="defaultExampleRadios" mdbInput>
+                                <label class="custom-control-label mx-2" for="radio1">Negro</label>
+                            </div>
+                            
+                            <div class="custom-control custom-radio mx-4">
+                                <input type="radio" (click)="colores(0)" class="custom-control-input" id="radio2" name="defaultExampleRadios" mdbInput>
+                                <label class="custom-control-label mx-2" for="radio2">Azul</label>
+                            </div>
+
+                            <div class="custom-control custom-radio mx-4">
+                                <input type="radio" (click)="colores(2)" class="custom-control-input" id="radio3" name="defaultExampleRadios" mdbInput>
+                                <label class="custom-control-label mx-2" for="radio3">Rojo</label>
+                            </div>
+                        </div>
+                    </div>
+                </mdb-card-body>
+            </mdb-card>
+            <br>
+            <mdb-card class="p-5 my-2 animated fadeIn" *ngFor="let item of autos">
+                <mdb-card-body>
+                    <div class="row">
+                        <div class="col-md">
+                            <h1><strong class="tituloAddAuto">{{item.payload.doc.data().modelo}}</strong></h1>
+                        </div>
+                        <div class="col-md">
+                            <ng-template [ngIf]="item.payload.doc.data().color == 0">
+                                <h1 class="text-right" ><strong class="tituloAddAuto"><mdb-icon class="text-primary text-right" fas icon="car-side" size="2x"></mdb-icon></strong> </h1>
+                            </ng-template>
+                            <ng-template [ngIf]="item.payload.doc.data().color == 1">
+                                <h1 class="text-right" ><strong class="tituloAddAuto"><mdb-icon class="text-dark text-right" fas icon="car-side" size="2x"></mdb-icon></strong> </h1>
+                            </ng-template>
+                            <ng-template [ngIf]="item.payload.doc.data().color == 2">
+                                <h1 class="text-right" ><strong class="tituloAddAuto"><mdb-icon class="text-danger text-right" fas icon="car-side" size="2x"></mdb-icon></strong> </h1>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <p class="mt-2"> Placa: {{item.payload.doc.data().placas}}</p>
+                        </div>
+                    </div>
+                    
+                </mdb-card-body>
+            </mdb-card>
         </ng-template>
 
         <ng-template [ngIf]="bandcontenedor == 3">

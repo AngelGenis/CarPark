@@ -4,6 +4,12 @@
     font-family: 'Montserrat';
     font-size: 16px;
 }
+
+.tituloAddAuto{
+    font-size: 24px;
+    font-weight: bold;
+}
+
 #Contenedor{
     position: relative;
     width: 100%;
