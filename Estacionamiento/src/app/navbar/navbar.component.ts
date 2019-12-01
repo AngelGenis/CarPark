@@ -1,6 +1,9 @@
 import { Component, ViewChild, ElementRef, Input, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 import * as $ from 'jquery';
 import { AboutComponent } from '../about/about.component';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-navbar',
@@ -13,12 +16,14 @@ export class NavbarComponent implements OnInit {
   links = document.querySelector('.menu-btn');
 
 
-  constructor() { 
+  constructor(private auth:AuthService,
+              private toastr:ToastrService,
+              private router:Router) { 
     
   } 
 
   ngOnInit(){
-  
+    $(".menu-btn").hide();
      
   }
   onClickMenu(){
@@ -109,7 +114,17 @@ export class NavbarComponent implements OnInit {
       this.menuOpen = false;
 }
 
-
+  cerrarSesion(){
+    this.auth.signOut()
+             .then(res => {
+              this.toastr.info('Nos vemos pronto', 'Sesion cerrada')  
+              this.router.navigate(['/transicionlog','out']);
+              this.onClickLinks();
+             })
+             .catch(e => {
+                this.toastr.error('No se pudo cerrar sesion.','Error');
+             })
+  }
   
 
   

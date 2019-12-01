@@ -1,4 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
+import { AuthService } from './services/auth.service'
 import * as $ from 'jquery';
 import 'jarallax';
 declare var jarallax: any;
@@ -12,9 +13,19 @@ declare var jarallax: any;
 export class AppComponent implements AfterViewInit {
   title = 'Estacionamiento';
 
+  constructor(private auth:AuthService){
+
+  }
+
   ngOnInit(){
       $("#login").hide();
       $("#registro").hide();
+      this.auth.user$.subscribe(res => {
+        if(res.email !== undefined){
+         $("#Menu1").hide();
+         $(".menu-btn").show(); 
+        }
+      })
   }
   ngAfterViewInit(){
     jarallax(document.querySelectorAll('.jarallax'),{

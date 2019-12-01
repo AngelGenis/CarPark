@@ -2,6 +2,7 @@ import { Component, OnInit,  } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FirestoreService } from '../services/firestore.service';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import { ElementSchemaRegistry } from '@angular/compiler';
 
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
 
   constructor(public db:FirestoreService,
               public auth:AuthService,
-              private toastr:ToastrService
+              private toastr:ToastrService,
+              private router:Router
               ) { }
 
   ngOnInit() {
@@ -53,38 +55,37 @@ export class LoginComponent implements OnInit {
   }
 
   async login(){
-    
     let log = $("#username").val();
     let pass = $("#pass").val();
 
     let res = this.auth.logearUsuario(log,pass)
              .then( res => {
-               console.log(res);
+               if(res !== undefined){
+                $("#Menu1").hide();
+                $(".menu-btn").show();
+                this.router.navigate(['/transicionlog','in'])
+               }
              })
              .catch( e =>{
                console.log(e);
              })
-    console.log(res);
-    if(res['code']){
-      this.showFailure();
-    } else if(res['user']) {
-      this.showSuccess();
-    }
-
   }
 
   glogin(){
-
-    this.auth.googleSignIn()
+    this.auth.googleLogIn()
              .then(res=>{
                //Logica cuando el inicio de sesion jale
+
+               $("#Menu1").hide();
+
+    $(".menu-btn").show();
+              this.toastr.success('Secion Iniciada', 'Listo!');
               console.log(res, 'success');
-              
+              this.router.navigate(['/transicionlog','in'])
              })
              .catch(e =>{
               //cuando no 
               console.log(e,'fail');
-              
              })
 
     }
