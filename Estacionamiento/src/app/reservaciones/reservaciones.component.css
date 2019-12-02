@@ -4,6 +4,7 @@
   font-family: "Montserrat";
   font-size: 16px;
 }
+
 #Contenedor{
   width: 100%;
 }
@@ -76,15 +77,17 @@
   top: 15px;
 }
 
-.img{
+.img2{
   width: 100%;
   padding: 20px;
   text-align: right;
   margin-top: 50px;
+  z-index: 999;
 
 }
-.img svg{
+.img2 svg{
   position: relative;
+  z-index: 999;
 }
 
 #Informacion{
@@ -226,6 +229,12 @@
   font-size: 2rem;
 }
 
+#Efecto1{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+}
+
 @media (min-width: 769px) {
   #Contenedor h1{
     font-size: 1.5rem;
@@ -243,12 +252,12 @@
     height: 60px;
   }
 
-  .img{
+  .img2{
     margin-top: 70px;
     text-align: left;
     width: 50%;
   }
-  .img svg{
+  .img2 svg{
     width: 270px;
     height: 186px;
   }
