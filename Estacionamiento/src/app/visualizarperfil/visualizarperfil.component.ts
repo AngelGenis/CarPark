@@ -53,6 +53,21 @@ export class VisualizarperfilComponent implements OnInit {
   onClickDatosTarjetas(){
     this.bandcontenedor = 3;
   }
+  onClickEditarInfo(){
+    $(".sololectura").removeClass("noborder");
+    $(".sololectura").addClass("write");
+    $(".sololectura").prop('disabled', false);
+    $("#Editar").css("display", "none");
+    $("#Guardar").css("display", "block");
+  }
+
+  onClickGuardarCambios(){
+    $(".sololectura").removeClass("write");
+    $(".sololectura").addClass("noborder");
+    $(".sololectura").prop('disabled', true);
+    $("#Editar").css("display", "block");
+    $("#Guardar").css("display", "none");
+  }
   
   agregarAuto(){
     let auto = {}
