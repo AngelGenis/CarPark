@@ -163,6 +163,7 @@ export class FirestoreService {
                     fecha: rsv.fecha,
                     hinicio: rsv.hinicio,
                     hfin: rsv.hfin,
+                    estado:'reservado',
                     tarjeta: rsv.tarjeta,
                     cliente: cli.email,
                     auto: { 
@@ -179,12 +180,10 @@ export class FirestoreService {
     let cli = data.cliente;
     return this.db.collection('Reservaciones', ref=> ref.where('cliente','==',cli.email)).snapshotChanges();
   }
-  // actualizaPagos(pago,email){
-  //   return this.db.collection('Clientes').doc(email).collection('Pagos').doc(pago.numero).set({
-  //     numero: pago.numero,
-  //     cvv:pago.cvv,
-  //     fecha:pago.expiracion
-  //   });
-  // }
+  
+  getReservaciones(email){
+    return this.db.collection('Reservaciones', ref=> ref.where('cliente', '==', email)
+                                                        .where('estado', '==', 'reservado')).snapshotChanges();
+  }
 }
   
