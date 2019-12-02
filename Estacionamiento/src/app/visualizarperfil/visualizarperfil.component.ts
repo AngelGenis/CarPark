@@ -70,15 +70,21 @@ export class VisualizarperfilComponent implements OnInit {
   }
   
   agregarAuto(){
-    let auto = {}
 
-    auto['modelo'] = $("#modelo").val();
-    auto['placas'] = $("#placas").val();
-    auto['color'] =  $("#color").val();
-    this.auth.user$.subscribe( async (e) => {
-      console.log(e);
-      await this.db.setAuto(auto,e.email)
-    })
+    if(this.autos.length == 3){
+      this.toastr.warning('Ha llegado al limite de autos','Error');
+    }else {
+
+      let auto = {}
+  
+      auto['modelo'] = $("#modelo").val();
+      auto['placas'] = $("#placas").val();
+      auto['color'] =  $("#color").val();
+      this.auth.user$.subscribe( async (e) => {
+        console.log(e);
+        await this.db.setAuto(auto,e.email)
+      })
+    }
   }
   
   eliminarAuto(modelo){

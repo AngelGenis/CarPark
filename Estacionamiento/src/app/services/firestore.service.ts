@@ -74,50 +74,47 @@ export class FirestoreService {
 
   setAuto(auto,email){
       
-    this.db.collection('Clientes').doc(email).collection('Autos',ref => ref.where('estado', '==','activo')).snapshotChanges().subscribe(  res => {
-      if(res.length > 3){
-        this.toastr.warning('El limite de autos es 3.', 'Limite alcanzado');
-        return 0;
-      }
-      else {
-        let docRef =  this.db.firestore.doc(`Clientes/${email}/Autos/${auto.modelo}`);
+    let res = this.db.collection('Clientes').doc(email)
+                     .collection('Autos',ref => ref.where('estado', '==','activo'))
+                     .get();
+                     
+    let docRef = this.db.firestore.doc(`Clientes/${email}/Autos/${auto.modelo}`);
 
-        docRef.get()
-              .then(res => {
-                if(res.exists){
-                  return this.db.collection('Clientes').doc(email).collection('Autos').doc(auto.modelo).update({
-                    estado: 'activo'
-                  }).then(res=>{
-                  this.toastr.success('Auto registrado con exito','Listo');
-                  }).catch(e => {
-                    console.log(e);
-                  }).finally(()=>{
+    docRef.get()
+      .then(res => {
+        if (res.exists) {
+          return this.db.collection('Clientes').doc(email).collection('Autos').doc(auto.modelo).update({
+            estado: 'activo'
+          }).then(res => {
+            this.toastr.success('Auto registrado con exito', 'Listo');
+          }).catch(e => {
+            console.log(e);
+          }).finally(() => {
 
-                  })
-                } else { 
-                  return this.db.collection('Clientes').doc(email).collection('Autos').doc(auto.modelo).set({
-                    estado: 'activo',
-                    modelo:auto.modelo,
-                    placas: auto.placas,
-                    color: auto.color
-                  }).then(res=>{
-                    console.log("succ",res);
-                    this.toastr.success('Auto registrado con exito','Listo');
-                  }).catch(e=>{
-                    console.log(e);
-                  }).finally(()=>{
-                    
-                  })
-                }
-              })
-              .catch(e => {
+          })
+        } else {
+          return this.db.collection('Clientes').doc(email).collection('Autos').doc(auto.modelo).set({
+            estado: 'activo',
+            modelo: auto.modelo,
+            placas: auto.placas,
+            color: auto.color
+          }).then(res => {
+            console.log("succ", res);
+            this.toastr.success('Auto registrado con exito', 'Listo');
+          }).catch(e => {
+            console.log(e);
+          }).finally(() => {
 
-              })
-              .finally(()=>{
+          })
+        }
+      })
+      .catch(e => {
 
-              })
-        }});
-      }
+      })
+      .finally(() => {
+
+      })
+ }
 
   delAuto(modelo,email){
     this.db.collection('Clientes').doc(email).collection('Autos').doc(modelo).set({

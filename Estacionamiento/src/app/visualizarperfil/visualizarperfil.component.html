@@ -46,7 +46,7 @@
 
     <div class="container">
         <ng-template [ngIf]="bandcontenedor == 1">
-            <div class="contenedor-info">
+            <div class="contenedor-info  animated slideInLeft faster">
                 <div class="info-personal" *ngFor="let perfil of perfiles">
                     <div class="divazul"></div>
                     <label for="">Nombre:</label>
@@ -77,7 +77,6 @@
                         <input  class="sololectura cuen noborder" disabled value="•••• •••• •••• ••••  {{cuentas.payload.doc.data().numero.slice(12)}}">
                     </mdb-card-text>
                 </div>   
-                
                 <button id="Editar" class="editar-info" (click)="onClickEditarInfo()"><svg width="49" height="49" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_d)">
                     <rect x="4" width="41" height="41" fill="#3E64FF"/>
@@ -96,6 +95,7 @@
                     </defs>
                     </svg>
                 </button>
+                
                 <button id="Guardar" (click)="onClickGuardarCambios()">Guardar Cambios</button>
                 
             </div>
@@ -104,27 +104,32 @@
         <ng-template [ngIf]="bandcontenedor == 2">
             
             <br>
-            <div class="container-fluid" >
-                <div class="row" >
+            <div class="container-fluid animated slideInLeft faster" >
+                <div class="row justify-content-center" >
                     <div class="col-md-4" *ngFor="let item of autos">
-                            <mdb-card class="p-3 mx-3 my-3 animated fadeIn">
+                            <mdb-card class="p-3 mx-2 my-3 animated slideInUp faster">
                                 <mdb-card-body>
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col-md">
                                                 <h1><strong class="tituloAddAuto">{{item.payload.doc.data().modelo}}</strong></h1>
+                                                <h1 class="my-3" ><strong class="tituloAddAuto"><mdb-icon class="text-right" [style.color]="item.payload.doc.data().color" fas icon="car-side" size="2x"></mdb-icon></strong> </h1>
                                             </div>
-                                            <div class="col-md-1 text-md-right">
-                                                <h1 class="" ><strong class="tituloAddAuto"><mdb-icon class="text-right" [style.color]="item.payload.doc.data().color" fas icon="car-side" size="2x"></mdb-icon></strong> </h1>
-                                            </div>
-                                            <div class="col-md-1 text-md-right">
-                                                    <div class="btn-group mx-4" mdbDropdown>
+                                            <!-- <div class="col-md-1 text-md-right">
+                                            </div> -->
+                                            <div class="col-md-2 my-2 text-md-right">
+                                                 <a class="text-danger" (click)='eliminarAuto(item.payload.doc.data().modelo)' >
+                                                    <mdb-icon fas icon="times-circle" class="waves-effect"
+                                                                      mdbWavesEffect></mdb-icon>
+                                                  
+                                                    </a>
+                                                   <!-- <div class="btn-group" mdbDropdown>
                                                             <mdb-icon fas icon="ellipsis-v"  classInside="" mdbDropdownToggle class="waves-effect"
                                                                       mdbWavesEffect></mdb-icon>
-                                                            <div class="dropdown-menu dropdown-primary p-3">
+                                                            <div class="dropdown-menu dropdown-primary">
                                                               <a class="dropdown-item" (click)='eliminarAuto(item.payload.doc.data().modelo)' >Eliminar auto</a>
                                                             </div>
-                                                     </div>
+                                                     </div> -->
                                             </div>
                                         </div>
                                         <div class="row">
@@ -139,41 +144,45 @@
                     </div>
 
                 </div>
-            </div>
-            <mdb-card   class="p-5 animated fadeIn contenedortar" *ngFor="let perfil of perfiles">
-                    <div class="card-auto">
-                        <h1>
-                            <strong class="tituloAddAuto">Agregar Auto</strong> 
-                        </h1>
-                        <div class="btn-plus"> 
-                            <a (click)="agregarAuto()">
-                                <h1 >
-                                    <strong class="tituloAddAuto">
-                                        <mdb-icon  fas icon="plus-circle" size="2x"></mdb-icon>
-                                    </strong> 
-                                </h1>
-                            </a>
-                        </div>
-    
-                        <div class="contenedoresautos">
-                            <label for="form1" class="">Modelo</label>
-                            <input mdbInput type="text" id="modelo" class="form-control form-control-sm">
-                            
-                        </div>
-                        
-                        <div class="contenedoresautos">
-                            <label for="form1" class="">Placas</label>
-                            <input mdbInput type="text" id="placas" class="form-control form-control-sm">
-                            
-                        </div> 
-    
-                        <div>
-                            <label for="body" class="mx-2 pb-5">Color</label>
-                            <input type="color"  id="color" name="color">
-                        </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-11">
+                        <mdb-card   class="p-5 animated slideInUp faster contenedortar" *ngFor="let perfil of perfiles">
+                                <div class="card-auto">
+                                    <h1>
+                                        <strong class="tituloAddAuto">Agregar Auto</strong> 
+                                    </h1>
+                                    <div class="btn-plus"> 
+                                        <a (click)="agregarAuto()">
+                                            <h1 >
+                                                <strong class="tituloAddAuto">
+                                                    <mdb-icon  fas icon="plus-circle" size="2x"></mdb-icon>
+                                                </strong> 
+                                            </h1>
+                                        </a>
+                                    </div>
+                
+                                    <div class="contenedoresautos">
+                                        <label for="form1" class="">Modelo</label>
+                                        <input mdbInput type="text" id="modelo" class="form-control form-control-sm">
+                                        
+                                    </div>
+                                    
+                                    <div class="contenedoresautos">
+                                        <label for="form1" class="">Placas</label>
+                                        <input mdbInput type="text" id="placas" class="form-control form-control-sm">
+                                        
+                                    </div> 
+                
+                                    <div>
+                                        <label for="body" class="mx-2 pb-5">Color</label>
+                                        <input type="color"  id="color" name="color">
+                                    </div>
+                                </div>
+                                
+                            </mdb-card>
                     </div>
-                    
-                </mdb-card>
+                </div>
+            </div>
         </ng-template>
 
         <ng-template [ngIf]="bandcontenedor == 3">

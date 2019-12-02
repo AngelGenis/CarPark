@@ -30,9 +30,11 @@ export class ReservarComponent implements OnInit {
 
   constructor(private dbData: AngularFirestore) { 
     this.formReservas = this.crearFormReservas();
+
   }
 
   ngOnInit() {
+
   }
   onLimpiarFormulario(){
     this.formReservas.reset();

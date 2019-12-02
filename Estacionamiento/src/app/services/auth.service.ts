@@ -49,7 +49,7 @@ export class AuthService {
                   $(".menu-btn").addClass('animated');
                   $(".menu-btn").addClass('heartBeat');
               },3000)
-                this.toastr.success('Sesion Iniciada',`Bienvenido: ${res.user.displayName}`)
+                this.toastr.success('Sesion Iniciada',`Bienvenido: ${res.user.email}`)
                 this.router.navigate(['/transicionlog','in']);
     }).catch(e=>{
       this.toastr.error('Error','No se encuentra registrado')
