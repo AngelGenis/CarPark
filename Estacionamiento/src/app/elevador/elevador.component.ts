@@ -35,7 +35,7 @@ export class ElevadorComponent implements OnInit {
       this.escenario();
     }
   }
-  
+
   /*onClickBajar() {
     if (this.piso == 1) {
       $("#RectElevador").addClass("bajar1");
@@ -71,9 +71,8 @@ export class ElevadorComponent implements OnInit {
     }, 2000);
   }
 
-  LlenarArray(){
-    this.idcajon="#Cajon"+this.cajon;
-    console.log(this.idcajon);
+  LlenarArray() {
+    this.idcajon = "#Cajon" + this.cajon;
     $(this.idcajon).css("background", "blue");
     $(this.idcajon).css("color", "white");
   }
