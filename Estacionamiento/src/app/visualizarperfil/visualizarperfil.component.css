@@ -220,3 +220,93 @@ input[type="color"]::-webkit-color-swatch {
     margin-top: 20px;
     transition-duration: 2s;
 }
+
+@media (min-width: 767px) {
+    #Contenedor{
+        background: white;
+        
+    }
+    label{
+        font-size: .8rem;
+    }
+    .Main{
+        position: absolute;
+        display: inline-block;
+        width: 50%;
+        height: 90%;
+        right: 0;
+    }
+    .Main nav{
+        position: absolute;
+        top: 0px;
+        left: -100%;
+        z-index: 9998;
+        background: none;
+       
+        
+    }
+    .Main nav ul li{
+        background: #EDF4FF;
+    }
+    .Main nav ul li a{
+        color: black;
+        font-weight: bold;
+        border-bottom: 2px solid royalblue;
+    }
+    
+    .Main .imagen svg{
+        position: absolute;
+        width: 295px;
+        height: 333px;
+        bottom: -20px;
+    }
+    .container{
+        position: absolute;
+        display: inline-block;
+        width: 50%;
+        left: 0px;
+        transform: translateX(0);
+        background: #f7f7f7;
+        height: 90%;
+        padding-top: 70px;
+    }
+    .divazul{
+        display: none;
+    }
+    #Editar{
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        position: absolute;
+        bottom: 20px;
+        right: 50px;
+
+    }
+    #Guardar{
+        position: absolute;
+        bottom: 0px;
+        left: 120px;
+    }
+    .write{
+        border: none;
+    }
+    .info-personal, .cuentas{
+        width: 50%;
+        margin-left: 30px;
+    }    
+    .contenedortar{
+        position: relative;
+        width: 100%;
+        height: 240px;
+        padding: 0;
+        margin-top: 50px;
+    }
+    .card-auto{
+        position: absolute;
+        margin: 0;
+        left: 0;
+        top: 0px;
+        padding: 0 25px;
+        height: 200px;
+    }
+}
