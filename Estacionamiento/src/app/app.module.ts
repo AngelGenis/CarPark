@@ -38,6 +38,7 @@ import { ReservacionesComponent } from './reservaciones/reservaciones.component'
 import { ElevadorComponent } from './elevador/elevador.component';
 import { TransicionlogComponent } from './transicionlog/transicionlog.component';
 import { RouterModule } from '@angular/router';
+import { HistorialComponent } from './historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { RouterModule } from '@angular/router';
     CdarsebajaComponent,
     ReservacionesComponent,
     ElevadorComponent,
-    TransicionlogComponent
+    TransicionlogComponent,
+    HistorialComponent
     // bcrypt
   ],
   imports: [
