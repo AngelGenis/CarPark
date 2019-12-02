@@ -8,7 +8,7 @@ import { RegistroComponent } from './registro/registro.component'
 import { CdarsebajaComponent } from './cdarsebaja/cdarsebaja.component';
 import { ReservacionesComponent } from './reservaciones/reservaciones.component'
 import { TransicionlogComponent } from './transicionlog/transicionlog.component';
-
+import { HistorialComponent } from './historial/historial.component';
 const routes: Routes = [
   { path: '', component: PresentacionComponent},
   { path: 'reservar', component: ReservarComponent},
@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent},
   { path: 'darsebaja', component: CdarsebajaComponent},
   { path: 'reservaciones', component: ReservacionesComponent},
-  { path: 'transicionlog/:operacion', component:TransicionlogComponent}
+  { path: 'transicionlog/:operacion', component:TransicionlogComponent},
+  { path: 'historial', component:HistorialComponent}
 ];
 
 @NgModule({

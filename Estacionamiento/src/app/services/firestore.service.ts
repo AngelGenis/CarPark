@@ -174,6 +174,11 @@ export class FirestoreService {
 
     
   }
+
+  getHistorial(data){
+    let cli = data.cliente;
+    return this.db.collection('Reservaciones', ref=> ref.where('cliente','==',cli.email)).snapshotChanges();
+  }
   // actualizaPagos(pago,email){
   //   return this.db.collection('Clientes').doc(email).collection('Pagos').doc(pago.numero).set({
   //     numero: pago.numero,
