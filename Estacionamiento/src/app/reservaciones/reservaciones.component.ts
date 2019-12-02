@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-reservaciones',
@@ -7,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservacionesComponent implements OnInit {
   tiempo: number = 3;
+  reserva: number = 0;
 
   constructor() { }
 
   ngOnInit() {
+   
   }
 
   onClickTimer(){
@@ -39,6 +42,22 @@ export class ReservacionesComponent implements OnInit {
         }
    }, 1000);
     
+  }
+  
+
+  onClickIniciarReservacion(){
+    $("#Codigo").fadeIn(300);
+  }
+
+  onClickCross(){
+    $("#Codigo").fadeOut(300);
+    this.reserva = 1;  
+  }
+
+  mostrarLugarCorrespondiente(){
+    $("#Codigo").fadeOut(300);
+    $(".tarjeta").fadeOut(300);
+    $("#AnimacionLugarReservado").fadeIn(300);
   }
 
 }
