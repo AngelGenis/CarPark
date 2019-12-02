@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-reservaciones',
@@ -38,6 +39,15 @@ export class ReservacionesComponent implements OnInit {
            document.getElementById("CountDown").innerHTML = "EXPIRED";
         }
    }, 1000);
+    
+  }
+
+  onClickIniciarReservacion(){
+    $("#Codigo").fadeIn(300);
+  }
+
+  onClickCross(){
+    $("#Codigo").fadeOut(300);
     
   }
 
