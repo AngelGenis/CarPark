@@ -14,7 +14,10 @@
     position: relative;
     width: 100%;
     height: 100vh;
+    background: #F7F7F7;
 }
+
+
 
 .Main{
     position: relative;
@@ -55,23 +58,21 @@ ul{
    list-style: none;
 }
 li{
-    position: absolute;
+    position: relative;
     display: inline-block;
     padding: 8px 0;
-    width: 33%;
+    width: 50%;
     text-align: center;
     color: white;
 }
-li:nth-of-type(1){
-    left: left;
+
+.write{
+    border: none;
+    border-bottom: 1px solid royalblue;
+    background: none;
+    box-shadow: 1px 1px 3px lightgray;
 }
-li:nth-of-type(2){
-    left: 50%;
-    transform: translateX(-50%);
-}
-li:nth-of-type(3){
-    right: 0px;
-}
+
 a:not(.dropdown-item){
     color: white;
     text-decoration: none;
@@ -81,17 +82,82 @@ a:not(.dropdown-item){
 
 .container{
     position: relative;
-    width: 80%;
-    height: 50vh;
+    width: 100%;
+    height: 100vh;
     left: 50%;
     transform: translateX(-50%);
-    padding-top: 50px;
 }
 .container ul p{
     text-align: center;
     margin: 20px 0;
 }
+.contenedor-info{
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+}
+.info-personal{
+    margin-bottom: 5px;
+}
 
+.divazul{
+    position: relative;
+    background: royalblue;
+    width: 50px;
+    height: 2px;
+    margin-bottom: 5px;
+}
+
+label{
+    position: relative;
+    width: 30%;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+input{
+    width: 60%;
+    position: relative;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.editar-info{
+    position: relative;
+    background: royalblue;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px lightgray;
+    left: 80%;
+    margin-top: 50px;
+    transition-duration: 2s;
+}
+
+.noborder{
+    border: none;
+    background: none;
+}
+
+.cuentas{
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+.cuentabancaria{
+    width: 40%;
+    position: relative;
+    display: inline-block;
+}
+.lab{
+    position: relative;
+    display: inline-block;
+}
+.cuen{
+    position: relative;
+    width: 100%;
+    display: inline-block;
+}
 
 #Autos{
     background: lightcoral;
@@ -108,4 +174,49 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 }
 input[type="color"]::-webkit-color-swatch {
 	border: none;
+}
+
+.card-auto{
+    position: relative;
+    width: 100%;
+}
+
+.btn-plus{
+    color: royalblue;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.contenedoresautos{
+    width: 100%;
+    padding: 10px 0;
+    display: inline-block;
+}
+.contenedoresautos label,
+ .contenedoresautos input{
+    position: relative;
+    display: inline-block;
+}
+.contenedoresautos label{
+    width: 30%;
+}
+.contenedoresautos input{
+    width: 60%;
+}
+
+#Guardar{
+    background: royalblue;
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 1px 1px 3px lightgray;
+    display: none;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 20px;
+    transition-duration: 2s;
 }

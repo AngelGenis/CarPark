@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-precios',
@@ -9,6 +11,7 @@ export class PreciosComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

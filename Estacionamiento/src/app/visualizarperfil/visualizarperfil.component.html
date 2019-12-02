@@ -35,165 +35,74 @@
                 </filter>
                 </defs>
             </svg>
-        </div>
-        
-            
-        <img src="" alt="">
-        
+        </div>     
         <nav>
             <ul>
                 <li><a (click)="onClickDatosPersonales()">Datos Personales</a></li>
                 <li><a (click)="onClickDatosAutos()">Autos</a></li>
-                <li><a (click)="onClickDatosTarjetas()">Tarjetas</a></li>
             </ul>
         </nav>
     </div>
 
     <div class="container">
         <ng-template [ngIf]="bandcontenedor == 1">
-            <mdb-card class="p-5 animated fadeIn" *ngFor="let perfil of perfiles">
-                <mdb-card-body>
-                    <div class="row">
-                       <div class="col-md mx-2">
-                           <mdb-card-title>
-                               <h4>Nombre</h4>
-                           </mdb-card-title>
-                           <hr>
-                           <mdb-card-text class="mt-1">
-                               {{perfil.nombre}}
-                           </mdb-card-text>
-                       </div> 
-                       <div class="col-md mx-1">
-                           <mdb-card-title>
-                               <h4>Apellido</h4>
-                           </mdb-card-title>
-                           <hr>
-                           <mdb-card-text class="mt-2">
-                               {{perfil.apellido}}
-                           </mdb-card-text>
-                       </div>
-                    </div>
+            <div class="contenedor-info">
+                <div class="info-personal" *ngFor="let perfil of perfiles">
+                    <div class="divazul"></div>
+                    <label for="">Nombre:</label>
+                    <input class="sololectura noborder" type="text" disabled value="{{perfil.nombre}}">
                     <br>
-                    
-                    <div class="row">
-                        <div class="col-md mx-1">
-                            <mdb-card-title>
-                                <h4>Correo Electronico</h4>
-                            </mdb-card-title>
-                            <hr>
-                            <mdb-card-text class="mt-2">
-                                {{perfil.email}}
-                            </mdb-card-text>
-                        </div>
-                        <div class="col-md mx-1">
-                            <mdb-card-title>
-                                <h4>Telefono</h4>
-                            </mdb-card-title>
-                            <hr>
-                            <mdb-card-text class="mt-2">
-                                {{perfil.telefono}}
-                            </mdb-card-text>
-
-                        </div>
-                    </div>
+                    <label for="">Telefono:</label>
+                    <input class="sololectura noborder" type="text" disabled value="{{perfil.telefono}}">
                     <br>
-                    <div class="row mx-1">
-                        <div class="col-md">
-                            <mdb-card-title>
-                                <h4>Direccion</h4>
-                            </mdb-card-title>
-                            <hr>
-                            
-                            <mdb-card-text class="mt-2">
-                                Calle: {{perfil.direccion.calle}}
-                            </mdb-card-text>
-                            <mdb-card-text class="mt-2">
-                                Numero: {{perfil.direccion.numero}}
-                            </mdb-card-text>
-                            <mdb-card-text class="mt-2">
-                                Colonia: {{perfil.direccion.colonia}}
-                            </mdb-card-text>
-                            <mdb-card-text class="mt-2">
-                                C.P.: {{perfil.direccion.cp}}
-                            </mdb-card-text>
+                    <label for="">Correo:</label>
+                    <input class="sololectura noborder" type="text" disabled value="{{perfil.correo}}">
+                    <br>
+                    <label for="">Dirección:</label>
+                    <input class="sololectura noborder" type="text" disabled value=" {{perfil.direccion.calle}} , {{perfil.direccion.colonia}} # {{perfil.direccion.numero}} ">
+                </div>
+                
+                <div class="divazul"></div>
+                <div class="cuentas">
 
-                        </div>
-                        <div class="col-md mx-1">
-                            <mdb-card-title>
-                                <h4>Informacion Bancaria</h4>
-                            </mdb-card-title>
-                            <hr>
-                            <mdb-card-text class="mt-2" *ngFor="let cuentas of pagos">
-                                <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,2) === '55' || cuentas.payload.doc.data().numero.slice(0,2) === '54' || cuentas.payload.doc.data().numero.slice(0,2) === '53' || cuentas.payload.doc.data().numero.slice(0,2) === '52'  || cuentas.payload.doc.data().numero.slice(0,2) === '51'">
-                                        <mdb-icon size="1x" fab icon="cc-mastercard"></mdb-icon>
-                                </ng-template> 
-                                <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,1) === '4'">
-                                        <mdb-icon fab icon="cc-visa"></mdb-icon>
-                                </ng-template> 
-                                ••••-x {{cuentas.payload.doc.data().numero.slice(12)}}
-                            </mdb-card-text>
+                    <label class="lab" for="">Tarjeta:</label>
+                    <mdb-card-text class="cuentabancaria" *ngFor="let cuentas of pagos">
+                        <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,2) === '55' || cuentas.payload.doc.data().numero.slice(0,2) === '54' || cuentas.payload.doc.data().numero.slice(0,2) === '53' || cuentas.payload.doc.data().numero.slice(0,2) === '52'  || cuentas.payload.doc.data().numero.slice(0,2) === '51'">
+                                <mdb-icon size="1x" fab icon="cc-mastercard"></mdb-icon>
+                        </ng-template> 
+                        <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,1) === '4'">
+                                <mdb-icon fab icon="cc-visa"></mdb-icon>
+                        </ng-template> 
 
-                        </div>
-                        <br>
-    
-                    </div>
-                    <div class="row justify-content-end">
-                        <div class="col-md-3">
-                            <button mdbBtn mdbwaveseffect routerLink='/transicionlog' routerLinkActive="router-link-active"  color="primary" block="true" class="my-4 labelsLogin text-dark" type="button"><strong >Editar Perfil</strong></button>
-                        </div>
-                    </div>
-                </mdb-card-body>
-            </mdb-card>
-            <br>
+                        <input  class="sololectura cuen noborder" disabled value="•••• •••• •••• ••••  {{cuentas.payload.doc.data().numero.slice(12)}}">
+                    </mdb-card-text>
+                </div>   
+                
+                <button id="Editar" class="editar-info" (click)="onClickEditarInfo()"><svg width="49" height="49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_d)">
+                    <rect x="4" width="41" height="41" fill="#3E64FF"/>
+                    </g>
+                    <path d="M27.6547 11.0066L33.7574 17.1391L18.3099 32.6623L12.2106 26.5298L27.6547 11.0066ZM38.3882 9.52759L35.6666 6.7927C34.6148 5.73577 32.9069 5.73577 31.8516 6.7927L29.2446 9.41245L35.3473 15.545L38.3882 12.4892C39.2039 11.6694 39.2039 10.3474 38.3882 9.52759ZM9.01698 35.1496C8.90592 35.6518 9.3572 36.1019 9.85709 35.9798L16.6575 34.3228L10.5583 28.1903L9.01698 35.1496Z" fill="#E5E5E5"/>
+                    <defs>
+                    <filter id="filter0_d" x="0" y="0" width="49" height="49" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+                    <feOffset dy="4"/>
+                    <feGaussianBlur stdDeviation="2"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+                    </filter>
+                    </defs>
+                    </svg>
+                </button>
+                <button id="Guardar" (click)="onClickGuardarCambios()">Guardar Cambios</button>
+                
+            </div>
         </ng-template>
 
         <ng-template [ngIf]="bandcontenedor == 2">
-            <mdb-card class="p-5 animated fadeIn" *ngFor="let perfil of perfiles">
-                <mdb-card-body>
-                    <div class ="row">
-                        <div class="col-md">
-                            <h1 ><strong class="tituloAddAuto">Agregar Auto</strong> </h1>
-                        </div>
-                        <div class="col-md">
-                            <a (click)="agregarAuto()">
-                                <h1 class="text-right" ><strong class="tituloAddAuto"><mdb-icon class="text-primary text-right" fas icon="plus-circle" size="2x"></mdb-icon></strong> </h1>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-md mx-1">
-                            <div class="md-form form-sm">
-                                <input mdbInput type="text" id="modelo" class="form-control form-control-sm">
-                                <label for="form1" class="">Modelo</label>
-                            </div> 
-                        </div>
-                        <div class="col-md ml-1 mr-5">
-                            <div class="md-form form-sm">
-                                <input mdbInput type="text" id="placas" class="form-control form-control-sm">
-                                <label for="form1" class="">Placas</label>
-                            </div> 
-                        </div>
-                        <div class="col-md mx-2 pt-1">
-                            <input type="color"  id="color" name="color">
-                            <label for="body" class="mx-2 pb-5">Color</label>
-                            <!-- <div class="custom-control custom-radio mx-4">
-                                <input type="radio" (click)="colores(1)" class="custom-control-input" id="radio1" name="defaultExampleRadios" mdbInput>
-                                <label class="custom-control-label mx-2" for="radio1">Negro</label>
-                            </div>
-                            
-                            <div class="custom-control custom-radio mx-4">
-                                <input type="radio" (click)="colores(0)" class="custom-control-input" id="radio2" name="defaultExampleRadios" mdbInput>
-                                <label class="custom-control-label mx-2" for="radio2">Azul</label>
-                            </div>
-
-                            <div class="custom-control custom-radio mx-4">
-                                <input type="radio" (click)="colores(2)" class="custom-control-input" id="radio3" name="defaultExampleRadios" mdbInput>
-                                <label class="custom-control-label mx-2" for="radio3">Rojo</label>
-                            </div> -->
-                        </div>
-                    </div>
-                </mdb-card-body>
-            </mdb-card>
+            
             <br>
             <div class="container-fluid" >
                 <div class="row" >
@@ -231,6 +140,40 @@
 
                 </div>
             </div>
+            <mdb-card class="p-5 animated fadeIn" *ngFor="let perfil of perfiles">
+                    <div class="card-auto">
+                        <h1>
+                            <strong class="tituloAddAuto">Agregar Auto</strong> 
+                        </h1>
+                        <div class="btn-plus"> 
+                            <a (click)="agregarAuto()">
+                                <h1 >
+                                    <strong class="tituloAddAuto">
+                                        <mdb-icon  fas icon="plus-circle" size="2x"></mdb-icon>
+                                    </strong> 
+                                </h1>
+                            </a>
+                        </div>
+    
+                        <div class="contenedoresautos">
+                            <label for="form1" class="">Modelo</label>
+                            <input mdbInput type="text" id="modelo" class="form-control form-control-sm">
+                            
+                        </div>
+                        
+                        <div class="contenedoresautos">
+                            <label for="form1" class="">Placas</label>
+                            <input mdbInput type="text" id="placas" class="form-control form-control-sm">
+                            
+                        </div> 
+    
+                        <div>
+                            <label for="body" class="mx-2 pb-5">Color</label>
+                            <input type="color"  id="color" name="color">
+                        </div>
+                    </div>
+                    
+                </mdb-card>
         </ng-template>
 
         <ng-template [ngIf]="bandcontenedor == 3">
@@ -244,4 +187,15 @@
         <div class="col-md">
             <app-footer></app-footer>
         </div>
+
+
+        <mdb-card-text class="mt-2" *ngFor="let cuentas of pagos">
+                                <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,2) === '55' || cuentas.payload.doc.data().numero.slice(0,2) === '54' || cuentas.payload.doc.data().numero.slice(0,2) === '53' || cuentas.payload.doc.data().numero.slice(0,2) === '52'  || cuentas.payload.doc.data().numero.slice(0,2) === '51'">
+                                        <mdb-icon size="1x" fab icon="cc-mastercard"></mdb-icon>
+                                </ng-template> 
+                                <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,1) === '4'">
+                                        <mdb-icon fab icon="cc-visa"></mdb-icon>
+                                </ng-template> 
+                                ••••-x {{cuentas.payload.doc.data().numero.slice(12)}}
+                            </mdb-card-text>
     </div> -->
