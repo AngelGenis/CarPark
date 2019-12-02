@@ -30,8 +30,11 @@ export class TransicionlogComponent implements OnInit {
         $("#transroot").addClass('fadeOutRight');
       },1500);
       setTimeout(()=>{
-        if(this.operacion == 'in')
+        if(this.operacion == 'in'){
+          $("#Menu1").hide();
         this.router.navigate(['/perfil']);
+          
+        }
         else{
           $("#Menu1").show();
           $(".menu-btn").hide()

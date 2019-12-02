@@ -64,7 +64,7 @@ input{
 }
 
 .contenedores{
-    background: lightcoral;
+    /* background: lightcoral; */
     display: none;
 }
 .contenedores h2{
