@@ -15,10 +15,14 @@ export class ElevadorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $("#Con2").css("display", "none");
+    $("#Con").fadeIn(1000);
     this.LlenarArray();
+
   }
 
   onClickSubir() {
+    $("#Con2").css("display", "block");
     if (this.piso == 1) {
       $("#RectElevador").addClass("subirprimero");
       this.carro();

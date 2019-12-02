@@ -282,6 +282,10 @@ h1{
   }
 }
 
+#Con, #Con2{
+  display: none;
+}
+
 @media (min-width: 900px) {
  #ContenedorPrincipal{
    width: 50%;
