@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import * as $ from 'jquery';
+import { AuthService } from '../services/auth.service';
+import { FirestoreService } from '../services/firestore.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reservaciones',
@@ -9,10 +13,19 @@ import * as $ from 'jquery';
 export class ReservacionesComponent implements OnInit {
   tiempo: number = 3;
   reserva: number = 0;
+  reservaciones: any;
 
-  constructor() { }
+  constructor(private auth:AuthService,
+              private db:FirestoreService,
+              private toastr:ToastrService) { }
 
   ngOnInit() {
+    this.auth.user$.subscribe( cliente => {
+      this.db.getReservaciones(cliente.email).subscribe( res => {
+        this.reservaciones = res;
+        console.log(res);
+      })
+    })
    
   }
 
