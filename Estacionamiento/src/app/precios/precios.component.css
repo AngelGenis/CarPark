@@ -1,60 +1,79 @@
 *{
     padding: 0px;
     margin: 0px;
-    color: #3B3B3B;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Montserrat";
 }
 .contenedor{
     position: relative;
-    width: 90%;
+    width: 100%;
+}
+
+.promos{
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.promo{
+    position: relative;
+    width: 80%;
+    height: 400px;
     left: 50%;
     transform: translateX(-50%);
-    margin: 10px 0;
-    padding: 5px;
-}
-h2{
-    font-size: 1.5em;
-    font-weight: 800;
+    color: #C4C4C4;
     text-align: center;
-    margin: 20px 0;
+    background: #F7F7F7;
+    box-shadow: 3px 3px 3px lightgray;
+    border-radius: 10px;
+    margin: 50px 0;
+    border: 1px solid lightgray;
 }
-
-p{
-    margin: 5px;
-    font-size: .9em;
+.features{
+    list-style: none;
 }
-
-/* table{
-    margin-top: 30px;
-    text-align: center;
-    position: relative;
-    width: 100%;
-}
-tr, th, td{
-    border: 1px solid #C4C4C4;
-}
-th{
-    background: #3E64FF;
-    width: 50%;
-} */
-#UsuarioPremium{
-    position: relative;
-    width: 100%;
-    margin: 40px 0;
-
-}
-.margen{
+.features li{
     margin: 10px 0;
+    font-weight: 300px;
+}
+.brief{
+    font-weight: bold;
 }
 
-@media (min-width: 769px) {
-    .contenedor{
-        width: 80%;
-    }
+.price{
+    position: relative;
+    padding: 25px 0;
+    background: lightgray;
+    text-align: center;
+    background: royalblue;
+    font-weight: bold;
+}
+.buy button{
+    background: royalblue;
+    width: 100px;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
-@media (min-width: 900px) {
-    .contenedor{
+@media (min-width: 767px) {
+    .promos{
+        position: relative;
         width: 50%;
+        height: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: inline-block;
+        padding: 0;
+
+    }
+    .promo{
+        position: relative;
+        width: 45%;
+        display: inline-block;
+        left: 20%;
+        margin: 0 15px;
+        
     }
 }
