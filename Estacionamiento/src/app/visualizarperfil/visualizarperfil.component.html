@@ -50,16 +50,16 @@
                 <div class="info-personal" *ngFor="let perfil of perfiles">
                     <div class="divazul"></div>
                     <label for="">Nombre:</label>
-                    <input class="sololectura" type="text" readonly value="{{perfil.nombre}}">
+                    <input class="sololectura noborder" type="text" disabled value="{{perfil.nombre}}">
                     <br>
                     <label for="">Telefono:</label>
-                    <input class="sololectura" type="text" readonly value="{{perfil.telefono}}">
+                    <input class="sololectura noborder" type="text" disabled value="{{perfil.telefono}}">
                     <br>
                     <label for="">Correo:</label>
-                    <input class="sololectura" type="text" readonly value="{{perfil.correo}}">
+                    <input class="sololectura noborder" type="text" disabled value="{{perfil.correo}}">
                     <br>
                     <label for="">Dirección:</label>
-                    <input class="sololectura" type="text" readonly value=" {{perfil.direccion.calle}} , {{perfil.direccion.colonia}} # {{perfil.direccion.numero}} ">
+                    <input class="sololectura noborder" type="text" disabled value=" {{perfil.direccion.calle}} , {{perfil.direccion.colonia}} # {{perfil.direccion.numero}} ">
                 </div>
                 
                 <div class="divazul"></div>
@@ -74,10 +74,11 @@
                                 <mdb-icon fab icon="cc-visa"></mdb-icon>
                         </ng-template> 
 
-                        <input  class="sololectura cuen" value="•••• •••• •••• ••••  {{cuentas.payload.doc.data().numero.slice(12)}}">
+                        <input  class="sololectura cuen noborder" disabled value="•••• •••• •••• ••••  {{cuentas.payload.doc.data().numero.slice(12)}}">
                     </mdb-card-text>
                 </div>   
-                <button class="editar-info"><svg width="49" height="49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                
+                <button id="Editar" class="editar-info" (click)="onClickEditarInfo()"><svg width="49" height="49" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_d)">
                     <rect x="4" width="41" height="41" fill="#3E64FF"/>
                     </g>
@@ -95,6 +96,8 @@
                     </defs>
                     </svg>
                 </button>
+                <button id="Guardar" (click)="onClickGuardarCambios()">Guardar Cambios</button>
+                
             </div>
         </ng-template>
 

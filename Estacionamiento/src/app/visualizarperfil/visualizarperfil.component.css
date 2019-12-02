@@ -66,6 +66,12 @@ li{
     color: white;
 }
 
+.write{
+    border: none;
+    border-bottom: 1px solid royalblue;
+    background: none;
+    box-shadow: 1px 1px 3px lightgray;
+}
 
 a:not(.dropdown-item){
     color: white;
@@ -124,9 +130,10 @@ input{
     box-shadow: 1px 1px 3px lightgray;
     left: 80%;
     margin-top: 50px;
+    transition-duration: 2s;
 }
 
-.sololectura{
+.noborder{
     border: none;
     background: none;
 }
@@ -148,7 +155,7 @@ input{
 }
 .cuen{
     position: relative;
-    width: 40%;
+    width: 100%;
     display: inline-block;
 }
 
@@ -195,4 +202,21 @@ input[type="color"]::-webkit-color-swatch {
 }
 .contenedoresautos input{
     width: 60%;
+}
+
+#Guardar{
+    background: royalblue;
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 1px 1px 3px lightgray;
+    display: none;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 20px;
+    transition-duration: 2s;
 }
