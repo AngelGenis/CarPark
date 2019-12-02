@@ -39,6 +39,9 @@ export class ElevadorComponent implements OnInit {
       this.escenario();
     }
   }
+  onClickAceptarLugar(){
+    
+  }
 
   /*onClickBajar() {
     if (this.piso == 1) {
