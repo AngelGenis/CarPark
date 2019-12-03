@@ -19,6 +19,7 @@ export class ReservacionesComponent implements OnInit {
   arr = [];
   horafinal: string = "";
   horainicio: string = "";
+  
 
   constructor(private auth: AuthService,
     private db: FirestoreService,
@@ -158,7 +159,7 @@ export class ReservacionesComponent implements OnInit {
     this.Timer();
     console.log(Math.floor(Date.now() / 1000));
 
-    // this.reserva = 1;
+    this.reserva = 1;
   }
 
   mostrarLugarCorrespondiente() {
