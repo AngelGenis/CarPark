@@ -10,7 +10,9 @@ import { ReservacionesComponent } from './reservaciones/reservaciones.component'
 import { TransicionlogComponent } from './transicionlog/transicionlog.component';
 import { HistorialComponent } from './historial/historial.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
-import { GananciasComponent } from './ganancias/ganancias.component';
+import {GananciasComponent} from './ganancias/ganancias.component';
+import {AdminparkComponent} from './adminpark/adminpark.component';
+
 import { AdminpreciosComponent } from './adminprecios/adminprecios.component';
 const routes: Routes = [
   { path: '', component: PresentacionComponent},
@@ -25,6 +27,7 @@ const routes: Routes = [
   { path: 'historial', component:HistorialComponent},
   { path: 'adminlogin', component:AdminloginComponent},
   { path: 'ganancias', component:GananciasComponent},
+  { path: 'adminpark', component: AdminparkComponent},
   { path: 'precios', component:AdminpreciosComponent}
 ];
 
