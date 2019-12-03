@@ -1,1 +1,141 @@
-<p>adminpark works!</p>
+<div class="container">
+  <h1>Estacionamiento</h1>
+
+  <div class="izq" (click)="goizq()">
+    <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M-4.80825e-07 10L16.5 19.5263L16.5 0.473721L-4.80825e-07 10Z" fill="#0D0E11"/>
+    </svg>        
+  </div>
+  <div class="der" (click)="goder()">
+        <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 10L0.499999 19.5263L0.5 0.47372L17 10Z" fill="#0D0E11"/>
+            </svg>
+                  
+  </div>
+  <div id="ContenedorMapas">
+        <ng-template [ngIf]="pisoact == 1">
+                <div class="contenedor-mapa">
+                        <p>Piso 1</p>
+                        <div id="Piso" class="pisos-croquis">
+                          <div class="col1">
+                            <div class="cajon" id="c-1">1</div>
+                            <div class="cajon" id="c-2">2</div>
+                            <div class="cajon" id="c-3">3</div>
+                            <div class="cajon" id="c-4">4</div>
+                          </div>
+                          <div class="col2">
+                            <div class="cajon" id="c-5">5</div>
+                            <div class="cajon" id="c-6">6</div>
+                            <div class="cajon" id="c-7">7</div>
+                            <div class="cajon" id="c-8">8</div>
+                          </div>
+                    
+                          <div class="col3">
+                            <div class="cajon" id="c-9">9</div>
+                            <div class="cajon" id="c-10">10</div>
+                            <div class="cajon" id="c-11">11</div>
+                            <div class="cajon" id="c-12">12</div>
+                            <div class="cajon" id="c-13">13</div>
+                          </div>
+                    
+                          <div class="col4">
+                            <div class="cajon" id="c-14">14</div>
+                            <div class="cajon" id="c-15">15</div>
+                            <div class="cajon" id="c-16">16</div>
+                            <div class="cajon" id="c-17">17</div>
+                          </div>
+                        </div>
+                </div>
+        </ng-template>
+
+        <ng-template [ngIf]="pisoact == 2">
+                <div class="contenedor-mapa">
+                        <p>Piso 2</p>
+                        <div id="Piso" class="pisos-croquis">
+                            <div class="col1">
+                            <div class="cajon" id="c-18">1</div>
+                            <div class="cajon" id="c-19">2</div>
+                            <div class="cajon" id="c-20">3</div>
+                            <div class="cajon" id="c-21">4</div>
+                            </div>
+                            <div class="col2">
+                            <div class="cajon" id="c-22">5</div>
+                            <div class="cajon nod"  ></div>
+                            <div class="cajon" id="c-23">6</div>
+                            <div class="cajon" id="c-24">7</div>
+                            </div>
+                    
+                            <div class="col3">
+                            <div class="cajon" id="c-25">8</div>
+                            <div class="cajon" id="c-26">9</div>
+                            <div class="cajon nod"></div>
+                            <div class="cajon" id="c-27">10</div>
+                            <div class="cajon nod"></div>
+                            </div>
+                    
+                            <div class="col4">
+                            <div class="cajon" id="c-28">11</div>
+                            <div class="cajon nod"></div>
+                            <div class="cajon" id="c-29">12</div>
+                            <div class="cajon" id="c-30">13</div>
+                            </div>
+                        </div>
+                </div>
+        </ng-template>
+        
+        <ng-template [ngIf]="pisoact == 3">
+                <div class="contenedor-mapa">
+                        <p>Piso 3</p>
+                        <div id="Piso" class="pisos-croquis">
+                            <div class="col1">
+                            <div class="cajon" id="c-31">1</div>
+                            <div class="cajon" id="c-32">2</div>
+                            <div class="cajon nod" id="c-3"></div>
+                            <div class="cajon nod" id="c-4"></div>
+                            </div>
+                            <div class="col2">
+                            <div class="cajon" id="c-33">3</div>
+                            <div class="cajon" id="c-34">4</div>
+                            <div class="cajon" id="c-35">5</div>
+                            <div class="cajon" id="c-36">6</div>
+                            <div class="cajon" id="c-37">7</div>
+                            </div>
+                    
+                            <div class="col3">
+                            <div class="cajon" id="c-38">8</div>
+                            <div class="cajon nod" id="c-10"></div>
+                            <div class="cajon nod" id="c-11"></div>
+                            <div class="cajon" id="c-39">9</div>
+                            <div class="cajon" id="c-40">10</div>
+                            </div>
+                    
+                            <div class="col4">
+                            <div class="cajon" id="c-41">11</div>
+                            <div class="cajon" id="c-42">12</div>
+                            <div class="cajon" id="c-43">13</div>
+                            <div class="cajon" id="c-44">14</div>
+                            <div class="cajon" id="c-45">15</div>
+                            </div>
+                        </div>
+                </div>
+        </ng-template>
+        
+            
+    
+        
+        
+  </div>
+  
+
+  <div class="contenedor-cuadritos">
+    <div class="cuadros"></div>
+    <p>Lugares Ocupados</p>
+  </div>
+  
+  <div class="contenedor-cuadritos">
+    <div class="cuadros c2" ></div>
+    <p>Lugares Vacios</p>
+  </div>
+  
+  
+</div>
