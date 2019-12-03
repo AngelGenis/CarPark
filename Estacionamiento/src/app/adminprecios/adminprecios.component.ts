@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./adminprecios.component.css']
 })
 export class AdminpreciosComponent implements OnInit {
-  costos: unknown;
+  costos: any;
 
   constructor(private db:FirestoreService,
               private toastr:ToastrService) { }

@@ -44,6 +44,7 @@ export class ElevadorComponent implements OnInit {
     });
     $("#Con2").fadeOut();
     $("#Con").fadeIn();
+    $("#AceptarLugar").css("display", "none");
     
     
 
@@ -70,7 +71,8 @@ export class ElevadorComponent implements OnInit {
     }
     setTimeout(function () {
       $("#Con2").css("display", "block");
-    }, 2500);
+      $("#AceptarLugar").css("display", "block");
+    }, 3000);
     
   }
 
