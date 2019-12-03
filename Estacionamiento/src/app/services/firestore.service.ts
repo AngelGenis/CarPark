@@ -261,6 +261,11 @@ export class FirestoreService {
                   .update(datos);
   }
 
+  getUsuario(email){
+    return this.db.collection('Clientes')
+               .doc(email)
+               .snapshotChanges();
+  }
   getPerfiles(){
     return this.db.collection('Clientes')
                   .snapshotChanges();
