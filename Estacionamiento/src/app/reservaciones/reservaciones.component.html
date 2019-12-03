@@ -2,41 +2,41 @@
 
     <h1>Reservaciones</h1>
 
-    <div id="Codigo">
-      <div id="Cross">
-        <svg
-          (click)="onClickCross()"
-          width="30"
-          height="30"
-          viewBox="0 0 52 50"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect
-            x="7.81348"
-            width="61.5687"
-            height="8.3201"
-            transform="rotate(45 7.81348 0)"
-            fill="white"
-          />
-          <rect
-            x="0.847656"
-            y="44.1168"
-            width="61.5687"
-            height="8.3201"
-            transform="rotate(-45 0.847656 44.1168)"
-            fill="white"
-          />
-        </svg>
-      </div>
-      <p>
-        Este codigo deberas ingresarlo en la terminal del estacionamiento para
-        tener acceso al estacionamiento
-      </p>
-      <p class="codigo">5874</p>
-    </div>
-
+    
     <div id="ContenedorTarjetas" *ngFor="let rsv of reservaciones" >
+      <div id="Codigo">
+        <div id="Cross">
+          <svg
+            (click)="onClickCross(rsv.payload.doc.data().cajon, rsv.payload.doc.data().piso)"
+            width="30"
+            height="30"
+            viewBox="0 0 52 50"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="7.81348"
+              width="61.5687"
+              height="8.3201"
+              transform="rotate(45 7.81348 0)"
+              fill="white"
+            />
+            <rect
+              x="0.847656"
+              y="44.1168"
+              width="61.5687"
+              height="8.3201"
+              transform="rotate(-45 0.847656 44.1168)"
+              fill="white"
+            />
+          </svg>
+        </div>
+        <p>
+          Este codigo deberas ingresarlo en la terminal del estacionamiento para
+          tener acceso al estacionamiento
+        </p>
+        <p class="codigo">{{rsv.payload.doc.data().confirmacion}}</p>
+      </div>
         <div class="tarjeta">
             <div class="fecha">
                 <p id="Dia">{{rsv.payload.doc.data().fecha.slice(8,10)}}</p>
