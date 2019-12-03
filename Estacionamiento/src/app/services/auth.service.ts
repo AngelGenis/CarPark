@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { auth } from 'firebase/app';
 import * as $ from 'jquery';
 import * as bcrypt from 'bcryptjs';
-import { ToastrService, ToastRef } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 import {
@@ -13,7 +13,6 @@ import {
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from './user.model';
-import { TouchSequence } from 'selenium-webdriver';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -55,6 +54,21 @@ export class AuthService {
       this.toastr.error('Error','No se encuentra registrado')
     })
 
+  }
+
+  public logearAdmin(email,pass){
+    return this.afAuth.auth.signInWithEmailAndPassword(email,pass).then(res=>{
+                $("#Menu1").hide();
+                $(".menu-btnb").show();
+                setTimeout(()=>{
+                  $(".menu-btnb").addClass('animated');
+                  $(".menu-btnb").addClass('heartBeat');
+              },3000)
+                this.toastr.success('Sesion Iniciada',`Bienvenido: ${res.user.email}`)
+                this.router.navigate(['/transicionlog','admin']);
+    }).catch(e=>{
+      this.toastr.error('Error','No se encuentra registrado')
+    })
   }
 
   public async autenticarNuevoUsuario(value){

@@ -34,6 +34,9 @@ export class TransicionlogComponent implements OnInit {
           $("#Menu1").hide();
         this.router.navigate(['/perfil']);
           
+        } else if(this.operacion == 'admin'){
+          $("#Menu1").hide();
+        this.router.navigate(['/ganancias']);
         }
         else{
           $("#Menu1").show();
