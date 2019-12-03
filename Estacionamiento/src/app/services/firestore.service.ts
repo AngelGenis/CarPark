@@ -150,8 +150,22 @@ export class FirestoreService {
     return this.db.collection('Clientes').doc(email).collection('Pagos').snapshotChanges();
   }
 
-    
-    setReservacion(data){
+  actualizarCajon(nivel, cajon, operacion){
+    if(operacion == 1){
+      this.db.collection('Niveles').doc(`nivel-${nivel}`).collection('cajones').doc(`c-${cajon}`).update({estado: 'reservado'})
+             .then(res => {console.log(res)})
+             .catch(res => {console.log(res)})
+    } else if (operacion == 2){
+      this.db.collection('Niveles').doc(`nivel-${nivel}`).collection('cajones').doc(`c-${cajon}`).update({estado: 'activo'})
+             .then(res => {console.log(res)})
+             .catch(res => {console.log(res)})
+    } else {
+      this.db.collection('Niveles').doc(`nivel-${nivel}`).collection('cajones').doc(`c-${cajon}`).update({estado: 'disponible'})
+             .then(res => {console.log(res)})
+             .catch(res => {console.log(res)})
+    }
+  } 
+  setReservacion(data){
       let cli = data.cliente;
       let rsv = data.reservacion;
       let doc, inserted;      
@@ -165,6 +179,7 @@ export class FirestoreService {
           doc.doc(`c-${j}`).get().forEach(cajon => {
               if(cajon.estado !== 'reservado' && cajon.estado !== 'activo' && inserted !== true){
                 inserted = true;
+                this.actualizarCajon(i,j,1);
                 return this.db.collection('Reservaciones')
                        .doc(`${cli.email},${rsv.fecha},${rsv.hinicio}`)
                        .set({
@@ -187,7 +202,7 @@ export class FirestoreService {
               }
           })
         }
-      }
+     }
   }
 
   getHistorial(data){
