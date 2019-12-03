@@ -29,10 +29,7 @@ export class ReservacionesComponent implements OnInit {
       this.db.getReservaciones(cliente.email).subscribe(res => {
         this.reservaciones = res;
         for (let rsv of this.reservaciones) {
-
           this.fecha = rsv.payload.doc.data().fecha;
-          console.log(this.fecha + " Esta es la fecha");
-
           this.horainicio = rsv.payload.doc.data().hinicio;
           this.horafinal = rsv.payload.doc.data().hfin;
 
@@ -122,8 +119,8 @@ export class ReservacionesComponent implements OnInit {
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       // Output the result in an element with id="demo"
-      document.getElementById("CountDown").innerHTML = days + "d " + hours + "h "
-        + minutes + "m " + seconds + "s ";
+      document.getElementById("CountDown").innerHTML =  hours + ":"
+        + minutes + ":" + seconds;
 
       // If the count down is over, write some text 
       if (distance < 0) {
@@ -133,35 +130,7 @@ export class ReservacionesComponent implements OnInit {
     }, 1000);
   }
 
-  onClickTimer() {
-    var horas = this.horastotales - 1;
-    var minutos = 59;
-    var segundos = 59;
-
-
-    var x = setInterval(function () {
-      if (horas != 0 && minutos != 0 && segundos != 0) {
-
-        if (segundos > 1) {
-          segundos--;
-        } else if (minutos > 1) {
-          minutos--;
-          segundos = 59;
-        } else if (horas > 1) {
-          horas--;
-          minutos = 59;
-        }
-        document.getElementById("CountDown").innerHTML = horas + " : " + minutos + " : " + segundos;
-
-      }
-      if (horas == 1 && minutos == 1 && segundos == 1) {
-        clearInterval(x);
-        document.getElementById("CountDown").innerHTML = "EXPIRED";
-      }
-    }, 1000);
-
-  }
-
+  
   quitarCeros(value) {
     var valorobtenido;
     var valor = value.substr(0, 1);
