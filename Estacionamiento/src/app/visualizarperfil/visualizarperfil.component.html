@@ -50,16 +50,16 @@
                 <div class="info-personal" *ngFor="let perfil of perfiles">
                     <div class="divazul"></div>
                     <label for="">Nombre:</label>
-                    <input class="sololectura noborder" type="text" disabled value="{{perfil.nombre+' '+perfil.apellido}}">
+                    <input class="sololectura noborder" id="vnombre" type="text" disabled value="{{perfil.nombre+' '+perfil.apellido}}">
                     <br>
                     <label for="">Telefono:</label>
-                    <input class="sololectura noborder" type="text" disabled value="{{perfil.telefono}}">
+                    <input class="sololectura noborder" id="vtelefono" type="text" disabled value="{{perfil.telefono}}">
                     <br>
                     <label for="">Correo:</label>
-                    <input class="sololectura noborder" type="text" disabled value="{{perfil.correo}}">
+                    <input class="sololecturas noborder" id="vemail" type="text" disabled value="{{perfil.correo}}">
                     <br>
                     <label for="">Dirección:</label>
-                    <input class="sololectura noborder" type="text" disabled value=" {{perfil.direccion.calle}} , # {{perfil.direccion.numero}} {{perfil.direccion.colonia}} C.P. {{perfil.direccion.cp}}">
+                    <input class="sololectura noborder" id="vdireccion" type="text" disabled value=" {{perfil.direccion.calle}} {{perfil.direccion.numero}} {{perfil.direccion.colonia}} {{perfil.direccion.cp}}">
                 </div>
                 
                 <div class="divazul"></div>
@@ -74,29 +74,32 @@
                                 <mdb-icon fab icon="cc-visa"></mdb-icon>
                         </ng-template> 
 
-                        <input  class="sololectura cuen noborder" disabled value="•••• •••• •••• ••••  {{cuentas.payload.doc.data().numero.slice(12)}}">
+                        <input  id="vpago" class="sololectura cuen noborder" disabled value="•••• •••• •••• ••••  {{cuentas.payload.doc.data().numero.slice(12)}}">
                     </mdb-card-text>
+                    <br>
+                    <br>
+                    <br><br>
+                    <button id="Editar" class="editar-info" (click)="onClickEditarInfo()"><svg width="49" height="49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g filter="url(#filter0_d)">
+                        <rect x="4" width="41" height="41" fill="#3E64FF"/>
+                        </g>
+                        <path d="M27.6547 11.0066L33.7574 17.1391L18.3099 32.6623L12.2106 26.5298L27.6547 11.0066ZM38.3882 9.52759L35.6666 6.7927C34.6148 5.73577 32.9069 5.73577 31.8516 6.7927L29.2446 9.41245L35.3473 15.545L38.3882 12.4892C39.2039 11.6694 39.2039 10.3474 38.3882 9.52759ZM9.01698 35.1496C8.90592 35.6518 9.3572 36.1019 9.85709 35.9798L16.6575 34.3228L10.5583 28.1903L9.01698 35.1496Z" fill="#E5E5E5"/>
+                        <defs>
+                        <filter id="filter0_d" x="0" y="0" width="49" height="49" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+                        <feOffset dy="4"/>
+                        <feGaussianBlur stdDeviation="2"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+                        </filter>
+                        </defs>
+                        </svg>
+                    </button>
+                    <button id="Guardar" (click)="onClickGuardarCambios()">Guardar Cambios</button>
                 </div>   
-                <button id="Editar" class="editar-info" (click)="onClickEditarInfo()"><svg width="49" height="49" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g filter="url(#filter0_d)">
-                    <rect x="4" width="41" height="41" fill="#3E64FF"/>
-                    </g>
-                    <path d="M27.6547 11.0066L33.7574 17.1391L18.3099 32.6623L12.2106 26.5298L27.6547 11.0066ZM38.3882 9.52759L35.6666 6.7927C34.6148 5.73577 32.9069 5.73577 31.8516 6.7927L29.2446 9.41245L35.3473 15.545L38.3882 12.4892C39.2039 11.6694 39.2039 10.3474 38.3882 9.52759ZM9.01698 35.1496C8.90592 35.6518 9.3572 36.1019 9.85709 35.9798L16.6575 34.3228L10.5583 28.1903L9.01698 35.1496Z" fill="#E5E5E5"/>
-                    <defs>
-                    <filter id="filter0_d" x="0" y="0" width="49" height="49" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
-                    <feOffset dy="4"/>
-                    <feGaussianBlur stdDeviation="2"/>
-                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
-                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
-                    </filter>
-                    </defs>
-                    </svg>
-                </button>
                 
-                <button id="Guardar" (click)="onClickGuardarCambios()">Guardar Cambios</button>
                 
             </div>
         </ng-template>

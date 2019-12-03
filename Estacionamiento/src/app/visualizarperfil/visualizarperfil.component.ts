@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FirestoreService } from '../services/firestore.service';
 import { AuthService } from '../services/auth.service';
 import * as $ from 'jquery';
+import { timingSafeEqual } from 'crypto';
 
 
 @Component({
@@ -67,6 +68,51 @@ export class VisualizarperfilComponent implements OnInit {
     $(".sololectura").prop('disabled', true);
     $("#Editar").css("display", "block");
     $("#Guardar").css("display", "none");
+    let name = $("#vnombre").val();
+    let nombre = name.split(' ')[0];
+    let apellido = name.split(' ')[1];
+    let telefono = $("#vtelefono").val();
+    let address = $("#vdireccion").val().split(' ');
+    let direccion = {
+      calle: address[0],
+      numero: address[1],
+      colonia: address[2],
+      cp:address[3]
+    }
+    let flag = true;
+    let pago = $("#vpago").val();
+    console.log(pago);
+
+    this.auth.user$.subscribe(re=>{
+      let data = {
+        nombre:nombre,
+        apellido:apellido,
+        telefono:telefono,
+        direccion:direccion,
+        email: re.email 
+      }
+      this.db.actualizarUsuario(data)
+      .then(res=> {
+          if(pago[0] !== '•'){
+            let pagos = {
+              numero:pago.numero
+            }
+            this.auth.setPagos(pagos,re.email)
+                     .then(resp=>{
+                       this.toastr.success('Pago actualizado','Listo');
+                     })
+                     .catch(e =>{
+                       console.log(e);
+                       this.toastr.error('Error al actualizar','Error');
+                     })
+          } else {
+              if(flag){
+                flag = false;
+                this.toastr.success('Datos actualizados','Listo');
+              }
+          }
+       })
+    })
   }
   
   agregarAuto(){
