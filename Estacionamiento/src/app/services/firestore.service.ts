@@ -234,6 +234,11 @@ export class FirestoreService {
     return this.db.collection('Clientes', ref => ref.where('estado','==','activo')).snapshotChanges();
   }
 
+  getGanancias(){
+    return this.db.collection('Reservaciones').snapshotChanges();
+                
+  }
+
   loginAdmin(datos){
     return this.db.collection('Estacionamiento')
                   .doc('Administracion')  
