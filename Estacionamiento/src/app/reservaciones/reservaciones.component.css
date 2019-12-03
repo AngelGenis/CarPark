@@ -7,6 +7,7 @@
 
 #Contenedor{
   width: 100%;
+  z-index: 999;
 }
 #Contenedor h1{
   text-align: center;
@@ -232,6 +233,10 @@
   width: 100%;
   height: 100vh;
   position: absolute;
+}
+
+#ComponenteElevador{
+  background: none;
 }
 
 @media (min-width: 769px) {

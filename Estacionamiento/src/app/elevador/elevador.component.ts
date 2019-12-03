@@ -40,8 +40,6 @@ export class ElevadorComponent implements OnInit {
       });
     });
 
-
-
     $("#Con2").css("display", "none");
     $("#Con").fadeIn(1000);
     
@@ -49,25 +47,33 @@ export class ElevadorComponent implements OnInit {
   }
 
   onClickSubir() {
-    $("#Con2").css("display", "block");
+   
     if (this.piso == "nivel-1") {
       $("#RectElevador").addClass("subirprimero");
       this.carro();
       this.escenario();
+      $("#Con2").css("display", "block");
     }
     if (this.piso == "nivel-2") {
       $("#RectElevador").addClass("subirsegundo");
       this.carro();
       this.escenario();
+      $("#Con2").css("display", "block");
     }
     if (this.piso == "nivel-3") {
       $("#RectElevador").addClass("subirtercero");
       this.carro();
       this.escenario();
     }
+    setTimeout(function () {
+      $("#Con2").css("display", "block");
+    }, 2500);
+    
   }
 
   onClickAceptarLugar(){
+    $("#Con1").fadeOut();
+    $("#Con2").fadeOut();
     
   }
 
