@@ -158,7 +158,8 @@ export class ReservacionesComponent implements OnInit {
   calcularTotal(){
 
   }
-  onClickCross() {
+  onClickCross(cajon,nivel) {
+
     $("#Codigo").fadeOut(300);
     $("#Iniciar").css("display", "none");
     $(".tiempo-titulo").css("display", "block");
