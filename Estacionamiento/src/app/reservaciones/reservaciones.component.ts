@@ -28,14 +28,22 @@ export class ReservacionesComponent implements OnInit {
         for(let rsv of this.reservaciones){
           var horaenteraini = rsv.payload.doc.data().hinicio.substring(0,2);
           var horaenterafin = rsv.payload.doc.data().hfin.substring(0,2);
-          if(horaenteraini == "00"){
+          horaenteraini = this.quitarCeros(horaenteraini);
+          horaenterafin = this.quitarCeros(horaenterafin)
+          if(horaenteraini == "0"){
             horaenteraini = 24;
           }
-          if(horaenterafin == "00"){
+          if(horaenterafin == "0"){
             horaenterafin = 24;
           }
-          this.horastotales = horaenterafin-horaenteraini;
-          this.totalPago = Number(this.horastotales) * 15; 
+          horaenteraini = Number(horaenteraini);
+          horaenterafin = Number(horaenterafin);
+          if(horaenteraini > horaenterafin){
+            this.horastotales = horaenteraini + horaenterafin;
+          }else{
+            this.horastotales = horaenterafin - horaenteraini;
+          }
+          this.totalPago = this.horastotales * 15; 
           this.arr.push(this.totalPago);
         }
       });
@@ -70,15 +78,28 @@ export class ReservacionesComponent implements OnInit {
    }, 1000);
     
   }
+
+  quitarCeros(value){
+    var valorobtenido;
+    var valor = value.substr(0, 1);
+
+    if(valor == "0"){
+       valorobtenido = value.substr(1,2);
+    }else{
+      valorobtenido = value;
+    }
+    return valorobtenido;
+    
+  }
   
 
   onClickIniciarReservacion(){
     $("#Codigo").fadeIn(300);
   }
-
+  
   onClickCross(){
     $("#Codigo").fadeOut(300);
-    //this.reserva = 1; 
+    this.reserva = 1; 
     $("#Iniciar").css("display", "none");
     $(".tiempo-titulo").css("display", "block");
     $("#Contador").css("display", "block");

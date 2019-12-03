@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { AuthService } from '../services/auth.service';
+import { FirestoreService } from '../services/firestore.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-elevador',
@@ -8,37 +11,62 @@ import * as $ from 'jquery';
 })
 export class ElevadorComponent implements OnInit {
 
-  public piso: number = 1;
-  public cajon: number = 15;
+  public piso: string = "";
+  public cajon: number = 0;
   public idcajon: string = "";
   cajones = new Array();
-  constructor() { }
+  reservaciones: any;
+
+  constructor(private auth:AuthService,
+    private db:FirestoreService,
+    private toastr:ToastrService) { }
 
   ngOnInit() {
+
+    this.auth.user$.subscribe( cliente => {
+      this.db.getReservaciones(cliente.email).subscribe( res => {
+        this.reservaciones = res;
+
+        for(let rsv of this.reservaciones){
+          this.piso = rsv.payload.doc.data().piso;
+          this.cajon = rsv.payload.doc.data().cajon;
+
+          console.log(this.cajon);
+          console.log(this.piso);
+          this.LlenarArray();
+        }
+        
+          
+      });
+    });
+
+
+
     $("#Con2").css("display", "none");
     $("#Con").fadeIn(1000);
-    this.LlenarArray();
+    
 
   }
 
   onClickSubir() {
     $("#Con2").css("display", "block");
-    if (this.piso == 1) {
+    if (this.piso == "nivel-1") {
       $("#RectElevador").addClass("subirprimero");
       this.carro();
       this.escenario();
     }
-    if (this.piso == 2) {
+    if (this.piso == "nivel-2") {
       $("#RectElevador").addClass("subirsegundo");
       this.carro();
       this.escenario();
     }
-    if (this.piso == 3) {
+    if (this.piso == "nivel-3") {
       $("#RectElevador").addClass("subirtercero");
       this.carro();
       this.escenario();
     }
   }
+
   onClickAceptarLugar(){
     
   }
@@ -79,7 +107,9 @@ export class ElevadorComponent implements OnInit {
   }
 
   LlenarArray() {
-    this.idcajon = "#Cajon" + this.cajon;
+    this.idcajon = "#" + this.cajon;
+    console.log(this.idcajon);
+    
     $(this.idcajon).css("background", "blue");
     $(this.idcajon).css("color", "white");
   }
