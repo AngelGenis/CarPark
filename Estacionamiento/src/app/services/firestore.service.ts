@@ -235,8 +235,13 @@ export class FirestoreService {
   }
 
   getGanancias(){
-    return this.db.collection('Reservaciones').snapshotChanges();
-                
+    return this.db.collection('Reservaciones').snapshotChanges();                
+  }
+
+  getCostos(){
+    return this.db.collection('Estacionamiento')
+                  .doc('Costos')
+                  .snapshotChanges();
   }
 
   loginAdmin(datos){
@@ -260,5 +265,10 @@ export class FirestoreService {
                   })
   }
 
+  actualizaPrecios(datos){
+    return this.db.collection('Estacionamiento')
+                  .doc('Costos')
+                  .update(datos);
+  }
 }
   

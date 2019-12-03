@@ -1,1 +1,90 @@
-<p>adminprecios works!</p>
+<div class="container-fluid">
+    <div class="row justify-content-start">
+        <h2 class="pl-5 mt-3 mb-5"><strong>Definir precios</strong></h2>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <mdb-card class="bg-dark animated fadeIn">
+                <mdb-card-body>
+                    <div class="container-fluid">
+                        <div class="row justify-content-around">
+                            <div class="col-md-3 my-4" >
+                                <mdb-card cascade="true" class="animated slideInUp faster">
+                                    <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+                                    <mdb-card-img class="d-block w-100" src="../assets/img/img-park-1.jpg"></mdb-card-img>
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                    </div>
+                                    <mdb-card-body cascade="true" class="text-center">
+                                    <h4 class="card-title">
+                                        <strong>Precio por hora</strong>
+                                    </h4>
+                                    <h5>$ {{costos.hora}}</h5>
+                                    <input mdbInput type="number" id="hora" placeholder="Actualizar..." class="form-control">
+                                    </mdb-card-body>
+                                </mdb-card>
+                            </div>
+                            <div class="col-md-3 my-4">
+                                <mdb-card cascade="true" class="animated slideInUp faster">
+                                    <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+                                    <mdb-card-img class="d-block w-100" src="../assets/img/img-park-3.jpg"></mdb-card-img>
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                    </div>
+                                    <mdb-card-body cascade="true" class="text-center">
+                                    <h4 class="card-title">
+                                        <strong>Precio por dia</strong>
+                                    </h4>
+                                    <h5>$ {{costos.dia}}</h5>
+                                    <input mdbInput type="number" id="dia" placeholder="Actualizar..." class="form-control">
+                                    </mdb-card-body>
+                                </mdb-card>
+                            </div>
+                            <div class="col-md-3 my-4">
+                                <mdb-card cascade="true" class="animated slideInUp faster">
+                                    <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+                                    <mdb-card-img class="d-block w-100" src="../assets/img/img-park-3.jpg"></mdb-card-img>
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                    </div>
+                                    <mdb-card-body cascade="true" class="text-center">
+                                    <h4 class="card-title">
+                                        <strong>Precio por semana</strong>
+                                    </h4>
+                                    <h5>$ {{costos.semana}}</h5>
+                                    <input mdbInput type="number" id="semana" placeholder="Actualizar..." class="form-control">
+                                    </mdb-card-body>
+                                </mdb-card>
+                            </div>
+                            <div class="col-md-3 my-4">
+                                <mdb-card cascade="true" class="animated slideInUp faster">
+                                    <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+                                    <mdb-card-img class="d-block w-100" src="../assets/img/img-park-3.jpg"></mdb-card-img>
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                    </div>
+                                    <mdb-card-body cascade="true" class="text-center">
+                                    <h4 class="card-title">
+                                        <strong>Precio por mes</strong>
+                                    </h4>
+                                    <h5>$ {{costos.mes}}</h5>
+                                    <input mdbInput type="number" id="mes" placeholder="Actualizar..." class="form-control">
+                                    </mdb-card-body>
+                                </mdb-card>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="col-md-2">
+                                <button mdbBtn mdbwaveseffect (click)="actualizarPrecios()"  color="light" block="true" class="my-4 labelsLogin text-dark " type="button"><strong>Actualizar</strong><mdb-icon fa fas class="pl-1" icon="pencil-square-o"></mdb-icon></button>
+                            </div>
+                        </div>
+                    </div>
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+    </div>
+</div>
