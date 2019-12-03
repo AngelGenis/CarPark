@@ -20,12 +20,16 @@ export class ReservacionesComponent implements OnInit {
   horafinal: string = "";
   horainicio: string = "";
   precioss :number = 0;
+  status : string = "";
+  currentHora: number = 0;
 
   constructor(private auth: AuthService,
     private db: FirestoreService,
     private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.Timer();
+    
     this.auth.user$.subscribe(cliente => {
       this.db.getReservaciones(cliente.email).subscribe(res => {
         this.reservaciones = res;
@@ -52,17 +56,77 @@ export class ReservacionesComponent implements OnInit {
             this.horastotales = horaenterafin - horaenteraini;
           }
           this.totalPago = this.horastotales * 15;
-          console.log("Pago es: "+ this.totalPago);
           this.precios.push(this.totalPago);
-          console.log(this.precios);
+    
+          var today = new Date();
+          var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+          var valorfecha = Number(date.substr(8, 10));
+
+          //Obtiene el valor de la fecha aumentando un 0 si el dia es de 1-9, es decir 01, 02...
+        
+          var fechab = this.fechaCorrecta(today, valorfecha);
+          var hora = new Date().getTime();
+          console.log(hora);
+          console.log(this.currentHora);
+
           
+     
+          
+          if(fechab == this.fecha && this.currentHora <= hora){
+            console.log("Si es");
+          }else{
+            console.log("no es");
+          }
+        
+          this.status = rsv.payload.doc.data().estado;
+        
+          if(this.status == "reservado"){
+           
+          }
+           
         }
       });
     });
 
+    
+  }
 
+  fechaCorrecta(today, valorfecha){
+    var fechabuena = "";
+    switch (valorfecha) {
+      case 1:
+        fechabuena = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+ "01";
+        break;
+      case 2:
+        fechabuena = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+"02";
+        break;
+      case 3:
+        fechabuena = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+ "03";
+        break;
+      case 4:
+        fechabuena = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+ "04";
+        break;
+      case 5:
+        fechabuena = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+ "05";
+        break;
+      case 6:
+        fechabuena = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+ "06";
+        break;
+      case 7:
+        fechabuena = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+ "07";
+        break;
+      case 8:
+        fechabuena = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+ "08";
+        break;
+      case 9:
+        fechabuena = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+ "09";
+        break;
+    }
+
+    return fechabuena;
 
   }
+
 
   Timer() {
     var f = this.fecha.substring(5, 7);
@@ -109,8 +173,10 @@ export class ReservacionesComponent implements OnInit {
     }
     
     var countDownDate = new Date(b + " " + d + ", "+ y +" "+this.horafinal+":00").getTime();
-    
-    // Update the count down every 1 second
+    this.currentHora = countDownDate;
+  }
+
+  temporizador(countDownDate){
     var x = setInterval(function () {
       // Get today's date and time
       var now = new Date().getTime();
@@ -135,7 +201,6 @@ export class ReservacionesComponent implements OnInit {
       }
     }, 1000);
   }
-
   
   quitarCeros(value) {
     var valorobtenido;
@@ -166,11 +231,11 @@ export class ReservacionesComponent implements OnInit {
     $("#Contador").css("display", "block");
     $(".status").css("display", "block");
     this.Timer();
-    console.log(Math.floor(Date.now() / 1000));
-
+ 
     this.reserva = 1;
   }
 
+ 
   mostrarLugarCorrespondiente() {
     $("#Codigo").fadeOut(300);
     $("#AnimacionLugarReservado").fadeIn(300);
