@@ -15,6 +15,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Fecha</th>
+                                                <th>Cliente</th>
                                                 <th></th>
                                                 <th>Cobro</th>
                                             </tr>
@@ -61,6 +62,9 @@
                                                         Enero
                                                     </ng-template>
                                                     {{rsv.payload.doc.data().fecha.slice(0,4)}}
+                                                </td>
+                                                <td>
+                                                    {{rsv.payload.doc.data().cliente}}
                                                 </td>
                                                 <td>
                                                     <svg width="41" 

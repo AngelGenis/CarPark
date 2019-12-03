@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
     let log = $("#username").val();
     let pass = $("#pass").val();
 
-    let res = this.auth.logearUsuario(log,pass)
+    this.auth.logearUsuario(log,pass)
              .then( res => {
               console.log(res); 
              })

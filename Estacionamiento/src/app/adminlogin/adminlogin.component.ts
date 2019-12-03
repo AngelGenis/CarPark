@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../services/firestore.service';
 import * as $  from 'jquery';
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-adminlogin',
   templateUrl: './adminlogin.component.html',
@@ -8,7 +9,8 @@ import * as $  from 'jquery';
 })
 export class AdminloginComponent implements OnInit {
 
-  constructor(private db: FirestoreService) { }
+  constructor(private db: FirestoreService,
+              private auth: AuthService) { }
 
   ngOnInit() {
   }
@@ -18,10 +20,13 @@ export class AdminloginComponent implements OnInit {
       email: $("#username").val(),
       key: $("#pass").val()
     }
-    
-    this.db.loginAdmin(datos)
-           .then(res => console.log(res))
-           .catch(e => {console.log(e);})
+
+    this.auth.logearUsuario(datos.email, datos.key).then(res=>{
+      console.log(res);
+    })
+    .catch(e=>{
+      console.log(e);
+    })
     
   }
 

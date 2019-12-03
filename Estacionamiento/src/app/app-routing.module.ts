@@ -12,8 +12,8 @@ import { HistorialComponent } from './historial/historial.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import {GananciasComponent} from './ganancias/ganancias.component';
 import {AdminparkComponent} from './adminpark/adminpark.component';
-
 import { AdminpreciosComponent } from './adminprecios/adminprecios.component';
+import { AdminperfilesComponent } from './adminperfiles/adminperfiles.component';
 const routes: Routes = [
   { path: '', component: PresentacionComponent},
   { path: 'reservar', component: ReservarComponent},
@@ -28,7 +28,8 @@ const routes: Routes = [
   { path: 'adminlogin', component:AdminloginComponent},
   { path: 'ganancias', component:GananciasComponent},
   { path: 'adminpark', component: AdminparkComponent},
-  { path: 'precios', component:AdminpreciosComponent}
+  { path: 'precios', component:AdminpreciosComponent},
+  { path: 'adminperfiles', component:AdminperfilesComponent},
 ];
 
 @NgModule({

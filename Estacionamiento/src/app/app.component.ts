@@ -13,7 +13,7 @@ declare var jarallax: any;
 
 export class AppComponent implements AfterViewInit {
   title = 'Estacionamiento';
-
+  usuario = 0;
   constructor(private auth:AuthService,
               private toastr:ToastrService){
     this.toastr.toastrConfig.timeOut = 1500;
@@ -22,15 +22,25 @@ export class AppComponent implements AfterViewInit {
   ngOnInit(){
       $("#login").hide();
       $("#registro").hide();
+      $("#navadmin").hide();
+
       this.auth.user$.subscribe(res => {
         console.log(res);
-        if(res.email !== undefined && res.email !== 'admin@carpark.cf'){
-         $("#Menu1").hide();
-         $(".menu-btn").show(); 
-        } else {
+         if(res !== undefined){
           $("#Menu1").hide();
-          $(".menu-btnb").show();
-        }
+            $("#navcli").hide();
+          $("#navadmin").hide();
+          setTimeout(()=>{
+            $("#navcli").show();
+          },500)
+          $(".menu-btn").show(); 
+          } 
+        //  else {
+        //   $("#Menu1").hide();
+        //   $("#navcli").hide();
+        //   $("#navadmin").show();
+        //   $(".menu-btnb").show();
+        //  }
       })
   }
   ngAfterViewInit(){
