@@ -1,13 +1,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md">
-            <h2 class="pl-5 mt-3 mb-5"><strong>Usuarios</strong></h2>
+            <h2 class="pl-5 mt-4 "><strong>Usuarios</strong></h2>
+            <hr>
         </div>
     </div>
     <ng-template [ngIf]="this.flag == true">
         <div class="row justify-content-center my-4">
             <div class="col-md-7">
-                <mdb-card cascade="true" class="animated slideInUpFaster">
+                <mdb-card cascade="true" class="animated slideInUp faster">
                     <a class="text-danger p-2 w-25" (click)="cerrarPerfil()">
                         <mdb-icon fas icon="times-circle" size="2x"class="waves-effect"
                                             mdbWavesEffect></mdb-icon>
