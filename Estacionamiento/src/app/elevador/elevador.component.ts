@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as $ from 'jquery';
 import { AuthService } from '../services/auth.service';
 import { FirestoreService } from '../services/firestore.service';
@@ -16,10 +16,13 @@ export class ElevadorComponent implements OnInit {
   public idcajon: string = "";
   cajones = new Array();
   reservaciones: any;
+  @Input() bandera: number = 0;
 
   constructor(private auth:AuthService,
     private db:FirestoreService,
-    private toastr:ToastrService) { }
+    private toastr:ToastrService) { 
+     
+    }
 
   ngOnInit() {
 
@@ -39,35 +42,43 @@ export class ElevadorComponent implements OnInit {
           
       });
     });
-
-
-
-    $("#Con2").css("display", "none");
-    $("#Con").fadeIn(1000);
+    $("#Con2").fadeOut();
+    $("#Con").fadeIn();
+    
     
 
   }
 
   onClickSubir() {
-    $("#Con2").css("display", "block");
+   
     if (this.piso == "nivel-1") {
       $("#RectElevador").addClass("subirprimero");
       this.carro();
       this.escenario();
+      $("#Con2").css("display", "block");
     }
     if (this.piso == "nivel-2") {
       $("#RectElevador").addClass("subirsegundo");
       this.carro();
       this.escenario();
+      $("#Con2").css("display", "block");
     }
     if (this.piso == "nivel-3") {
       $("#RectElevador").addClass("subirtercero");
       this.carro();
       this.escenario();
     }
+    setTimeout(function () {
+      $("#Con2").css("display", "block");
+    }, 2500);
+    
   }
 
   onClickAceptarLugar(){
+    $("#Con1").fadeOut();
+    $("#Con2").fadeOut();
+    $("#Con1").css("display", "none");
+    $("#Con2").css("display", "none")
     
   }
 

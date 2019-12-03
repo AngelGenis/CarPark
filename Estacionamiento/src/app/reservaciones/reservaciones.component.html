@@ -1,6 +1,5 @@
 <div id="Contenedor">
 
-  <ng-template [ngIf]="reserva == 0">
     <h1>Reservaciones</h1>
 
     <div id="Codigo">
@@ -210,11 +209,14 @@
             Iniciar
           </button>
         </div>
+    
     </div>
     
-  </ng-template>
-
-  <ng-template [ngIf]="reserva == 1">
-    <app-elevador></app-elevador>
-  </ng-template>
+    <ng-template [ngIf]="reserva == 1">
+        <app-elevador > </app-elevador>
+    </ng-template>
+   
+  
+      
+  
 </div>

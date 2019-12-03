@@ -6,7 +6,9 @@
 }
 #ContenedorPrincipal{
   width: 100%;
-  position: relative;
+  position: absolute;
+  left: 0; 
+  top: 70px 
 }
 .contenedor {
   position: relative;
@@ -285,8 +287,10 @@ h1{
 #Con, #Con2{
   display: none;
 }
-
-#AceparLugar{
+#Con2{
+  background: white;
+}
+#AceptarLugar{
   position: relative;
   background: royalblue;
   width: 200px;
@@ -299,6 +303,7 @@ h1{
   font-weight: bold;
   cursor: pointer;
   margin-top: 50px;
+  z-index: 999;
 }
 
 @media (min-width: 900px) {
