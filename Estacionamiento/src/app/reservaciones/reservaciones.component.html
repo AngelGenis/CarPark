@@ -36,7 +36,7 @@
       <p class="codigo">5874</p>
     </div>
 
-    <div id="ContenedorTarjetas" *ngFor="let rsv of reservaciones">
+    <div id="ContenedorTarjetas" *ngFor="let rsv of reservaciones" >
         <div class="tarjeta">
             <div class="fecha">
                 <p id="Dia">{{rsv.payload.doc.data().fecha.slice(8,10)}}</p>
@@ -165,7 +165,7 @@
             </svg>
           </div>
     
-          <div id="Informacion">
+          <div id="Informacion" >
             <table>
               <tr>
                 <th>Marca</th>
@@ -181,7 +181,7 @@
     
             <p id="Llegada">Hora de llegada: {{rsv.payload.doc.data().hinicio}}</p>
             <p id="Tiempo">Hora de salida: {{rsv.payload.doc.data().hfin}}</p>
-            <p id="Total">Total: $ {{arr[0]}}</p>
+            <p id="Total">Total: $ {{ precios[0] }}</p>
             <p id="Total">ID: {{rsv.payload.doc.id}}</p>
           </div>
     
