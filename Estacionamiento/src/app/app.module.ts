@@ -39,6 +39,12 @@ import { ElevadorComponent } from './elevador/elevador.component';
 import { TransicionlogComponent } from './transicionlog/transicionlog.component';
 import { RouterModule } from '@angular/router';
 import { HistorialComponent } from './historial/historial.component';
+import { GananciasComponent } from './ganancias/ganancias.component';
+import { AdminpreciosComponent } from './adminprecios/adminprecios.component';
+import { AdminperfilesComponent } from './adminperfiles/adminperfiles.component';
+import { AdminparkComponent } from './adminpark/adminpark.component';
+import { AdminnavComponent } from './adminnav/adminnav.component';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +64,13 @@ import { HistorialComponent } from './historial/historial.component';
     ReservacionesComponent,
     ElevadorComponent,
     TransicionlogComponent,
-    HistorialComponent
+    HistorialComponent,
+    GananciasComponent,
+    AdminpreciosComponent,
+    AdminperfilesComponent,
+    AdminparkComponent,
+    AdminnavComponent,
+    AdminloginComponent
     // bcrypt
   ],
   imports: [

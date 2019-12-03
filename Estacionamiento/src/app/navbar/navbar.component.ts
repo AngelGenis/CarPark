@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef, Input, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import * as $ from 'jquery';
-import { AboutComponent } from '../about/about.component';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router'
 

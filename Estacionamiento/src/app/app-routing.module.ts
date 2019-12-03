@@ -9,6 +9,8 @@ import { CdarsebajaComponent } from './cdarsebaja/cdarsebaja.component';
 import { ReservacionesComponent } from './reservaciones/reservaciones.component'
 import { TransicionlogComponent } from './transicionlog/transicionlog.component';
 import { HistorialComponent } from './historial/historial.component';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
+import {GananciasComponent} from './ganancias/ganancias.component';
 const routes: Routes = [
   { path: '', component: PresentacionComponent},
   { path: 'reservar', component: ReservarComponent},
@@ -19,7 +21,9 @@ const routes: Routes = [
   { path: 'darsebaja', component: CdarsebajaComponent},
   { path: 'reservaciones', component: ReservacionesComponent},
   { path: 'transicionlog/:operacion', component:TransicionlogComponent},
-  { path: 'historial', component:HistorialComponent}
+  { path: 'historial', component:HistorialComponent},
+  { path: 'adminlogin', component:AdminloginComponent},
+  { path: 'ganancias', component:GananciasComponent}
 ];
 
 @NgModule({

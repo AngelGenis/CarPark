@@ -1,0 +1,145 @@
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md">
+            <mdb-card>
+                <mdb-card-body>
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <h3 class="text-center"><strong class="text-center">Ganancias - Total $ {{gananciastotales}}</strong></h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th></th>
+                                            <th>Cobro</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let rsv of ganancias">
+                                            <td>
+                                                <mdb-icon class="text-primary px-1" fas icon="square-full"></mdb-icon>
+                                                {{rsv.payload.doc.data().fecha.slice(8,10)}}
+                                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '12'">
+                                                    Diciembre
+                                                </ng-template>
+                                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '11'">
+                                                    Noviembre
+                                                </ng-template>
+                                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '10'">
+                                                    Octubre
+                                                </ng-template>
+                                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '09'">
+                                                    Septiembre
+                                                </ng-template>
+                                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '08'">
+                                                    Agosto
+                                                </ng-template>
+                                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '07'">
+                                                    Julio
+                                                </ng-template>
+                                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '06'">
+                                                    Junio
+                                                </ng-template>
+                                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '05'">
+                                                    Mayo
+                                                </ng-template>
+                                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '04'">
+                                                    Abril
+                                                </ng-template>
+                                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '03'">
+                                                    Marzo
+                                                </ng-template>
+                                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '02'">
+                                                    Febrero
+                                                </ng-template>
+                                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '01'">
+                                                    Enero
+                                                </ng-template>
+                                                {{rsv.payload.doc.data().fecha.slice(0,4)}}
+                                            </td>
+                                            <td>
+
+                                                <svg width="41" 
+                                                    height="8" 
+                                                    viewBox="0 0 41 8" 
+                                                    fill="none" 
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                    <path d="M40.3536 4.35355C40.5488 4.15829 40.5488 3.84171 40.3536 3.64645L37.1716 0.464466C36.9763 0.269204 36.6597 0.269204 36.4645 0.464466C36.2692 0.659728 36.2692 0.976311 36.4645 1.17157L39.2929 4L36.4645 6.82843C36.2692 7.02369 36.2692 7.34027 36.4645 7.53553C36.6597 7.7308 36.9763 7.7308 37.1716 7.53553L40.3536 4.35355ZM0 4.5H40V3.5H0V4.5Z" fill="#0066FF"/>
+                                                </svg>
+                                            </td>
+                                            <td>
+                                                {{rsv.payload.doc.data().total}}    
+                                            </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- <div class="col-md" >
+                            <mdb-card-text *ngFor="let rsv of ganancias">
+                                <mdb-icon class="text-primary px-1" fas icon="square-full"></mdb-icon>
+                                {{rsv.payload.doc.data().fecha.slice(8,10)}}
+                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '12'">
+                                    Diciembre
+                                </ng-template>
+                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '11'">
+                                    Noviembre
+                                </ng-template>
+                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '10'">
+                                    Octubre
+                                </ng-template>
+                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '09'">
+                                    Septiembre
+                                </ng-template>
+                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '08'">
+                                    Agosto
+                                </ng-template>
+                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '07'">
+                                    Julio
+                                </ng-template>
+                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '06'">
+                                    Junio
+                                </ng-template>
+                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '05'">
+                                    Mayo
+                                </ng-template>
+                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '04'">
+                                    Abril
+                                </ng-template>
+                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '03'">
+                                    Marzo
+                                </ng-template>
+                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '02'">
+                                    Febrero
+                                </ng-template>
+                                <ng-template [ngIf]="rsv.payload.doc.data().fecha.slice(5,7) == '01'">
+                                    Enero
+                                </ng-template>
+                                {{rsv.payload.doc.data().fecha.slice(0,4)}}
+                            </mdb-card-text>
+                            </div>
+                            
+                            <div class="col-md">
+                                <mdb-card-text *ngFor="let rsv of ganancias">
+                                    <svg width="41" 
+                                         height="8" 
+                                         viewBox="0 0 41 8" 
+                                         fill="none" 
+                                         xmlns="http://www.w3.org/2000/svg"
+                                         >
+                                        <path d="M40.3536 4.35355C40.5488 4.15829 40.5488 3.84171 40.3536 3.64645L37.1716 0.464466C36.9763 0.269204 36.6597 0.269204 36.4645 0.464466C36.2692 0.659728 36.2692 0.976311 36.4645 1.17157L39.2929 4L36.4645 6.82843C36.2692 7.02369 36.2692 7.34027 36.4645 7.53553C36.6597 7.7308 36.9763 7.7308 37.1716 7.53553L40.3536 4.35355ZM0 4.5H40V3.5H0V4.5Z" fill="#0066FF"/>
+                                    </svg>
+                                </mdb-card-text>
+                            </div> -->
+
+                        </div>
+                        
+                    </div>
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+    </div>
+</div>

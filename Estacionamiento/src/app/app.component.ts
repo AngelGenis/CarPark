@@ -23,9 +23,13 @@ export class AppComponent implements AfterViewInit {
       $("#login").hide();
       $("#registro").hide();
       this.auth.user$.subscribe(res => {
-        if(res.email !== undefined){
+        console.log(res);
+        if(res.email !== undefined && res.email !== 'admin@carpark.cf'){
          $("#Menu1").hide();
          $(".menu-btn").show(); 
+        } else {
+          $("#Menu1").hide();
+          $(".menu-btnb").show();
         }
       })
   }

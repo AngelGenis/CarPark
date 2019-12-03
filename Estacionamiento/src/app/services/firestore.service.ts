@@ -3,8 +3,7 @@ import { AngularFirestore  } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 import { User } from './user.model';
 import { ToastrService } from 'ngx-toastr';
-import { ActivationEnd } from '@angular/router';
-import { exists } from 'fs';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +55,8 @@ export class FirestoreService {
   //     })
   //     .catch(e=>console.log(e))
   // }
+
+
   actualizarUsuario(datos){
     return this.db.collection('Clientes').doc(datos.email).update({
       nombre:datos.nombre,
@@ -67,6 +68,8 @@ export class FirestoreService {
 
 
   getPerfil(email){
+    bcrypt.compare('adminkey','$2a$10$vMvHo31n8aVI.bzEs9gV0OrLMRvvRhGR15BcDUmU7gB3h.5KzDp5S',(err,res) => {console.log(res)})
+    
     return this.db.collection('Clientes').doc(email).snapshotChanges();
   }
 
@@ -224,5 +227,38 @@ export class FirestoreService {
     return this.db.collection('Reservaciones', ref=> ref.where('cliente', '==', email)
                                                         .where('estado', '==', 'reservado')).snapshotChanges();
   }
+
+
+  //Admin
+  getUsuarios(){
+    return this.db.collection('Clientes', ref => ref.where('estado','==','activo')).snapshotChanges();
+  }
+
+  getGanancias(){
+    return this.db.collection('Reservaciones').snapshotChanges();
+                
+  }
+
+  loginAdmin(datos){
+    return this.db.collection('Estacionamiento')
+                  .doc('Administracion')  
+                  .collection('Cuentas')
+                  .doc('Admin')
+                  .get()
+                  .forEach( res => {
+                    bcrypt.compare(datos.key, res.data().clave,(err,res)=>{
+                      if(res){
+                        this.auth.logearAdmin(datos.email,datos.key)
+                          .then(re => {
+                            this.toastr.success('Sesion iniciada con exito', `Bienvenido ${res.data().nombre}`);
+                          })
+                          .catch(e => {
+                            console.log(err);
+                           })
+                      }
+                    })
+                  })
+  }
+
 }
   

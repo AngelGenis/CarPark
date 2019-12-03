@@ -1,0 +1,133 @@
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+header{
+    position: relative;
+    width: 100%;
+    padding: 10px;
+}
+.logo{
+    color: black;
+    position: relative;
+    display: inline-block;
+}
+.logo i{
+    font-size: 25px;
+    display: inline-block;
+}
+.logo h4{
+    font-weight: 800;
+    display: inline-block;
+}
+
+.menu-btnb {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    top: 0px;
+    right: 30px;
+    z-index: 999999;
+    /* border: 3px solid #fff; */
+  }
+  .menu-btnb__burger {
+    width: 30px;
+    height: 3.5px;
+    background: black;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(255,101,47,.2);
+    transition: all .5s ease-in-out;
+  }
+  .menu-btnb__burger::before,
+  .menu-btnb__burger::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 3.5px;
+    background: black;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(255,101,47,.2);
+    transition: all .5s ease-in-out;
+  }
+  .menu-btnb__burger::before {
+    transform: translateY(-10px);
+  }
+  .menu-btnb__burger::after {
+    transform: translateY(10px);
+  }
+  /* ANIMATION */
+  .menu-btnb.open .menu-btnb__burger {
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+  }
+  .menu-btnb.open .menu-btnb__burger::before {
+    transform: rotate(45deg) translate(35px, -35px);
+  }
+  .menu-btnb.open .menu-btnb__burger::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+  }
+
+.mostrar{
+  display: block;
+}
+.ocultar{
+  display: none;
+}
+
+
+
+#Menu2b{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: #0D0E11;
+  top: 0px;
+  left: 0px;
+  z-index: 99999;
+  display: none;
+  padding: 0px;
+}
+.iconop{
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  margin: 0px;
+}
+
+#Menu2b ul{
+  position: relative;
+  height: 100%;
+  list-style: none;
+}
+#Menu2b ul li{
+  text-align: center;
+  margin: 25px 0;
+}
+
+#Menu2b ul li a{
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+
+}
+
+@media (min-width: 769px) {
+    .contenedor{
+        width: 90%;
+    }
+    header{
+        padding-left: 50px;
+    }
+    
+}
+
+@media (min-width: 900px) {
+
+}
