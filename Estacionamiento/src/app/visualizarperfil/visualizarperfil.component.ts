@@ -88,8 +88,8 @@ export class VisualizarperfilComponent implements OnInit {
   }
   
   eliminarAuto(modelo){
-    this.auth.user$.subscribe(async (res)=>{
-      await this.db.delAuto(modelo, res.email);
+    this.auth.user$.subscribe(async(res)=>{
+       await this.db.delAuto(modelo, res.email);
     })
     
   }
