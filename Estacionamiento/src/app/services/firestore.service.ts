@@ -150,30 +150,44 @@ export class FirestoreService {
     return this.db.collection('Clientes').doc(email).collection('Pagos').snapshotChanges();
   }
 
-  setReservacion(data){
-    console.log(data);
-    let cli = data.cliente;
-    let rsv = data.reservacion;
-
-    console.log(cli);
-    console.log(rsv);
-    return this.db.collection('Reservaciones')
-                  .doc(`${cli.email},${rsv.fecha},${rsv.hinicio}`)
-                  .set({
-                    fecha: rsv.fecha,
-                    hinicio: rsv.hinicio,
-                    hfin: rsv.hfin,
-                    estado:'reservado',
-                    tarjeta: rsv.tarjeta,
-                    cliente: cli.email,
-                    auto: { 
-                      modelo:rsv.auto.modelo, 
-                      placas: rsv.auto.placas,
-                      color:rsv.auto.color
-                    }
-                  });
-
     
+    setReservacion(data){
+      let cli = data.cliente;
+      let rsv = data.reservacion;
+      let doc, inserted;      
+
+      for(let i =1; i<4;++i){
+        doc = this.db.collection('Niveles')
+                     .doc(`nivel-${i}`)
+                     .collection('cajones');
+        
+        for(let j = 1; j <=15; ++j){
+          doc.doc(`c-${j}`).get().forEach(cajon => {
+              if(cajon.estado !== 'reservado' && cajon.estado !== 'activo' && inserted !== true){
+                inserted = true;
+                return this.db.collection('Reservaciones')
+                       .doc(`${cli.email},${rsv.fecha},${rsv.hinicio}`)
+                       .set({
+                       fecha: rsv.fecha,
+                       hinicio: rsv.hinicio,
+                                       hfin: rsv.hfin,
+                                       estado:'reservado',
+                                       tarjeta: rsv.tarjeta,
+                                       cliente: cli.email,
+                                       cajon: `c-${j}`,
+                                       piso: `nivel-${i}`,
+                                       auto: { 
+                                         modelo:rsv.auto.modelo, 
+                                         placas: rsv.auto.placas,
+                                         color:rsv.auto.color
+                                       }
+                         }).then(res => {
+                           this.toastr.success('Agregado con exito','Listo');
+                         })
+              }
+          })
+        }
+      }
   }
 
   getHistorial(data){

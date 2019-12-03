@@ -147,13 +147,13 @@ export class ReservarComponent implements OnInit {
     datos['reservacion'] = reservacion
 
     this.db.setReservacion(datos)
-           .then(res => {
-             this.toastr.success('Reservacion agregada con exito', 'Listo');
-           })
-           .catch(e => {
-             this.toastr.error('No se pudo reservar','Error')
-           })
-    console.log(datos);
+    //        .then(res => {
+    //          this.toastr.success('Reservacion agregada con exito', 'Listo');
+    //        })
+    //        .catch(e => {
+    //          this.toastr.error('No se pudo reservar','Error')
+    //        })
+    // console.log(datos);
     
 
 
