@@ -17,46 +17,6 @@ export class FirestoreService {
               ) { 
               }
 
-  // createUser(value, flag){
-  //   console.log(value);
-  //   let hash = bcrypt.hashSync(value.clave, 8);
-  //   return this.actualizaPagos(value.pagos,value.correo)
-  //     .then(res => {
-  //       console.log(res);
-  //       if(flag === 'google'){
-  //         return this.db.collection('Clientes').doc(value.correo).update({
-  //           apellido: value.apellido,
-  //           nombre: value.nombre,
-  //           correo: value.correo,
-  //           direccion: value.direccion,
-  //           telefono: value.telefono,
-  //           email:value.correo,
-  //           sexo:value.sexo,
-  //           clave: hash
-  //         });
-  //       } else if (flag==='email'){
-  //         this.auth.updateUserData({displayName: value.nombre + ' ' + value.apellido,
-  //                                   uid: value.uid,
-  //                                   phoneNumber: value.telefono,
-  //                                   photoURL: null,
-  //                                   email: value.correo});
-
-  //         return this.db.collection('Clientes').doc(value.correo).set({
-  //           apellido: value.apellido,
-  //           nombre: value.nombre,
-  //           correo: value.correo,
-  //           direccion: value.direccion,
-  //           telefono: value.telefono,
-  //           email:value.correo,
-  //           sexo:value.sexo,
-  //           clave: hash
-  //         });
-  //       }
-  //     })
-  //     .catch(e=>console.log(e))
-  // }
-
-
   actualizarUsuario(datos){
     return this.db.collection('Clientes').doc(datos.email).update({
       nombre:datos.nombre,
@@ -86,20 +46,6 @@ export class FirestoreService {
   }
 
   setAuto(auto,email){
-
-    // let res = this.db.collection('Clientes').doc(email)
-    //                  .collection('Autos',ref => ref.where('estado', '==','activo'))
-    //                  .get();
-
-    // res.forEach(res => { 
-    //   res.docs.map(e => {
-    //     if(e.data().placas === auto.placas){
-    //       this.toastr.info('Placaje previamente registrado','Aviso')
-    //       return;
-    //     } else {
-    //     }
-    //   });
-    // })
     
     let docRef = this.db.firestore.doc(`Clientes/${email}/Autos/${auto.placas}`);
 
@@ -188,24 +134,29 @@ export class FirestoreService {
                 inserted = true;
                 this.actualizarCajon(i,j,1)
                     .then(res => {
-                      return this.db.collection('Reservaciones')
-                             .add({
-                             fecha: rsv.fecha,
-                             hinicio: rsv.hinicio,
-                                             hfin: rsv.hfin,
-                                             estado:'reservado',
-                                             tarjeta: rsv.tarjeta,
-                                             cliente: cli.email,
-                                             cajon: `c-${j}`,
-                                             piso: `nivel-${i}`,
-                                             auto: { 
-                                               modelo:rsv.auto.modelo, 
-                                               placas: rsv.auto.placas,
-                                               color:rsv.auto.color
-                                             }
-                               }).then(res => {
-                                 this.toastr.success('Agregado con exito','Listo');
-                               })
+                      bcrypt.hash('codigo',10,(err,hash)=>{
+                        return this.db.collection('Reservaciones')
+                               .add({
+                               fecha: rsv.fecha,
+                               hinicio: rsv.hinicio,
+                                               hfin: rsv.hfin,
+                                               estado:'reservado',
+                                               tarjeta: rsv.tarjeta,
+                                               cliente: cli.email,
+                                               cajon: `c-${j}`,
+                                               piso: `nivel-${i}`,
+                                               confirmacion: hash.slice(0,4),
+                                               auto: { 
+                                                 modelo:rsv.auto.modelo, 
+                                                 placas: rsv.auto.placas,
+                                                 color:rsv.auto.color
+                                               }
+                                 }).then(res => {
+                                   console.log(res);
+                                   this.toastr.success('Agregado con exito','Listo');
+                                 })
+                        
+                      })
 
                     })
                     .catch(e => {
@@ -259,6 +210,14 @@ export class FirestoreService {
                                                         .where('estado', '==', 'reservado')).snapshotChanges();
   }
 
+  bajaUsuario(email){
+    return this.db.collection('Clientes')
+                  .doc(email)
+                  .update({
+                    estado:'inactivo'
+                  })
+  }
+
 
   //Admin
   getUsuarios(){
@@ -276,7 +235,7 @@ export class FirestoreService {
   }
 
   loginAdmin(datos){
-    return this.db.collection('Estacionamiento')
+    this.db.collection('Estacionamiento')
                   .doc('Administracion')  
                   .collection('Cuentas')
                   .doc('Admin')
@@ -284,7 +243,7 @@ export class FirestoreService {
                   .forEach( res => {
                     bcrypt.compare(datos.key, res.data().clave,(err,res)=>{
                       if(res){
-                        this.auth.logearAdmin(datos.email,datos.key)
+                        return this.auth.logearAdmin(datos.email,datos.key)
                           .then(re => {
                             this.toastr.success('Sesion iniciada con exito', `Bienvenido ${res.data().nombre}`);
                           })
@@ -300,6 +259,11 @@ export class FirestoreService {
     return this.db.collection('Estacionamiento')
                   .doc('Costos')
                   .update(datos);
+  }
+
+  getPerfiles(){
+    return this.db.collection('Clientes')
+                  .snapshotChanges();
   }
 }
   

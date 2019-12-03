@@ -42,14 +42,23 @@ export class AuthService {
 
   public logearUsuario(email, pass){
     return this.afAuth.auth.signInWithEmailAndPassword(email,pass).then(res=>{
-                $("#Menu1").hide();
-                $(".menu-btn").show();
-                setTimeout(()=>{
-                  $(".menu-btn").addClass('animated');
-                  $(".menu-btn").addClass('heartBeat');
-              },3000)
+              //   $("#Menu1").hide();
+              //   $(".menu-btn").show();
+              //   setTimeout(()=>{
+              //     $(".menu-btn").addClass('animated');
+              //     $(".menu-btn").addClass('heartBeat');
+              // },3000)
                 this.toastr.success('Sesion Iniciada',`Bienvenido: ${res.user.email}`)
-                this.router.navigate(['/transicionlog','in']);
+                if(email !== 'admin@carpark.cf'){
+                  this.router.navigate(['/transicionlog','in']);
+                } else {
+
+           $("#Menu1").hide();
+           $("#navcli").hide();
+           $("#navadmin").show();
+           $(".menu-btnb").show();
+                  this.router.navigate(['/transicionlog','admin']);
+                }
     }).catch(e=>{
       this.toastr.error('Error','No se encuentra registrado')
     })
@@ -58,12 +67,12 @@ export class AuthService {
 
   public logearAdmin(email,pass){
     return this.afAuth.auth.signInWithEmailAndPassword(email,pass).then(res=>{
-                $("#Menu1").hide();
-                $(".menu-btnb").show();
-                setTimeout(()=>{
-                  $(".menu-btnb").addClass('animated');
-                  $(".menu-btnb").addClass('heartBeat');
-              },3000)
+              //   $("#Menu1").hide();
+              //   setTimeout(()=>{
+              //     $(".menu-btnb").show();
+              //     $(".menu-btnb").addClass('animated');
+              //     $(".menu-btnb").addClass('heartBeat');
+              // },3000)
                 this.toastr.success('Sesion Iniciada',`Bienvenido: ${res.user.email}`)
                 this.router.navigate(['/transicionlog','admin']);
     }).catch(e=>{
@@ -150,6 +159,7 @@ export class AuthService {
             telefono: value.telefono,
             email:value.correo,
             sexo:value.sexo,
+            estado: 'activo',
             clave: hash
           });
         } else if (flag==='email'){
@@ -162,6 +172,7 @@ export class AuthService {
             telefono: value.telefono,
             email:value.correo,
             sexo:value.sexo,
+            estado: 'activo',
             clave: hash
           });
         }
@@ -179,5 +190,9 @@ export class AuthService {
 
   actualizaNombre(nombre){
     return this.afAuth.auth.currentUser.updateProfile({displayName:nombre}).then(res => console.log(res)).catch(e => console.log(e));
+  }
+
+  deleteUser(){
+   return this.afAuth.auth.currentUser.delete(); 
   }
 }

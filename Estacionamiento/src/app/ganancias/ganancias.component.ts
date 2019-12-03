@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../services/firestore.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-ganancias',
@@ -10,11 +11,15 @@ export class GananciasComponent implements OnInit {
   gananciastotales: any;
   ganancias: any;
 
-  constructor(private db:FirestoreService) {
+  constructor(private db:FirestoreService,
+              private auth: AuthService) {
     this.gananciastotales = 0;
   }
 
   ngOnInit() {
+    this.auth.user$.subscribe(res=>{
+      console.log(res);
+    })
     this.db.getGanancias()
            .subscribe(res => {
              console.log(res);

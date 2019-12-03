@@ -36,6 +36,11 @@ export class TransicionlogComponent implements OnInit {
           
         } else if(this.operacion == 'admin'){
           $("#Menu1").hide();
+                $(".menu-btnb").show();
+                setTimeout(()=>{
+                  $(".menu-btnb").addClass('animated');
+                  $(".menu-btnb").addClass('heartBeat');
+              },3000)
         this.router.navigate(['/ganancias']);
         }
         else{
