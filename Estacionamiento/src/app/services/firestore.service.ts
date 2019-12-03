@@ -56,6 +56,15 @@ export class FirestoreService {
   //     })
   //     .catch(e=>console.log(e))
   // }
+  actualizarUsuario(datos){
+    return this.db.collection('Clientes').doc(datos.email).update({
+      nombre:datos.nombre,
+      telefono: datos.telefono,
+      correo:datos.correo,
+      direccion: datos.direccion
+    })
+  }
+
 
   getPerfil(email){
     return this.db.collection('Clientes').doc(email).snapshotChanges();
@@ -152,23 +161,17 @@ export class FirestoreService {
 
   actualizarCajon(nivel, cajon, operacion){
     if(operacion == 1){
-      this.db.collection('Niveles').doc(`nivel-${nivel}`).collection('cajones').doc(`c-${cajon}`).update({estado: 'reservado'})
-             .then(res => {console.log(res)})
-             .catch(res => {console.log(res)})
+      return this.db.collection('Niveles').doc(`nivel-${nivel}`).collection('cajones').doc(`c-${cajon}`).update({estado: 'reservado'})
     } else if (operacion == 2){
-      this.db.collection('Niveles').doc(`nivel-${nivel}`).collection('cajones').doc(`c-${cajon}`).update({estado: 'activo'})
-             .then(res => {console.log(res)})
-             .catch(res => {console.log(res)})
+      return this.db.collection('Niveles').doc(`nivel-${nivel}`).collection('cajones').doc(`c-${cajon}`).update({estado: 'activo'})
     } else {
-      this.db.collection('Niveles').doc(`nivel-${nivel}`).collection('cajones').doc(`c-${cajon}`).update({estado: 'disponible'})
-             .then(res => {console.log(res)})
-             .catch(res => {console.log(res)})
+      return this.db.collection('Niveles').doc(`nivel-${nivel}`).collection('cajones').doc(`c-${cajon}`).update({estado: 'disponible'})
     }
   } 
   setReservacion(data){
       let cli = data.cliente;
       let rsv = data.reservacion;
-      let doc, inserted;      
+      let doc, inserted = false;      
 
       for(let i =1; i<4;++i){
         doc = this.db.collection('Niveles')
@@ -177,28 +180,34 @@ export class FirestoreService {
         
         for(let j = 1; j <=15; ++j){
           doc.doc(`c-${j}`).get().forEach(cajon => {
-              if(cajon.estado !== 'reservado' && cajon.estado !== 'activo' && inserted !== true){
+              if(cajon.data().estado !== "reservado" && cajon.data().estado !== "activo" && inserted !== true){
                 inserted = true;
-                this.actualizarCajon(i,j,1);
-                return this.db.collection('Reservaciones')
-                       .doc(`${cli.email},${rsv.fecha},${rsv.hinicio}`)
-                       .set({
-                       fecha: rsv.fecha,
-                       hinicio: rsv.hinicio,
-                                       hfin: rsv.hfin,
-                                       estado:'reservado',
-                                       tarjeta: rsv.tarjeta,
-                                       cliente: cli.email,
-                                       cajon: `c-${j}`,
-                                       piso: `nivel-${i}`,
-                                       auto: { 
-                                         modelo:rsv.auto.modelo, 
-                                         placas: rsv.auto.placas,
-                                         color:rsv.auto.color
-                                       }
-                         }).then(res => {
-                           this.toastr.success('Agregado con exito','Listo');
-                         })
+                this.actualizarCajon(i,j,1)
+                    .then(res => {
+                      return this.db.collection('Reservaciones')
+                             .doc(`${cli.email},${rsv.fecha},${rsv.hinicio}`)
+                             .set({
+                             fecha: rsv.fecha,
+                             hinicio: rsv.hinicio,
+                                             hfin: rsv.hfin,
+                                             estado:'reservado',
+                                             tarjeta: rsv.tarjeta,
+                                             cliente: cli.email,
+                                             cajon: `c-${j}`,
+                                             piso: `nivel-${i}`,
+                                             auto: { 
+                                               modelo:rsv.auto.modelo, 
+                                               placas: rsv.auto.placas,
+                                               color:rsv.auto.color
+                                             }
+                               }).then(res => {
+                                 this.toastr.success('Agregado con exito','Listo');
+                               })
+
+                    })
+                    .catch(e => {
+
+                    })
               }
           })
         }
@@ -207,7 +216,8 @@ export class FirestoreService {
 
   getHistorial(data){
     let cli = data.cliente;
-    return this.db.collection('Reservaciones', ref=> ref.where('cliente','==',cli.email)).snapshotChanges();
+    return this.db.collection('Reservaciones', ref=> ref.where('cliente','==',cli.email)
+                                                        .where('estado','==','finalizado')).snapshotChanges();
   }
   
   getReservaciones(email){

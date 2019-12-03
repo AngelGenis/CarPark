@@ -50,7 +50,7 @@
                 <div class="info-personal" *ngFor="let perfil of perfiles">
                     <div class="divazul"></div>
                     <label for="">Nombre:</label>
-                    <input class="sololectura noborder" type="text" disabled value="{{perfil.nombre}}">
+                    <input class="sololectura noborder" type="text" disabled value="{{perfil.nombre+' '+perfil.apellido}}">
                     <br>
                     <label for="">Telefono:</label>
                     <input class="sololectura noborder" type="text" disabled value="{{perfil.telefono}}">
@@ -59,7 +59,7 @@
                     <input class="sololectura noborder" type="text" disabled value="{{perfil.correo}}">
                     <br>
                     <label for="">Dirección:</label>
-                    <input class="sololectura noborder" type="text" disabled value=" {{perfil.direccion.calle}} , {{perfil.direccion.colonia}} # {{perfil.direccion.numero}} ">
+                    <input class="sololectura noborder" type="text" disabled value=" {{perfil.direccion.calle}} , # {{perfil.direccion.numero}} {{perfil.direccion.colonia}} C.P. {{perfil.direccion.cp}}">
                 </div>
                 
                 <div class="divazul"></div>
@@ -104,7 +104,7 @@
         <ng-template [ngIf]="bandcontenedor == 2">
             
             <br>
-            <div class="container-fluid animated slideInLeft faster" >
+            <div class="container-fluid" >
                 <div class="row justify-content-center" >
                     <div class="col-md-4" *ngFor="let item of autos">
                             <mdb-card class="p-3 mx-2 my-3 animated slideInUp faster">
@@ -118,7 +118,7 @@
                                             <!-- <div class="col-md-1 text-md-right">
                                             </div> -->
                                             <div class="col-md-2 my-2 text-md-right">
-                                                 <a class="text-danger" (click)='eliminarAuto(item.payload.doc.data().modelo)' >
+                                                 <a class="text-danger" (click)='eliminarAuto(item.payload.doc.data().placas)' >
                                                     <mdb-icon fas icon="times-circle" class="waves-effect"
                                                                       mdbWavesEffect></mdb-icon>
                                                   
@@ -146,7 +146,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-11">
-                        <mdb-card   class="p-5 animated slideInUp faster contenedortar" *ngFor="let perfil of perfiles">
+                        <mdb-card   class="p-5 animated slideInLeft faster contenedortar" *ngFor="let perfil of perfiles">
                                 <div class="card-auto">
                                     <h1>
                                         <strong class="tituloAddAuto">Agregar Auto</strong> 

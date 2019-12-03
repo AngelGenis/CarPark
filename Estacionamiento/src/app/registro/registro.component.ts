@@ -75,7 +75,8 @@ export class RegistroComponent implements OnInit {
     value['displayName'] = $("#nombreIn").val();
     value['direccion'] = { calle: $("#calleIn").val(),
                            numero: $("#numeroIn").val(),
-                           cp: $("#cpIn").val()
+                           cp: $("#cpIn").val(),
+                           colonia: $("#coloniaIn").val()
                           };
     value['pagos'] = {
                         numero: $("#tarjetaIn").val(),
