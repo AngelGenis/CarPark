@@ -11,9 +11,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./reservaciones.component.css']
 })
 export class ReservacionesComponent implements OnInit {
-  tiempo: number = 3;
   reserva: number = 0;
   reservaciones: any;
+  totalPago: number = 0;
+  horastotales :number = 0;
+  arr = [];
 
   constructor(private auth:AuthService,
               private db:FirestoreService,
@@ -23,14 +25,26 @@ export class ReservacionesComponent implements OnInit {
     this.auth.user$.subscribe( cliente => {
       this.db.getReservaciones(cliente.email).subscribe( res => {
         this.reservaciones = res;
-        console.log(res);
-      })
-    })
-   
+        for(let rsv of this.reservaciones){
+          var horaenteraini = rsv.payload.doc.data().hinicio.substring(0,2);
+          var horaenterafin = rsv.payload.doc.data().hfin.substring(0,2);
+          if(horaenteraini == "00"){
+            horaenteraini = 24;
+          }
+          if(horaenterafin == "00"){
+            horaenterafin = 24;
+          }
+          this.horastotales = horaenterafin-horaenteraini;
+          this.totalPago = Number(this.horastotales) * 15; 
+          this.arr.push(this.totalPago);
+        }
+      });
+    });
+  
   }
 
   onClickTimer(){
-    var horas = this.tiempo-1;
+    var horas = this.horastotales-1;
     var minutos = 59;
     var segundos = 59;
 
@@ -64,7 +78,12 @@ export class ReservacionesComponent implements OnInit {
 
   onClickCross(){
     $("#Codigo").fadeOut(300);
-    this.reserva = 1;  
+    //this.reserva = 1; 
+    $("#Iniciar").css("display", "none");
+    $(".tiempo-titulo").css("display", "block");
+    $("#Contador").css("display", "block");
+    $(".status").css("display", "block");
+    this.onClickTimer();
   }
 
   mostrarLugarCorrespondiente(){
