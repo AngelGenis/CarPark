@@ -20,8 +20,8 @@ export class FirestoreService {
   actualizarUsuario(datos){
     return this.db.collection('Clientes').doc(datos.email).update({
       nombre:datos.nombre,
+      apellid:datos.apellido,
       telefono: datos.telefono,
-      correo:datos.correo,
       direccion: datos.direccion
     })
   }
@@ -265,5 +265,11 @@ export class FirestoreService {
     return this.db.collection('Clientes')
                   .snapshotChanges();
   }
+
+  getAdminReservaciones(){
+    return this.db.collection('Reservaciones')
+                  .snapshotChanges();
+  }
+
 }
   

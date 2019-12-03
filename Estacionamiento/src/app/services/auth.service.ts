@@ -181,11 +181,11 @@ export class AuthService {
   }
 
   actualizaPagos(pago,email){
-    return this.afs.collection('Clientes').doc(email).collection('Pagos').doc(pago.numero).set({
-      numero: pago.numero,
-      cvv:pago.cvv,
-      fecha:pago.expiracion
-    });
+    return this.afs.collection('Clientes').doc(email).collection('Pagos').doc(pago.numero).set(pago);
+  }
+
+  setPagos(pago,email){
+    return this.afs.collection('Clientes').doc(email).collection('Pagos').doc(pago.numero).update(pago);
   }
 
   actualizaNombre(nombre){

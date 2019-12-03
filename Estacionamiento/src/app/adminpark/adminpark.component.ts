@@ -11,10 +11,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AdminparkComponent implements OnInit {
   pisoact : number = 1;
+  reservaciones: any;
 
-  constructor() { }
+  constructor(private db:FirestoreService) { }
 
   ngOnInit() {
+    this.db.getAdminReservaciones()
+           .subscribe(res => {
+             this.reservaciones = res;
+           })
   }
 
   goizq(){
