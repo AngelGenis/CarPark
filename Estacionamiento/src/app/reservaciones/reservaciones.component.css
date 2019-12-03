@@ -206,7 +206,7 @@
 #Codigo{
   background: royalblue;
   width: 90%;
-  position: absolute;
+  position: fixed;
   z-index: 99;
   left: 50%;
   transform: translateX(-50%);
@@ -220,6 +220,7 @@
 #Cross{
   text-align: right;
   margin-bottom: 40px;
+
 }
 
 

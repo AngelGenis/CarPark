@@ -16,10 +16,10 @@ export class ReservacionesComponent implements OnInit {
   totalPago: number = 0;
   horastotales: number = 0;
   fecha: string = " ";
-  arr = [];
+  precios = [];
   horafinal: string = "";
   horainicio: string = "";
-  
+  precioss :number = 0;
 
   constructor(private auth: AuthService,
     private db: FirestoreService,
@@ -52,10 +52,15 @@ export class ReservacionesComponent implements OnInit {
             this.horastotales = horaenterafin - horaenteraini;
           }
           this.totalPago = this.horastotales * 15;
-          this.arr.push(this.totalPago);
+          console.log("Pago es: "+ this.totalPago);
+          this.precios.push(this.totalPago);
+          console.log(this.precios);
+          
         }
       });
     });
+
+
 
   }
 
@@ -150,6 +155,9 @@ export class ReservacionesComponent implements OnInit {
     $("#Codigo").fadeIn(300);
   }
 
+  calcularTotal(){
+
+  }
   onClickCross() {
     $("#Codigo").fadeOut(300);
     $("#Iniciar").css("display", "none");
