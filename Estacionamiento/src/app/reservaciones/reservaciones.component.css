@@ -181,27 +181,9 @@
 }
 
 #Contador, .tiempo-titulo, .status{
-  display: none;
+  display: block;
 }
 
-#Iniciar{
-  position: relative;
-  background: royalblue;
-  color: white;
-  border: none;
-  font-weight: bold;
-  border-radius: 10px;
-  box-shadow: 1px 1px 3px lightgrey;
-  cursor: pointer;
-  padding: 5px;
-  width: 200px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 50px;
-  transition-delay: 1s;
-  margin-top: 50px;
-
-}
 
 #Codigo{
   background: royalblue;
@@ -217,12 +199,12 @@
   padding: 10px;
   display: none;
 }
+
 #Cross{
   text-align: right;
   margin-bottom: 40px;
 
 }
-
 
 .codigo{
   margin: 20px 0;
@@ -238,6 +220,15 @@
 
 #ComponenteElevador{
   background: none;
+}
+#CodigoAcceso{
+  position: relative;
+  text-align: center;
+  width: 100%;
+  border: none;
+  color: royalblue;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @media (min-width: 769px) {
