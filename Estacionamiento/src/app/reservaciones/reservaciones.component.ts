@@ -167,4 +167,9 @@ export class ReservacionesComponent implements OnInit {
     $("#AnimacionLugarReservado").fadeIn(300);
   }
 
+  eliminarReservacion(id){
+    this.db.eliminarReservacion(id).then(res =>{console.log(res);})
+                                   .catch(e => {this.toastr.error('Operacion fallida','Error')})
+  }
+
 }

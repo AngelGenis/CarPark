@@ -171,6 +171,7 @@ export class FirestoreService {
       return this.db.collection('Niveles').doc(`nivel-${nivel}`).collection('cajones').doc(`c-${cajon}`).update({estado: 'disponible'})
     }
   } 
+
   setReservacion(data){
       let cli = data.cliente;
       let rsv = data.reservacion;
@@ -188,8 +189,7 @@ export class FirestoreService {
                 this.actualizarCajon(i,j,1)
                     .then(res => {
                       return this.db.collection('Reservaciones')
-                             .doc(`${cli.email},${rsv.fecha},${rsv.hinicio}`)
-                             .set({
+                             .add({
                              fecha: rsv.fecha,
                              hinicio: rsv.hinicio,
                                              hfin: rsv.hfin,
@@ -217,6 +217,37 @@ export class FirestoreService {
      }
   }
 
+  modificarReservacion(datos){
+    return this.db.collection('Reservaciones', ref=> ref.where('cliente', '==', datos.cliente))
+  }
+
+  eliminarReservacion(id){
+
+    return this.db.collection('Reservaciones')
+                  .doc(id)
+                  .get()
+                  .forEach(res =>{
+                    this.db.collection('Niveles')
+                           .doc(res.data().piso)
+                           .collection('cajones')
+                           .doc(res.data().cajon)
+                           .update({
+                             estado: 'disponible'
+                           })
+                           .then(res=>{
+                             this.db.collection('Reservaciones')
+                                    .doc(id)
+                                    .delete()
+                                    .then(res=>{
+                                      this.toastr.success('Reservacion eliminada con exito','Listo')
+                                    })
+                           })
+                           .catch();
+                  })
+
+
+  }
+
   getHistorial(data){
     let cli = data.cliente;
     return this.db.collection('Reservaciones', ref=> ref.where('cliente','==',cli.email)
@@ -235,8 +266,13 @@ export class FirestoreService {
   }
 
   getGanancias(){
-    return this.db.collection('Reservaciones').snapshotChanges();
-                
+    return this.db.collection('Reservaciones').snapshotChanges();                
+  }
+
+  getCostos(){
+    return this.db.collection('Estacionamiento')
+                  .doc('Costos')
+                  .snapshotChanges();
   }
 
   loginAdmin(datos){
@@ -260,5 +296,10 @@ export class FirestoreService {
                   })
   }
 
+  actualizaPrecios(datos){
+    return this.db.collection('Estacionamiento')
+                  .doc('Costos')
+                  .update(datos);
+  }
 }
   
