@@ -10,47 +10,109 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./adminpark.component.css']
 })
 export class AdminparkComponent implements OnInit {
-  pisoact : number = 1;
+  pisoact: number = 1;
   reservaciones: any;
+  currentfecha: string = " ";
 
-  constructor(private db:FirestoreService) { }
 
-  ngOnInit() {
+  constructor(private db: FirestoreService) {
     var today = new Date();
-
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     var valorfecha = Number(date.substr(8, 10));
-    var fechab = this.fechaCorrecta(today, valorfecha);
-    
+    this.currentfecha = this.fechaCorrecta(today, valorfecha);
 
-    this.db.getReservacionesHora(12, fechab)
-           .subscribe(res => {
-             this.reservaciones = res;
-
-             for(let rsv of this.reservaciones){
-              var piso = rsv.payload.doc.data().piso;
-              var cajon = rsv.payload.doc.data().cajon;
-    
-              console.log(cajon);
-              console.log(piso);
-              
-            }
-           })
   }
 
-  goizq(){
-    if(this.pisoact>1 && this.pisoact <=3){
-      this.pisoact --;
-    }else{
+  ngOnInit() {
+    $("#M4").fadeOut();
+  }
+
+  goizq() {
+
+    if (this.pisoact > 1 && this.pisoact <= 3) {
+      this.pisoact--;
+      if (this.pisoact == 1) {
+        $("#M2").fadeOut();
+        $("#M3").fadeOut();
+        setTimeout(function () {
+          $("#M1").fadeIn();
+        }, 500);
+
+
+      }
+      if (this.pisoact == 2) {
+        $("#M1").fadeOut();
+        $("#M3").fadeOut();
+        setTimeout(function () {
+          $("#M2").fadeIn();
+        }, 500);
+
+      }
+      if (this.pisoact == 3) {
+        $("#M1").fadeOut();
+        $("#M2").fadeOut();
+
+        setTimeout(function () {
+          $("#M3").fadeIn();
+        }, 500);
+
+
+      }
+
+    } else {
       this.pisoact = 3;
+      $("#M1").fadeOut();
+      $("#M2").fadeOut();
+
+      setTimeout(function () {
+        $("#M3").fadeIn();
+      }, 500);
+
+
     }
   }
 
-  goder(){
-    if(this.pisoact>=1 && this.pisoact <3){
-      this.pisoact ++;
-    }else{
+  goder() {
+
+    if (this.pisoact >= 1 && this.pisoact < 3) {
+      this.pisoact++;
+      if (this.pisoact == 1) {
+        $("#M2").fadeOut();
+        $("#M3").fadeOut();
+        setTimeout(function () {
+          $("#M1").fadeIn();
+        }, 500);
+
+
+      }
+      if (this.pisoact == 2) {
+        $("#M1").fadeOut();
+        $("#M3").fadeOut();
+        setTimeout(function () {
+          $("#M2").fadeIn();
+        }, 500);
+
+      }
+      if (this.pisoact == 3) {
+        $("#M1").fadeOut();
+        $("#M2").fadeOut();
+
+        setTimeout(function () {
+          $("#M3").fadeIn();
+        }, 500);
+
+
+      }
+
+    } else {
       this.pisoact = 1;
+      $("#M2").fadeOut();
+      $("#M3").fadeOut();
+      setTimeout(function () {
+        $("#M1").fadeIn();
+      }, 500);
+
+
     }
   }
 
@@ -87,6 +149,82 @@ export class AdminparkComponent implements OnInit {
     }
 
     return fechabuena;
+
+  }
+
+  llenarCuadros() {
+    for (let rsv of this.reservaciones) {
+      var cajon = rsv.payload.doc.data().cajon;
+      var fechaact = rsv.payload.doc.data().fecha;
+      var piso = rsv.payload.doc.data().piso;
+      var p = " ";
+      if (piso == "nivel-1") {
+        p = "-p1";
+      }
+      if (piso == "nivel-2") {
+        p = "-p2";
+      }
+      if (piso == "nivel-3") {
+        p = "-p3";
+      }
+
+      if (this.currentfecha == fechaact) {
+        cajon = "#" + cajon + p;
+        $(cajon).css("background", "blue");
+        $(cajon).css("color", "white");
+      }
+    }
+  }
+
+  changeinput() {
+    var hor = $("#tllegada").val();
+    var h = 0;
+    console.log(hor);
+
+    switch (hor) {
+      case "01:00":
+        h = 1;
+        break;
+      case "02:00":
+        h = 2;
+        break;
+      case "03:00":
+        h = 3;
+        break;
+      case "04:00":
+        h = 4;
+        break;
+      case "05:00":
+        h = 5;
+        break;
+      case "06:00":
+        h = 6;
+        break;
+      case "07:00":
+        h = 7;
+        break;
+      case "08:00":
+        h = 8;
+        break;
+      case "09:00":
+        h = 9;
+        break;
+    }
+
+    this.db.getReservacionesHora(h)
+      .subscribe(res => {
+        this.reservaciones = res;
+        if(this.reservaciones == ""){
+         console.log("Vacio");
+         
+        }else{
+          this.llenarCuadros();
+        }
+       
+      })
+
+
+
 
   }
 

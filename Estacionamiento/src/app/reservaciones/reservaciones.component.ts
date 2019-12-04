@@ -321,9 +321,6 @@ export class ReservacionesComponent implements OnInit {
     $("#Codigo").fadeIn(300);
   }
 
-  calcularTotal() {
-
-  }
   onClickCross(cajon, nivel) {
 
     $("#Codigo").fadeOut(300);

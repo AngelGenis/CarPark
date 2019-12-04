@@ -33,8 +33,9 @@ h1 {
 #ContenedorMapas{
     position: relative;
     width: 90%;
+    height: 300px;
     left: 50%;
-  transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 .contenedor-mapa {
   width: 100%;
@@ -167,4 +168,8 @@ h1 {
 }
 #Filtro input{
   font-size: .5rem;
+}
+#M4 p{
+  font-size: 4rem;
+  text-align: center;
 }
