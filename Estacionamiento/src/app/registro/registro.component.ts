@@ -102,15 +102,12 @@ export class RegistroComponent implements OnInit {
                             $("#intro").addClass("fadeInUp");
                             $("#intro").show();
                           },500);
-              
-                          this.toastr.success('Registro exitoso','Bienvenido');
+                          
                           this.router.navigate(['/login'])
                         })
                         .catch(
                             e=>{
-                              
                               console.log(e);
-                
                               this.toastr.error('Error','Verifique su email');
                             }
                         )

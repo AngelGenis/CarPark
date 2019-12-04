@@ -80,17 +80,22 @@ export class AuthService {
     })
   }
 
-  public async autenticarNuevoUsuario(value){
+  public async autenticarNuevoUsuario(value, data?){
     const res = await this.afAuth.auth.createUserWithEmailAndPassword(value.correo,value.clave)
     .then(res => {
       this.verificaEmail();
+      this.updateUserData({ uid:res.user.uid, email: value.correo, phoneNumber:value.telefono, displayName: value.nombre + ' ' + value.apellido,photoURL:'none'})
       this.createUser(value,'email')
       .then(res => { console.log(res)
       })    
       .catch(res => console.log(res))
-      this.updateUserData({uid:res.user.uid, email: value.correo, phoneNumber:value.telefono, displayName: value.nombre + ' ' + value.apellido,photoURL:'none'})
           
     }).catch(e=>{
+      if(data === 'google'){
+        this.createUser(value,'email')
+      } else {
+        this.toastr.error('El email ya se encuentra registrado.','Error'); 
+      }
       console.log(e); //si falla
     })
     
@@ -139,7 +144,7 @@ export class AuthService {
       phoneNumber
     };
 
-    userRef.update(data);
+    userRef.set(data,{merge:true});
 
     return data;
   }

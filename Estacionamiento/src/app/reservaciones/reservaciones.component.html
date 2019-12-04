@@ -181,7 +181,7 @@
     
             <p id="Llegada">Hora de llegada: {{rsv.payload.doc.data().hinicio}}</p>
             <p id="Tiempo">Hora de salida: {{rsv.payload.doc.data().hfin}}</p>
-            <p id="Total">Total: $ {{ precios[0] }}</p>
+            <p id="Total">Total: $ {{ total(rsv.payload.doc.data()) }} .00</p>
             <p id="Total">ID: {{rsv.payload.doc.id}}</p>
           </div>
           <div id="CodigoAcceso">
@@ -196,7 +196,7 @@
     
           <div id="Contador">
             <div id="Timer">
-              <p id="CountDown">0:00:00</p>
+              <p id="CountDown">{{temp(rsv.payload.doc.data())}}</p>
             </div>
             <button>
               <svg
