@@ -106,6 +106,17 @@
         <p id="Llegada">Hora de llegada: {{rsv.payload.doc.data().hinicio}}</p>
         <p id="Tiempo">Hora de salida: {{rsv.payload.doc.data().hfin}}</p>
         <p id="Total">Total: {{rsv.payload.doc.data().total}}</p>
+        <p>
+          Califica la Experiencia: 
+          <a (click)="calificacion(1,rsv.payload.doc.id)"><mdb-icon fas icon="star" id="s1{{rsv.payload.doc.id}}"></mdb-icon></a>
+          <a (click)="calificacion(2,rsv.payload.doc.id)"><mdb-icon fas icon="star" id="s2{{rsv.payload.doc.id}}"></mdb-icon></a>
+          <a (click)="calificacion(3,rsv.payload.doc.id)"><mdb-icon fas icon="star" id="s3{{rsv.payload.doc.id}}"></mdb-icon></a>
+          <a (click)="calificacion(4,rsv.payload.doc.id)"><mdb-icon fas icon="star" id="s4{{rsv.payload.doc.id}}"></mdb-icon></a>
+          <a (click)="calificacion(5,rsv.payload.doc.id)"><mdb-icon fas icon="star" id="s5{{rsv.payload.doc.id}}"></mdb-icon></a>
+        </p>
+        <ng-template [ngIf]="rsv.payload.doc.data().calificacion != undefined">
+          <p>Calificación: {{rsv.payload.doc.data().calificacion}}</p>
+        </ng-template>
       </div>
     </div>
     <br>

@@ -27,7 +27,7 @@
             <br>
             <div class="tabla">
                 <tr *ngFor="let auto of autos">
-                    <a id="{{auto.payload.doc.data().placas}}" class="autoclass py-3" (click)="selectAuto(auto.payload.doc.data().placas)">
+                    <a id="{{auto.payload.doc.data().placas}}" class="autoclass py-3 w-100" (click)="selectAuto(auto.payload.doc.data().placas)">
                         <th class='px-4'>
                             {{auto.payload.doc.data().modelo}}
                         </th>
