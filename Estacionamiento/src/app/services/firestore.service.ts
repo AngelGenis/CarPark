@@ -22,7 +22,8 @@ export class FirestoreService {
       nombre:datos.nombre,
       apellid:datos.apellido,
       telefono: datos.telefono,
-      direccion: datos.direccion
+      direccion: datos.direccion,
+      sexo:datos.sexo
     })
   }
 
