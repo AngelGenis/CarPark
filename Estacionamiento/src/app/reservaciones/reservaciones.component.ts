@@ -23,6 +23,7 @@ export class ReservacionesComponent implements OnInit {
   status: string = "";
   currentHora: number = 0;
   horaRestante : string = "";
+  mensajePadre: string = "";
 
   constructor(private auth: AuthService,
     private db: FirestoreService,
@@ -327,7 +328,7 @@ export class ReservacionesComponent implements OnInit {
     $("#Contador").css("display", "block");
     $(".status").css("display", "block");
     this.Timer();
-    console.log(id);
+    this.mensajePadre = id;
     this.reserva = 1;
   }
 

@@ -16,7 +16,7 @@ export class ElevadorComponent implements OnInit {
   public idcajon: string = "";
   cajones = new Array();
   reservaciones: any;
-  @Input() bandera: number = 0;
+  @Input() childMessage: string;
 
   constructor(private auth: AuthService,
     private db: FirestoreService,
@@ -25,7 +25,7 @@ export class ElevadorComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log(this.childMessage);
     this.db.getTarjetaSeleccionada("U6dUXC3Z37lMDlYwnUHQ")
       .subscribe(res => {
         this.reservaciones = res;
