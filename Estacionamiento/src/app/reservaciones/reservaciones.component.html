@@ -197,7 +197,7 @@
     
           <div id="Contador" class="contador{{rsv.payload.doc.id}}">
             <div id="Timer">
-              <p id="CountDown">{{temp(rsv.payload.doc.data(), rsv.payload.doc.id)}}</p>
+              <p id="CountDown" class="res{{rsv.payload.doc.id}}">{{temp(rsv.payload.doc.data(), rsv.payload.doc.id, total(rsv.payload.doc.data()))}}</p>
             </div>
             <button>
               <svg

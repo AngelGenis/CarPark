@@ -37,15 +37,73 @@ export class ReservacionesComponent implements OnInit {
     this.auth.user$.subscribe(cliente => {
       this.db.getReservaciones(cliente.email).subscribe(res => {
         this.reservaciones = res;
+
+        let today = new Date();
+        let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        let valorfecha = Number(date.substr(8, 10));
+        let fechab = this.fechaCorrecta(today, valorfecha);
+
+
+        res.forEach(r => {
+          
+          this.horafinal = r.payload.doc.data().hfin;
+          var hf = this.quitarCeros2(this.horafinal);
+      
+          //horaincicio
+          this.horainicio = r.payload.doc.data().hinicio;
+          var hi = this.quitarCeros2(this.horainicio);
+      
+          
+          //hora actual
+          var d = new Date();
+          var now = d.getHours();
+
+          let data = r.payload.doc.data();
+
+          data['total'] = this.total(r.payload.doc.data());
+          data['id'] = r.payload.doc.id;
+      
+          //Condiciones para cambiar el estado y mostrar en html
+          console.log("hi: "+ hi);
+          console.log("hf: "+ hf);
+          console.log("now: "+ now);
+          
+          
+          
+          if(r.payload.doc.data().estado=="reservado"){
+            if (this.fecha == fechab) {
+              
+              if(now >= hi && now <hf){
+                this.setStatus('a',data)          //Cambiar el estado a "activo", escribir de esa manera
+              }
+              if(now<hi){
+              }
+              if(now>=hf){
+                this.setStatus('f',data);         //Cambiar el estado a "finalizado", escribir de esa manera
+              }
+             }
+            }
+        })
         
       });
     });
   }
 
-  temp(rsv,id) {
+  setStatus(status,rsv){
+    if(status == 'a'){
+      this.db.setStatusActivo(rsv).then(res=>{  $(`.res${rsv.id}`).text('En curso');}).catch(e=>{});
+    }
+    if(status == 'f'){
+      this.db.setStatusDisponible(rsv).then(res=>{  $(`.res${rsv.id}`).text('Finalizado');}).catch(e=>{});;
+    }
+  }
+
+  temp(rsv,id,total) {
     
    
     //fecha actual
+    rsv['id'] = id;
+    rsv['total'] = total;
     var today = new Date();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     var valorfecha = Number(date.substr(8, 10));
@@ -76,6 +134,7 @@ export class ReservacionesComponent implements OnInit {
            $(".estado"+id).text("En curso");
 
           //Cambiar el estado a "activo", escribir de esa manera
+           console.log('activo');
         }
         if(now<hi){
           resultado = "Reservado";
@@ -83,6 +142,7 @@ export class ReservacionesComponent implements OnInit {
              $(".estado"+id).text("Reservado");
              $(".codigoaccesoo"+id).css("display", "none");
           //Cambiar el estado a "reservado", escribir de esa manera
+            $(`.res${id}`).text('Reservado');
         }
         if(now>=hf){
           resultado = "Finalizado";
@@ -115,6 +175,30 @@ export class ReservacionesComponent implements OnInit {
     }
     
     return resultado;
+          $(".estado"+id).text("Finalizado");
+
+          console.log('f');
+        }
+       }
+      }
+
+    //    if(this.fecha != fechab && rsv.estado == "reservado"){
+    //       resultado = "Reservado"
+    //       $(".circulo"+id).css("background", "yellow");
+    //       $(".estado"+id).text("Reservado");
+    //    }
+    // }
+    // if(rsv == "finalizado"){
+    //   resultado = "Finalizado"
+    //   $(".circulo"+id).css("background", "red");
+    //      $(".estado"+id).text("Finalizado");
+    // }
+
+    // if(rsv == "activo"){
+    //   resultado = "En Curso";
+    //   $(".circulo"+id).css("background", "royaleblue");
+    //    $(".estado"+id).text("En curso");
+    // }
     
   }
 
@@ -142,6 +226,7 @@ export class ReservacionesComponent implements OnInit {
       this.horastotales = horaenterafin - horaenteraini;
     }
     this.totalPago = this.horastotales * 15;
+
 
     return this.totalPago;
   

@@ -173,6 +173,50 @@ export class ReservarComponent implements OnInit {
           
           
     }
+
+  total(rsv) {
+    let horastotales;
+    let totalPago;
+    let fecha = rsv.fecha;
+    let horainicio = rsv.hinicio;
+    let horafinal = rsv.hfin;
+
+    var horaenteraini = rsv.hinicio.substring(0, 2);
+    var horaenterafin = rsv.hfin.substring(0, 2);
+    horaenteraini = this.quitarCeros(horaenteraini);
+    horaenterafin = this.quitarCeros(horaenterafin)
+    if (horaenteraini == "0") {
+      horaenteraini = 24;
+    }
+    if (horaenterafin == "0") {
+      horaenterafin = 24;
+    }
+    horaenteraini = Number(horaenteraini);
+    horaenterafin = Number(horaenterafin);
+    if (horaenteraini > horaenterafin) {
+      horastotales = horaenteraini + horaenterafin;
+    } else {
+      horastotales = horaenterafin - horaenteraini;
+    }
+    totalPago = horastotales * 15;
+
+
+    totalPago;
+  
+  }
+
+  quitarCeros(value) {
+    var valorobtenido;
+    var valor = value.substr(0, 1);
+
+    if (valor == "0") {
+      valorobtenido = value.substr(1, 2);
+    } else {
+      valorobtenido = value;
+    }
+    return valorobtenido;
+
+  }
         // foo(){
           //   let tlle = $("#tllegada").val()
           //   let tfin = $("#tsalida").val()
