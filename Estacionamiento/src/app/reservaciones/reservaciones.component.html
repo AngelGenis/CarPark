@@ -80,8 +80,8 @@
               </div>
     
           <div class="status" id="status{{rsv.payload.doc.id}}">
-            <div class="circulo"></div>
-            <p id="Estado">En curso</p>
+            <div class="circulo circulo{{rsv.payload.doc.id}} "></div>
+            <p id="Estado" class="estado{{rsv.payload.doc.id}}">En curso</p>
           </div>
     
           <div class="ajustes">
@@ -196,7 +196,7 @@
     
           <div id="Contador" class="contador{{rsv.payload.doc.id}}">
             <div id="Timer">
-              <p id="CountDown">{{temp(rsv.payload.doc.data())}}</p>
+              <p id="CountDown">{{temp(rsv.payload.doc.data(), rsv.payload.doc.id)}}</p>
             </div>
             <button>
               <svg
