@@ -37,48 +37,23 @@ export class HistorialComponent implements OnInit {
 
   }
 
-  onClickTimer(){
-    var horas = this.tiempo-1;
-    var minutos = 59;
-    var segundos = 59;
-
-    var x = setInterval(function() {
-        if(horas != 0 && minutos != 0 && segundos != 0){
-
-          if(segundos > 1){
-            segundos --;
-          }else if(minutos > 1){
-            minutos --;
-            segundos = 59;
-          }else if(horas > 1){
-            horas--;
-            minutos=59;
-          }  
-          document.getElementById("CountDown").innerHTML = horas + " : " + minutos + " : "+ segundos;
-
-        }
-        if(horas == 1 && minutos == 1 && segundos == 1){
-          clearInterval(x);
-           document.getElementById("CountDown").innerHTML = "EXPIRED";
-        }
-   }, 1000);
-    
-  }
-  
-
-  onClickIniciarReservacion(){
-    $("#Codigo").fadeIn(300);
+  calificacion(n,id){
+    for(let i = 1; i <= 5; ++i){
+      $(`#s${i}${id}`).css('color','grey');
+    }
+    for(let i = 1; i <= n; ++i){
+      $(`#s${i}${id}`).css('color','yellow');
+    }
+    this.db.setCalificacion(n,id)
+           .then(res =>{
+            this.toastr.success('Calificacion guardada','Listo'); 
+            console.log(res);
+           })
+           .catch(e => {
+            this.toastr.error('Error al guardar calificacion', 'Error'); 
+            console.log(e);
+           })
   }
 
-  onClickCross(){
-    $("#Codigo").fadeOut(300);
-    this.reserva = 1;  
-  }
-
-  mostrarLugarCorrespondiente(){
-    $("#Codigo").fadeOut(300);
-    $(".tarjeta").fadeOut(300);
-    $("#AnimacionLugarReservado").fadeIn(300);
-  }
 
 }

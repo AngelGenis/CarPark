@@ -272,6 +272,14 @@ export class FirestoreService {
                   .catch(e => console.log(e))
   }
 
+  setCalificacion(calificacion, id){
+    return this.db.collection('Reservaciones')
+                  .doc(id)
+                  .update({
+                    calificacion: calificacion
+                  });
+  }
+
   //Admin
   getReservacionesHora(hora){
     return this.db.collection('Reservaciones', ref => ref.where('hinicioInt','>=',hora * 100)
