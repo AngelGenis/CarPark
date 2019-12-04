@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../services/firestore.service';
 import * as $ from 'jquery';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adminprecios',
@@ -12,9 +14,15 @@ export class AdminpreciosComponent implements OnInit {
   costos: any;
 
   constructor(private db:FirestoreService,
-              private toastr:ToastrService) { }
+              private toastr:ToastrService,
+              private auth: AuthService,
+              private router:Router) { }
 
   ngOnInit() {
+    this.auth.user$.subscribe(res => {
+      if(res.email !== 'admin@carpark.cf')
+        this.router.navigate(['/perfil']);
+    })   
     this.db.getCostos()
            .forEach(res=> {
              this.costos = res.payload.data();

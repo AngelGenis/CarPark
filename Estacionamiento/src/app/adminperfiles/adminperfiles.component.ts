@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../services/firestore.service';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adminperfiles',
@@ -12,9 +14,16 @@ export class AdminperfilesComponent implements OnInit {
   flag:boolean = false;
   currentuser: any;
   
-  constructor(private db: FirestoreService) { }
+  constructor(private db: FirestoreService,
+              private auth: AuthService,
+              private router:Router) { }
 
   ngOnInit() {
+
+    this.auth.user$.subscribe(res => {
+      if(res.email !== 'admin@carpark.cf')
+        this.router.navigate(['/perfil']);
+    })   
     this.db.getPerfiles()
            .subscribe(res => {
              this.perfiles = res;

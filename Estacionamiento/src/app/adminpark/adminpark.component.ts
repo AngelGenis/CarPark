@@ -3,6 +3,7 @@ import * as $ from 'jquery';
 import { AuthService } from '../services/auth.service';
 import { FirestoreService } from '../services/firestore.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adminpark',
@@ -15,7 +16,9 @@ export class AdminparkComponent implements OnInit {
   currentfecha: string = " ";
 
 
-  constructor(private db: FirestoreService) {
+  constructor(private db: FirestoreService,
+              private auth: AuthService,
+              private router: Router) {
     var today = new Date();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     var valorfecha = Number(date.substr(8, 10));
@@ -24,6 +27,10 @@ export class AdminparkComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auth.user$.subscribe(res => {
+      if(res.email !== 'admin@carpark.cf')
+        this.router.navigate(['/perfil']);
+    })   
     $("#M4").fadeOut();
   }
 
