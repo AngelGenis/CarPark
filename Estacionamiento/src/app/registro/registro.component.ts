@@ -31,17 +31,28 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit() {
     this.validatingForm = new FormGroup({
-      correoIn: new FormControl(null,[Validators.required, Validators.email])
-    });
-
-    this.passVald = new FormGroup({
-      passIn: new FormControl(null,[Validators.required, Validators.minLength(6)])
+      correoIn: new FormControl(null,[Validators.required, Validators.email]),
+      passIn: new FormControl(null,[Validators.required, Validators.minLength(6)]),
+      defReq: new FormControl(null, [Validators.required]),
+      telefonoIn: new FormControl(null, [Validators.required,Validators.pattern('^[0-9]+')]),
+      tarjetaIn: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]{16}')]),
+      cvvIn: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]{3}')]),
+      fechaIn: new FormControl(null, [Validators.required,Validators.pattern('^[0-9]{2}/[0-9]{2}')]),
+      cpIn: new FormControl(null, [Validators.required,Validators.pattern('^[0-9]')])
     });
   }
 
 
-  get input() {return this.validatingForm.get('correoIn');}
-  get inputClave() {return this.passVald.get('passIn');}
+  get inputCorreo() {return this.validatingForm.get('correoIn');}
+  get inputClave() {return this.validatingForm.get('passIn');}
+  get inputname() {return this.validatingForm.get('defReq');}
+  get inputapel() {return this.validatingForm.get('defReq');}
+  get inputtel() {return this.validatingForm.get('telefonoIn');}
+  get inputcalle() {return this.validatingForm.get('defReq');}
+  get inputcp() {return this.validatingForm.get('cpIn');}
+  get inputtarjeta() {return this.validatingForm.get('tarjetaIn');}
+  get inputcvv() {return this.validatingForm.get('cvvIn')}
+  get inputfecha() {return this.validatingForm.get('fechaIn')}
 
   limpiarImputs(){
 
