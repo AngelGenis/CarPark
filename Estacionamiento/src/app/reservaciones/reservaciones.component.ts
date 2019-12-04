@@ -22,14 +22,16 @@ export class ReservacionesComponent implements OnInit {
   precioss: number = 0;
   status: string = "";
   currentHora: number = 0;
+  horaRestante : string = "";
 
   constructor(private auth: AuthService,
     private db: FirestoreService,
     private toastr: ToastrService) {
-    this.Timer();
+    
   }
 
   ngOnInit() {
+    this.Timer();
     
     this.auth.user$.subscribe(cliente => {
       this.db.getReservaciones(cliente.email).subscribe(res => {
@@ -95,6 +97,7 @@ export class ReservacionesComponent implements OnInit {
         //   }
 
         // }
+        this.temporizador(this.currentHora);
       });
     });
 
@@ -111,18 +114,17 @@ export class ReservacionesComponent implements OnInit {
 
     var fechab = this.fechaCorrecta(today, valorfecha);
     var hora = new Date().getTime();
-    console.log(`Hora:${hora}`);
-    console.log(`Current: ${this.currentHora}`);
-
 
     this.fecha = rsv.fecha;
 
     if (fechab == this.fecha && this.currentHora >= hora) {
-      return 'algo'
-      // return this.temporizador(this.horafinal); 
-      //cambiar estado a activo
+      console.log(this.horaRestante);
+      return this.horaRestante;
+     
     } else {
-      return "no es"
+      console.log(this.horaRestante);
+      return this.horaRestante;
+      
     }
 
     this.status = rsv.estado;
@@ -269,10 +271,13 @@ export class ReservacionesComponent implements OnInit {
 
     var countDownDate = new Date(b + " " + d + ", " + y + " " + this.horafinal + ":00").getTime();
     this.currentHora = countDownDate;
+    
   }
 
   temporizador(countDownDate) {
     var x = setInterval(function () {
+      console.log("hola");
+      
       // Get today's date and time
       var now = new Date().getTime();
 
@@ -285,18 +290,17 @@ export class ReservacionesComponent implements OnInit {
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      // Output the result in an element with id="demo"
-      if(distance < 0){
-        clearInterval(x);
-        return "EXPIRED";
-      }else{
-        return distance < 0 ? hours + ":"
-          + minutes + ":" + seconds : clearInterval(x);
-
-      }
-
+      this.horaRestante = hours + ":" + minutes + ":" + seconds;
+      console.log(this.horaRestante);
+      console.log(hours + ":" + minutes + ":" + seconds);
+      
       // If the count down is over, write some text 
-    }, 1000);
+      if (distance < 0) {
+        clearInterval(x);
+        this.horaRestante = "EXPIRED";
+      }
+      // If the count down is over, write some text 
+    }, 60000);
   }
 
   quitarCeros(value) {
