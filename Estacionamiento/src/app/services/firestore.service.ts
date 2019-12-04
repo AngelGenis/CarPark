@@ -251,7 +251,8 @@ export class FirestoreService {
     return this.db.collection('Reservaciones')
                   .doc(data.id)
                   .update({
-                    estado:'finalizado'
+                    estado:'finalizado',
+                    total:data.total
                   })
                   .then(res => {
                     return this.db.collection('Niveles')
@@ -284,7 +285,7 @@ export class FirestoreService {
   }
 
   getGanancias(){
-    return this.db.collection('Reservaciones').snapshotChanges();                
+    return this.db.collection('Reservaciones', ref => ref.where('estado','==','finalizado')).snapshotChanges();                
   }
 
   getCostos(){
