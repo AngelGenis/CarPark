@@ -17,7 +17,7 @@
           <div class="col">
             <!-- Last name -->
             <div class="md-form">
-              <input mdbInput mdbValidate type="text" formControlName="defReq" id="apellidoIn" class="form-control">
+              <input mdbInput mdbValidate type="text" formControlName="apellidoIn" id="apellidoIn" class="form-control">
               <label for="form1">Apellido</label>
               <mdb-error *ngIf="inputapel.invalid && (inputapel.dirty || inputapel.touched)">Apellido Invalido</mdb-error>
               <mdb-success *ngIf="inputapel.valid && (inputapel.dirty || inputapel.touched)">Apellido valido</mdb-success>
@@ -74,7 +74,7 @@
           <div class="col">
             <!-- First name -->
             <div class="md-form">
-              <input mdbInput mdbValidate type="text" id="calleIn" class="form-control" formControlName="defReq">
+              <input mdbInput mdbValidate type="text" id="calleIn" class="form-control" formControlName="calleIn">
               <label for="form1">Calle</label>
               <mdb-error *ngIf="inputcalle.invalid && (inputcalle.dirty || inputcalle.touched)">Calle invalido</mdb-error>
               <mdb-success *ngIf="inputcalle.valid && (inputcalle.dirty || inputcalle.touched)">Calle valido</mdb-success>
@@ -83,11 +83,11 @@
           <div class="col">
             <!-- Last name -->
         <div class="md-form">
-           <input mdbInput mdbValidate type="number" id="numeroIn" class="form-control" formControlName="telefonoIn"
+           <input mdbInput mdbValidate type="number" id="numeroIn" class="form-control" formControlName="numeroIn"
               aria-describedby="defaultRegisterFormPhoneHelpBlock">
           <label for="form1">Número</label>
-          <mdb-error *ngIf="inputtel.invalid && (inputtel.dirty || inputtel.touched)">Número invalido</mdb-error>
-          <mdb-success *ngIf="inputtel.valid && (inputtel.dirty || inputtel.touched)">Número valido</mdb-success>
+          <mdb-error *ngIf="inputnum.invalid && (inputnum.dirty || inputnum.touched)">Número invalido</mdb-error>
+          <mdb-success *ngIf="inputnum.valid && (inputnum.dirty || inputnum.touched)">Número valido</mdb-success>
         </div>
           </div>
 
@@ -102,8 +102,10 @@
         </div>
         
         <div class="md-form">
-          <input type="text" id="coloniaIn" class="form-control">
+          <input mdbInput mdbValidate formControlName="coloniaIn" type="text" id="coloniaIn" class="form-control">
           <label for="form1">Colonia</label>
+          <mdb-error *ngIf="inputcolonia.invalid && (inputcolonia.dirty || inputcolonia.touched)">Código invalido</mdb-error>
+          <mdb-success *ngIf="inputcolonia.valid && (inputcolonia.dirty || inputcolonia.touched)">Código valido</mdb-success>
         </div>
 
         <div class="md-form">
@@ -136,7 +138,7 @@
         </div>
         <!-- Sign up button -->
 
-        <button mdbBtn mdbwaveseffect (click)="crearUsuario()" color="primary" block="true"
+        <button mdbBtn mdbwaveseffect (click)="validatingForm.valid && crearUsuario()" color="primary" block="true"
           class="my-4 labelsLogin text-dark" type="button"><strong>Registro</strong></button>
 
         <button mdbBtn mdbwaveseffect (click)="gRegistro()" color="light" block="true"
