@@ -26,14 +26,22 @@ export class AppComponent implements AfterViewInit {
 
       this.auth.user$.subscribe(res => {
         console.log(res);
-         if(res !== undefined){
+         if(res.email !== "admin@carpark.cf"){
           $("#Menu1").hide();
-            $("#navcli").hide();
+          $("#navcli").hide();
           $("#navadmin").hide();
           setTimeout(()=>{
             $("#navcli").show();
           },500)
           $(".menu-btn").show(); 
+          } else {
+          $("#Menu1").hide();
+          $("#navcli").hide();
+          $("#navadmin").hide();
+          setTimeout(()=>{
+            $("#navadmin").show();
+          },500)
+          $(".menu-btnb").show(); 
           } 
         //  else {
         //   $("#Menu1").hide();
