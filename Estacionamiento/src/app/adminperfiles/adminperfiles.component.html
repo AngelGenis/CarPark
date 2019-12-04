@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md">
+            <h2 class="pl-5 mt-4 "><strong>Usuarios</strong></h2>
+            <hr>
+        </div>
+    </div>
+    <ng-template [ngIf]="this.flag == true">
+        <div class="row justify-content-center my-4">
+            <div class="col-md-7">
+                <mdb-card cascade="true" class="animated slideInUp faster">
+                    <a class="text-danger p-2 w-25" (click)="cerrarPerfil()">
+                        <mdb-icon fas icon="times-circle" size="2x"class="waves-effect"
+                                            mdbWavesEffect></mdb-icon>
+                    </a>
+                    <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+                    <ng-template [ngIf]="currentuser.sexo == 'M'">
+                        <mdb-card-img class="d-block w-25 mx-auto py-2" src="../assets/img/man.svg"></mdb-card-img>
+                    </ng-template>
+                    <ng-template [ngIf]="currentuser.sexo == 'F'">
+                        <mdb-card-img class="d-block w-25 mx-auto" src="../assets/img/woman.svg"></mdb-card-img>
+                    </ng-template>
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                    </div>
+                    <mdb-card-body cascade="true" class="text-center">
+                    <h4 class="card-title">
+                        <strong>{{currentuser.nombre}} {{currentuser.apellido}}</strong>
+                    </h4>
+                    <h5> {{currentuser.correo}}</h5>
+                    <p> <strong>{{currentuser.estado}}</strong></p>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md">
+                                <mdb-card-text>Direccion:  {{currentuser.direccion.calle}} {{currentuser.direccion.numero}} {{currentuser.direccion.colonia}} {{currentuser.direccion.cp}} </mdb-card-text>
+                                <mdb-card-text>Telefono: {{currentuser.telefono}}</mdb-card-text>
+                                <mdb-card-text>Sexo: {{currentuser.sexo}}</mdb-card-text>
+                            </div>
+                        </div>
+                    </div>
+                    </mdb-card-body>
+                </mdb-card>
+            </div>
+        </div>
+    </ng-template>
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-3" *ngFor="let per of perfiles">
+                                <mdb-card cascade="true" class="my-4 animated slideInUp faster bg-primary" >
+                                    <a class="text-danger p-2 w-25" (click)="addPerfil(per.payload.doc.data().correo, per.payload.doc.data().estado)">
+                                        <mdb-icon fas icon="times-circle" size="2x"class="waves-effect"
+                                                            mdbWavesEffect></mdb-icon>
+                                    </a>
+                                    <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+                                    <ng-template [ngIf]="per.payload.doc.data().sexo == 'M'">
+                                        <mdb-card-img (click)="visualizarInfo(per.payload.doc.data().correo)" class="d-block w-25 mx-auto py-2" src="../assets/img/man.svg"></mdb-card-img>
+                                    </ng-template>
+                                    <ng-template [ngIf]="per.payload.doc.data().sexo == 'F'">
+                                        <mdb-card-img (click)="visualizarInfo(per.payload.doc.data().correo)" class="d-block w-25 mx-auto" src="../assets/img/woman.svg"></mdb-card-img>
+                                    </ng-template>
+                                    <a (click)="visualizarInfo(per.payload.doc.data().correo)">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                    </div>
+                                    <mdb-card-body cascade="true" class="text-center">
+                                    <h4 class="card-title text-white">
+                                        <strong>{{per.payload.doc.data().nombre}} {{per.payload.doc.data().apellido}}</strong>
+                                    </h4>
+                                    <h5 class="text-white"> {{per.payload.doc.data().correo}}</h5>
+                                    <p class="text-white"> <strong>{{per.payload.doc.data().estado}}</strong></p>
+                                    </mdb-card-body>
+                                </mdb-card>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+</div>

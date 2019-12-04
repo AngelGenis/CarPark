@@ -1,0 +1,81 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: "Montserrat";
+    color: black;
+}
+.contenedor{
+    position: relative;
+    width: 100%;
+    margin-bottom: 50px ;
+}
+
+.promos{
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.promo{
+    position: relative;
+    width: 80%;
+    height: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #C4C4C4;
+    text-align: center;
+    background: #F7F7F7;
+    box-shadow: 3px 3px 3px lightgray;
+    border-radius: 10px;
+    margin: 50px 0;
+    border: 1px solid lightgray;
+}
+.features{
+    list-style: none;
+}
+.features li{
+    margin: 10px 0;
+    font-weight: 300px;
+}
+.brief{
+    font-weight: bold;
+}
+
+.price{
+    position: relative;
+    padding: 25px 0;
+    background: lightgray;
+    text-align: center;
+    background: royalblue;
+    font-weight: bold;
+}
+.buy button{
+    background: royalblue;
+    width: 100px;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+@media (min-width: 767px) {
+    .promos{
+        position: relative;
+        width: 50%;
+        height: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: inline-block;
+        padding: 0;
+
+    }
+    .promo{
+        position: relative;
+        width: 45%;
+        display: inline-block;
+        left: 20%;
+        margin: 0 15px;
+        
+    }
+}

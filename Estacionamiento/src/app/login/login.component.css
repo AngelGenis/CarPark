@@ -1,0 +1,20 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#ContenedorP{
+  position: relative;
+  margin: -50px 0;
+  height: 100vh;
+}
+
+@media (min-width: 769px) {
+  #ContenedorP{
+    background: royalblue;
+  }
+   
+}
+
+@media (min-width: 900px) {
+
+}

@@ -1,0 +1,184 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Montserrat";
+  font-size: 16px;
+}
+
+
+.container {
+  position: relative;
+  width: 100%;
+  margin-top: 50px;
+}
+h1 {
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.izq, .der{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+    
+}
+.izq{
+    left: 20px;
+}
+.der{
+    right: 20px;
+}
+#ContenedorMapas{
+    position: relative;
+    width: 90%;
+    height: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.contenedor-mapa {
+  width: 100%;
+  position: relative;
+  
+}
+
+.contenedor-mapa:nth-of-type(2),
+.contenedor-mapa:nth-of-type(3){
+    display: none;
+}
+.piso {
+  width: 100%;
+  height: 20%;
+  border-bottom: 10px solid #3b3b3b;
+  text-align: right;
+  padding: 10px;
+}
+.contenedor-mapa p {
+  font-size: 1.3rem;
+  position: relative;
+  font-weight: bold;
+  color: #0066ff;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.col1 {
+  width: 50%;
+  height: 50px;
+  position: relative;
+  left: 50%;
+  transform: translate(-60%);
+  display: inline-block;
+  text-align: center;
+}
+.cajon {
+  width: 30px;
+  height: 30px;
+  background: #e5e5e5;
+  border: 1px solid #0066ff;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.col1 .cajon,
+.col2 .cajon,
+.col3 .cajon,
+.col4 .cajon {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+  text-align: center;
+}
+
+.col2 {
+  position: relative;
+  text-align: center;
+  width: 50%;
+  height: 50px;
+  margin-top: 20px;
+  left: 50%;
+  transform: translate(-60%);
+}
+
+.col3 {
+  position: relative;
+  width: 65%;
+  height: 50px;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 80px;
+}
+
+.col4 {
+  position: absolute;
+  width: 50px;
+  height: 60%;
+  top: 50px;
+  right: 10px;
+}
+
+.contenedor-cuadritos {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 5px 0;
+  display: inline-block;
+  padding: 10px;
+}
+
+.cuadros {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  box-shadow: 3px 3px 3px lightgray;
+  display: inline-block;
+  background: #e5e5e5;
+  margin-right: 10px;
+  border: 1px solid royalblue;
+}
+.c2{
+    background: royalblue;
+}
+.contenedor-cuadritos p {
+  position: relative;
+  display: inline-block;
+}
+
+.nod{
+  opacity: 0;
+}
+
+#Filtro{
+  width: 100%;
+  position: relative;
+  height: 100%;
+  padding: 10px;
+  margin-bottom: 50px;
+  
+}
+#Filtro input{
+  position: relative;
+  border-radius: 5px;
+  padding: 5px;
+  width: 150px;
+  height: 30px;
+  margin-left: 20px;
+  font-size: .7rem;
+}
+#Filtro input{
+  font-size: .5rem;
+}
+#M4 p{
+  font-size: 4rem;
+  text-align: center;
+}
+@media (min-width: 767px) {
+  .container{
+    position: relative;
+      width: 50%;
+      left: 50%;
+      transform: translate(-50%);
+  }
+ 
+}

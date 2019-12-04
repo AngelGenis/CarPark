@@ -1,84 +1,155 @@
-<div class="container-fluid ">
-    <div class="row justify-content-center">
-        <div class=" col-md-5 mt-5" >
-            <form class=" text-center text-black white border p-5" style="border-radius: 30px;">
+<div id="ContenedorP" class="container-fluid animated fadeIn faster">
+  <div id="Bak" class="row justify-content-center mt-5">
+    <div id="Bac" class="col-md-5 mt-5">
+      <form class="text-center border border-light p-5 m-1" [formGroup]='validatingForm'>
 
-                    <p class="h4 tituloLogin"><strong>Registro</strong></p>
-                    
-                    <!-- Email -->
-                    <div class="container-fluid">
-                                <!-- <div class="md-form form-sm">
-                                    <input mdbInput type="text" id="userIn" class="form-control">
-                                            <label for="form1 labelsLogin">
-                                        <strong>Nombre de usuario</strong></label>
-                                 </div> -->
-                        
-                        <div class="row py-0">
-                            <div class="col-md" >
-                                <div class="md-form form-sm">
-                                    <input mdbInput type="text" id="nombreIn" class="form-control" required>
-                                        <label for="form1 labelsLogin"><strong>Nombre</strong></label>
-                                </div>
-                            </div>
-                            <div class="col-md" >
-                                <div class="md-form form-sm">
-                                    <input mdbInput type="text" id="apellidoIn" class="form-control">
-                                    <label for="form1 labelsLogin" ><strong>Apellido</strong></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" >
-                            <div class="col-md" style="margin: 0px;">
-                                <form [formGroup]="validatingForm">
-                                    <div class="md-form form-sm">
-                                        <input mdbInput mdbValidate type="email" id="correoIn" class="form-control" formControlName="correoIn">
-                                        <label for="form1 labelsLogin" ><strong>Correo</strong></label>
-                                        <mdb-error *ngIf="input.invalid && (input.dirty || input.touched)">Correo Invalido</mdb-error>
-                                        <mdb-success *ngIf="input.valid && (input.dirty || input.touched)">Correo Valido</mdb-success>
-                                    </div>
-                                </form> 
-                                
-                            </div>
-                            <div class="col-md">
-                                <div class="md-form form-sm ">
-                                    <input mdbInput type="text" id="telefonoIn" class="form-control" required>
-                                    <label for="form1 labelsLogin" ><strong>Telefono</strong></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md">
-                                <div class="md-form form-sm">
-                                    <input mdbInput type="text" id="direccionIn" class="form-control" required>
-                                    <label for="form1 labelsLogin" ><strong>Direccion</strong></label>
-                                </div>
+        <p class="h4">Registro</p>
 
-                            </div>
-                            <div class="col-md">
+        <div class="form-row">
+          <div class="col">
+            <div class="md-form">
+              <input mdbInput mdbValidate type="text" formControlName="defReq" id="nombreIn" class="form-control">
+              <label for="form1">Nombre</label>
+              <mdb-error   *ngIf="inputname.invalid && (inputname.dirty || inputname.touched)">Apellido Invalido</mdb-error>
+              <mdb-success *ngIf="inputname.valid && (inputname.dirty || inputname.touched)">Apellido valido</mdb-success>
+            </div>
+          </div>
+          <div class="col">
+            <!-- Last name -->
+            <div class="md-form">
+              <input mdbInput mdbValidate type="text" formControlName="apellidoIn" id="apellidoIn" class="form-control">
+              <label for="form1">Apellido</label>
+              <mdb-error *ngIf="inputapel.invalid && (inputapel.dirty || inputapel.touched)">Apellido Invalido</mdb-error>
+              <mdb-success *ngIf="inputapel.valid && (inputapel.dirty || inputapel.touched)">Apellido valido</mdb-success>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Default inline 1-->
+        <label class="mx-auto pr-3">Sexo:   </label>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="sexo1" name="inlineDefaultRadiosExample" mdbInput>
+          <label class="custom-control-label" for="sexo1">M</label>
+        </div>
+        
+        <!-- Default inline 2-->
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="sexo2" name="inlineDefaultRadiosExample" mdbInput>
+          <label class="custom-control-label" for="sexo2">F</label>
+        </div>
+        <!-- E-mail -->
+        
+        <div class="md-form">
+          <input mdbInput mdbValidate  type="email" formControlName="correoIn" id="correoIn" class="form-control">
+          <label for="form1">E-mail</label>
+          <mdb-error *ngIf="inputCorreo.invalid && (inputCorreo.dirty || inputCorreo.touched)">Correo invalido</mdb-error>
+          <mdb-success *ngIf="inputCorreo.valid && (inputCorreo.dirty || inputCorreo.touched)">Correo valido</mdb-success>
+        </div>
+        
+        <!-- Password -->
+        <div class="md-form">
+          <input mdbInput mdbValidate type="password"  id="passIn" class="form-control" formControlName="passIn" name="passIn"
+            aria-describedby="defaultRegisterFormPasswordHelpBlock">
+          <label for="form1">Contraseña</label>
+          <mdb-error *ngIf="inputClave.invalid && (inputClave.dirty || inputClave.touched)">Contraseña invalida</mdb-error>
+          <mdb-success *ngIf="inputClave.valid && (inputClave.dirty || inputClave.touched)">Contraseña valida</mdb-success>
+        </div>
+        <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+          Por lo menos 6 digitos.
+        </small>
 
-                                <div class="md-form form-sm">
-                                    <input mdbInput type="text" id="tarjetaIn" class="form-control" required>
-                                    <label for="form1 labelsLogin" ><strong>Numero de tarjeta</strong></label>
-                                </div>
-                            </div>
-                        </div>
-                                <form [formGroup]="passVald">
-                                    <div class="md-form form-sm">
-                                        <input mdbInput mdbValidate type="password" id="passIn" class="form-control" formControlName="passIn">
-                                        <label for="form1 labelsLogin" ><strong>Contraseña</strong></label>
-                                        <mdb-error *ngIf="inputClave.invalid && (inputClave.dirty || inputClave.touched)">Correo Invalido</mdb-error>
-                                        <mdb-success *ngIf="inputClave.valid && (inputClave.dirty || inputClave.touched)">Correo Valido</mdb-success>
-                                    </div>
-                                </form> 
-                    </div>
+        <!-- Phone number -->
+        <div class="md-form">
+           <input mdbInput mdbValidate type="text" id="telefonoIn" class="form-control" formControlName="telefonoIn"
+              aria-describedby="defaultRegisterFormPhoneHelpBlock">
+          <label for="form1">Teléfono</label>
+          <mdb-error *ngIf="inputtel.invalid && (inputtel.dirty || inputtel.touched)">Teléfono invalido</mdb-error>
+          <mdb-success *ngIf="inputtel.valid && (inputtel.dirty || inputtel.touched)">Teléfono valido</mdb-success>
+        </div>
+        <!-- <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+        
+      </small> -->
 
-                    <!-- Sign in button -->
-                    <button mdbBtn mdbwaveseffect (click)="crearUsuario()" style="border-radius: 30px;" class="pt-2 labelsLogin" color="primary" block="true" class="my-4" type="button"><strong>Registrar</strong></button>
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- First name -->
+            <div class="md-form">
+              <input mdbInput mdbValidate type="text" id="calleIn" class="form-control" formControlName="calleIn">
+              <label for="form1">Calle</label>
+              <mdb-error *ngIf="inputcalle.invalid && (inputcalle.dirty || inputcalle.touched)">Calle invalido</mdb-error>
+              <mdb-success *ngIf="inputcalle.valid && (inputcalle.dirty || inputcalle.touched)">Calle valido</mdb-success>
+            </div>
+          </div>
+          <div class="col">
+            <!-- Last name -->
+        <div class="md-form">
+           <input mdbInput mdbValidate type="number" id="numeroIn" class="form-control" formControlName="numeroIn"
+              aria-describedby="defaultRegisterFormPhoneHelpBlock">
+          <label for="form1">Número</label>
+          <mdb-error *ngIf="inputnum.invalid && (inputnum.dirty || inputnum.touched)">Número invalido</mdb-error>
+          <mdb-success *ngIf="inputnum.valid && (inputnum.dirty || inputnum.touched)">Número valido</mdb-success>
+        </div>
+          </div>
 
-                    <button mdbBtn mdbwaveseffect (click)="gRegistro()" style="border-radius: 30px;" color="light" block="true" class=" labelsLogin" type="button"><strong>Registrar con Google</strong><mdb-icon fab class="pl-1" icon="google"></mdb-icon></button>
-                    
-                    <!-- Register -->
-                    </form>
-        </div> 
+          <div class="col">
+        <div class="md-form">
+          <input  mdbInput mdbValidate type="number" id="cpIn" class="form-control" formControlName="cpIn">
+          <label for="form1">C.P.</label>
+          <mdb-error *ngIf="inputcp.invalid && (inputcp.dirty || inputcp.touched)">Código invalido</mdb-error>
+          <mdb-success *ngIf="inputcp.valid && (inputcp.dirty || inputcp.touched)">Código valido</mdb-success>
+        </div>
+          </div>
+        </div>
+        
+        <div class="md-form">
+          <input mdbInput mdbValidate formControlName="coloniaIn" type="text" id="coloniaIn" class="form-control">
+          <label for="form1">Colonia</label>
+          <mdb-error *ngIf="inputcolonia.invalid && (inputcolonia.dirty || inputcolonia.touched)">Código invalido</mdb-error>
+          <mdb-success *ngIf="inputcolonia.valid && (inputcolonia.dirty || inputcolonia.touched)">Código valido</mdb-success>
+        </div>
+
+        <div class="md-form">
+          <input  mdbInput mdbValidate type="number" id="tarjetaIn" class="form-control" formControlName="tarjetaIn" 
+            aria-describedby="defaultRegisterFormPasswordHelpBlock">
+          <label for="form1">Número de Tarjeta</label>
+          <mdb-error *ngIf="inputtarjeta.invalid && (inputtarjeta.dirty || inputtarjeta.touched)">Tarjeta invalida</mdb-error>
+          <mdb-success *ngIf="inputtarjeta.valid && (inputtarjeta.dirty || inputtarjeta.touched)">Tarjeta valida</mdb-success>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <!-- First name -->
+            <div class="md-form">
+                <input mdbInput mdbValidate type="number" id="cvvIn" class="form-control" formControlName="cvvIn">
+              <label for="form1">CVV</label>
+              <mdb-error *ngIf="inputcvv.invalid && (inputcvv.dirty || inputcvv.touched)">Número invalido</mdb-error>
+              <mdb-success *ngIf="inputcvv.valid && (inputcvv.dirty || inputcvv.touched)">Número valido</mdb-success>
+            </div>
+          </div>
+          <div class="col">
+            <div class="md-form">
+              <input mdbInput mdbValidate type="text" id="dateIn" class="form-control" formControlName="fechaIn">
+              <label for="form1">Fecha MM/DD</label>
+              <mdb-error *ngIf="inputfecha.invalid && (inputfecha.dirty || inputfecha.touched)">Fecha invalida</mdb-error>
+              <mdb-success *ngIf="inputfecha.valid && (inputfecha.dirty || inputfecha.touched)">Fecha valida</mdb-success>
+            </div>
+          </div>
+
+        </div>
+        <!-- Sign up button -->
+
+        <button mdbBtn mdbwaveseffect (click)="validatingForm.valid && crearUsuario()" color="primary" block="true"
+          class="my-4 labelsLogin text-dark" type="button"><strong>Registro</strong></button>
+
+        <button mdbBtn mdbwaveseffect (click)="gRegistro()" color="light" block="true"
+          class="my-4 labelsLogin text-dark" type="button"><strong>Registro con Google</strong>
+          <mdb-icon fab class="pl-1" icon="google"></mdb-icon>
+        </button>
+        <p>Haciendo click en
+          <em>Registro</em> esta de acuerdo con nuestros
+          <a href="" target="_blank">terminos de servicio</a></p>
+
+      </form>
     </div>
+  </div>
 </div>

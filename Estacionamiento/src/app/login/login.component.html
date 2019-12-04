@@ -1,37 +1,51 @@
-<div class="container-fluid">
+<div id="ContenedorP" class="container-fluid animated fadeIn faster">
     <div class="row justify-content-center mt-5">
         <div class="col-md-4 mt-5">
-            <form class="text-center text-black white border p-5" style="border-radius: 30px;">
+            <form class="text-center text-black white border p-5" [formGroup]='validatingForm'>
 
                     <p class="h4 mb-4 tituloLogin"><strong>Iniciar Sesión</strong></p>
                     
-                    <div class="md-form form-sm">
+        <div class="md-form my-4">
+          <input mdbInput mdbValidate  type="email" formControlName="correoIn" id="username" class="form-control">
+          <label for="form1">E-mail</label>
+          <mdb-error *ngIf="inputCorreo.invalid && (inputCorreo.dirty || inputCorreo.touched)">Correo invalido</mdb-error>
+          <mdb-success *ngIf="inputCorreo.valid && (inputCorreo.dirty || inputCorreo.touched)">Correo valido</mdb-success>
+        </div>
+
+        <div class="md-form my-4">
+          <input mdbInput mdbValidate type="password"  id="pass" class="form-control" formControlName="passIn" name="passIn"
+            aria-describedby="defaultRegisterFormPasswordHelpBlock">
+          <label for="form1">Contraseña</label>
+          <mdb-error *ngIf="inputClave.invalid && (inputClave.dirty || inputClave.touched)">Contraseña invalida</mdb-error>
+          <mdb-success *ngIf="inputClave.valid && (inputClave.dirty || inputClave.touched)">Contraseña valida</mdb-success>
+        </div>
+                    <!-- <div class="md-form form-sm">
                         <input mdbInput type="text" id="username" class="form-control">
                             <label class="labelsLogin" for="form2">
                             <strong>Correo Electronico</strong></label>
-                        </div>
-                        <div class="md-form form-sm">
+                        </div> -->
+                        <!-- <div class="md-form form-sm">
                             
                             <input mdbInput type="password" id="pass" class="form-control">
                             <label class="labelsLogin" for="form1" ><strong>Contraseña</strong></label>
-                        </div>
+                        </div> -->
                     
-                    <div class="d-flex justify-content-around">
+                    <!-- <div class="d-flex justify-content-around">
                         <div>
                         <mdb-checkbox [default]="true"><strong class="labels2Login">Recordar</strong></mdb-checkbox>
                         </div>
                         <div>
                         <a href=""><strong class="labels2Login">¿Olvidó su contraseña?</strong></a>
                         </div>
-                    </div>
-                    
-                    <button mdbBtn mdbwaveseffect (click)="login()" style="border-radius: 30px;" color="primary" block="true" class="my-4 labelsLogin" type="button"><strong>Ingresar</strong></button>
+                    </div> -->
+                        
+                    <button mdbBtn mdbwaveseffect (click)="login()"  color="primary" block="true" class="my-4 labelsLogin text-dark btn1" type="button"><strong >Ingresar</strong></button>
 
-                    <button mdbBtn mdbwaveseffect (click)="glogin()" style="border-radius: 30px;" color="light" block="true" class="my-4 labelsLogin" type="button"><strong>Google Sign In</strong><mdb-icon fab class="pl-1" icon="google"></mdb-icon></button>
+                    <button mdbBtn mdbwaveseffect (click)="glogin()"  color="light" block="true" class="my-4 labelsLogin text-dark btn1" type="button"><strong>Ingresar con Google</strong><mdb-icon fab class="pl-1" icon="google"></mdb-icon></button>
                     
 
                     <p><strong class="labels2Login">¿No es un miembro?
-                        <a (click)="aRegistro()" href="javascript:void(0)">Registro</a>
+                        <a routerLink="/registro" routerLinkActive="router-link-active"  href="javascript:void(0)">Registro</a>
                         </strong>
                     </p>
                     

@@ -1,0 +1,87 @@
+<div class="contenedor animated fadeIn faster">
+    <h1>Realizar Reservación</h1>
+
+    <form class="form-container" id="ContenedorForm" [formGroup]="formReservas" (ngSubmit)="onGuardarFormulario()">
+        <label for="">Fecha</label>
+        <input type="date" id="fecha" formControlName="fecha">
+        
+        <label for="">Hora de llegada</label>
+        <input type="time" id="tllegada" formControlName="llegada">
+        
+        <label for="">Hora de salida</label>
+        <input type="time" id="tsalida" formControlName="salida">
+
+
+        <div class="contenedores-titulos">
+            <label  for="">Elegir un vehiculo</label>
+            
+            <div class="arrow-container" (click)="onClickAutos()">
+                <i class="down" id="ArrowVehiculos"></i>
+            </div>
+            
+                
+        </div>
+
+        <div id="AutosRegistrados" class="contenedores animated fadeIn faster" >
+            <h2>Autos Registrados</h2>
+            <br>
+            <div class="tabla">
+                <tr *ngFor="let auto of autos">
+                    <a id="{{auto.payload.doc.data().placas}}" class="autoclass py-3 w-100" (click)="selectAuto(auto.payload.doc.data().placas)">
+                        <th class='px-4'>
+                            {{auto.payload.doc.data().modelo}}
+                        </th>
+                        <td class="px-4">
+                            <h1 class="" ><strong class="tituloAddAuto"><mdb-icon class="text-right text-sm" [style.color]="auto.payload.doc.data().color" fas icon="car-side" size="2x"></mdb-icon></strong> </h1>
+                        </td>
+                        <td class="px-4">
+                            {{auto.payload.doc.data().placas}}
+                        </td>
+                    </a>
+                </tr>
+                <br>    
+            </div>
+            <br>
+        </div>
+            
+        <div class="contenedores-titulos">
+            <label>Tarjeta para realizar el pago</label>
+
+            <div class="arrow-container" (click)="onClickTarjetas()">
+                <i class="down" id="ArrowTarjetas"></i>
+            </div>
+        </div>
+        
+        <div id="TarjetasRegistradas" class="contenedores animated fadeIn faster">
+            <h2>Tarjetas asociadas</h2>
+            <br>
+            <div class="tabla">
+                <tr *ngFor="let cuentas of pagos">
+                    <a id="{{cuentas.payload.doc.data().numero}}" class="tarjetaclass" (click)="selectTarjeta(cuentas.payload.doc.data().numero)">
+                        <th class='px-4'>
+                        <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,2) === '55' || cuentas.payload.doc.data().numero.slice(0,2) === '54' || cuentas.payload.doc.data().numero.slice(0,2) === '53' || cuentas.payload.doc.data().numero.slice(0,2) === '52'  || cuentas.payload.doc.data().numero.slice(0,2) === '51'">
+                                <mdb-icon size="1x" fab icon="cc-mastercard"></mdb-icon>
+                        </ng-template> 
+                        <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,1) === '4'">
+                                <mdb-icon fab icon="cc-visa"></mdb-icon>
+                        </ng-template> 
+                        </th>
+                        <td class="px-4">
+                            •••• •••• ••••  {{cuentas.payload.doc.data().numero.slice(12)}}
+                        </td>
+                        <td class="px-4">
+                        </td>
+                    </a>
+                </tr>
+                <br>    
+            </div>
+        </div>
+    
+        <button  class="btn" (click)="reservar()">Reservar</button>
+    </form>
+    
+
+ 
+
+    
+</div>
