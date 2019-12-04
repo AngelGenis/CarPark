@@ -225,6 +225,7 @@ input[type="color"]::-webkit-color-swatch {
     #Contenedor{
         background: white;
         
+        
     }
     label{
         font-size: .8rem;
@@ -278,9 +279,9 @@ input[type="color"]::-webkit-color-swatch {
         height: 40px;
         text-align: center;
         position: absolute;
-        bottom: 20px;
-        right: 50px;
-
+        bottom: 50%;    
+        transform: translateY(-50%);    
+        right: 20px;
     }
     #Guardar{
         position: absolute;
@@ -308,5 +309,24 @@ input[type="color"]::-webkit-color-swatch {
         top: 0px;
         padding: 0 25px;
         height: 200px;
+    }
+    .info-personal{
+        position: relative;
+        width: 50%;
+        padding: 20px;
+        margin: 0px;
+        top: -20px;
+        font-size: .8rem;
+    }
+    .cuentas{
+        position: absolute;
+        right: 0px;
+        top: 20px;
+    }
+    #Guardar{
+        position: relative;
+        right: -50%;
+        transform: translateX(100%);
+        margin-top: -100px;
     }
 }
