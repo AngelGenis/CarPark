@@ -16,9 +16,25 @@ export class AdminparkComponent implements OnInit {
   constructor(private db:FirestoreService) { }
 
   ngOnInit() {
-    this.db.getAdminReservaciones()
+    var today = new Date();
+
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var valorfecha = Number(date.substr(8, 10));
+    var fechab = this.fechaCorrecta(today, valorfecha);
+    
+
+    this.db.getReservacionesHora(12, fechab)
            .subscribe(res => {
              this.reservaciones = res;
+
+             for(let rsv of this.reservaciones){
+              var piso = rsv.payload.doc.data().piso;
+              var cajon = rsv.payload.doc.data().cajon;
+    
+              console.log(cajon);
+              console.log(piso);
+              
+            }
            })
   }
 
@@ -36,6 +52,42 @@ export class AdminparkComponent implements OnInit {
     }else{
       this.pisoact = 1;
     }
+  }
+
+  fechaCorrecta(today, valorfecha) {
+    var fechabuena = "";
+    switch (valorfecha) {
+      case 1:
+        fechabuena = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + "01";
+        break;
+      case 2:
+        fechabuena = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + "02";
+        break;
+      case 3:
+        fechabuena = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + "03";
+        break;
+      case 4:
+        fechabuena = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + "04";
+        break;
+      case 5:
+        fechabuena = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + "05";
+        break;
+      case 6:
+        fechabuena = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + "06";
+        break;
+      case 7:
+        fechabuena = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + "07";
+        break;
+      case 8:
+        fechabuena = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + "08";
+        break;
+      case 9:
+        fechabuena = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + "09";
+        break;
+    }
+
+    return fechabuena;
+
   }
 
 }
