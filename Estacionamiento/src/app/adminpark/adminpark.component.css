@@ -33,8 +33,9 @@ h1 {
 #ContenedorMapas{
     position: relative;
     width: 90%;
+    height: 300px;
     left: 50%;
-  transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 .contenedor-mapa {
   width: 100%;
@@ -53,8 +54,13 @@ h1 {
   text-align: right;
   padding: 10px;
 }
-p {
-  font-size: 1rem;
+.contenedor-mapa p {
+  font-size: 1.3rem;
+  position: relative;
+  font-weight: bold;
+  color: #0066ff;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .col1 {
@@ -141,4 +147,29 @@ p {
 
 .nod{
   opacity: 0;
+}
+
+#Filtro{
+  width: 100%;
+  position: relative;
+  height: 100%;
+  padding: 10px;
+  margin-bottom: 50px;
+  
+}
+#Filtro input{
+  position: relative;
+  border-radius: 5px;
+  padding: 5px;
+  width: 150px;
+  height: 30px;
+  margin-left: 20px;
+  font-size: .7rem;
+}
+#Filtro input{
+  font-size: .5rem;
+}
+#M4 p{
+  font-size: 4rem;
+  text-align: center;
 }
