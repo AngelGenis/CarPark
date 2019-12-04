@@ -5,6 +5,5 @@ export interface Cliente{
     direccion?: string,
     telefono?: number,
     clave?: string,
-    user?:string,
-    sexo?:string
+    user?:string
 }

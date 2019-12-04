@@ -1,8 +1,6 @@
 import { Component, ViewChild, ElementRef, Input, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
 import * as $ from 'jquery';
-import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router'
+import { AboutComponent } from '../about/about.component';
 
 @Component({
   selector: 'app-navbar',
@@ -10,40 +8,12 @@ import { Router } from '@angular/router'
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  menuBtn = document.querySelector('.menu-btn');
-  menuOpen = false;
-  links = document.querySelector('.menu-btn');
 
-
-  constructor(private auth:AuthService,
-              private toastr:ToastrService,
-              private router:Router) { 
+  constructor() { 
     
   } 
 
-  ngOnInit(){
-    $(".menu-btn").hide();
-     
-  }
-  onClickMenu(){
-    
-      if(!this.menuOpen) {
-        document.querySelector('.menu-btn').classList.add('open');
-        document.getElementById('Menu2').style.display = "block";
-        document.getElementById('Menu2').classList.add('slideInRight');
-        document.getElementById('Menu2').classList.remove('slideOutRight');
-        this.menuOpen = true;
-
-      } else {
-        document.querySelector('.menu-btn').classList.remove('open');
-        document.getElementById('Menu2').classList.remove('slideInRight');
-        document.getElementById('Menu2').classList.add('slideOutRight');
-        setTimeout(function(){
-          document.getElementById('Menu2').style.display="none";
-        },400);
-        this.menuOpen = false;
-      }
-
+  ngOnInit() {
   }
 
   onClickBrand(){
@@ -67,7 +37,76 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  
+  onClickInicio(){
+    $("#btn1").removeClass('active');
+    $("#btn1").addClass('active');
+    for(let i =2; i<5; ++i){
+
+      $("#btn"+i).removeClass('active');
+    }
+
+    $("#login").removeClass("delay-2s");
+    $("#login").removeClass("fadeOut");
+    $("#login").addClass("fadeOut faster");
+
+    $("#registro").removeClass("delay-2s");
+    $("#registro").removeClass("fadeOut");
+    $("#registro").addClass("fadeOut faster");
+
+    setTimeout(function(){
+       $("#login").hide();
+       $("#registro").hide();
+       $("#intro").removeClass("fadeOut");
+       $("#intro").addClass("fadeIn");
+       $("#intro").show();
+    },500);
+
+  }
+
+  onClickAbout(){
+
+    $("#btn4").removeClass('active');
+    $("#btn4").addClass('active');
+    for(let i = 1; i<5; ++i){
+      if(i == 4){
+
+      } else
+      $("#btn"+i).removeClass('active');
+    }
+    console.log("wokin");
+    document.getElementById("about").scrollIntoView({behavior:"smooth"}); 
+  }
+
+  onClickUbicacion(){
+
+    $("#btn3").removeClass('active');
+    $("#btn3").addClass('active');
+    for(let i = 1; i<5; ++i){
+      if(i == 3){
+
+      } else
+      $("#btn"+i).removeClass('active');
+    }
+    console.log("wokin");
+    document.getElementById("about").scrollIntoView({behavior:"smooth"}); 
+  }
+
+  onClickInstalaciones(){
+
+    $("#btn2").removeClass('active');
+    $("#btn2").addClass('active');
+    for(let i = 1; i<5; ++i){
+      if(i == 2){
+
+      } else
+      $("#btn"+i).removeClass('active');
+    }
+    console.log("wokin");
+
+    document.getElementById("instalaciones").scrollIntoView({behavior:"smooth"}); 
+
+  }
+
   onClickLogin(){
     $("#intro").removeClass("delay-2s");
     $("#intro").removeClass("fadeOut");
@@ -103,30 +142,4 @@ export class NavbarComponent implements OnInit {
     },500);
   }
 
-  onClickLinks(){
-      document.querySelector('.menu-btn').classList.remove('open');
-      document.getElementById('Menu2').classList.remove('slideInRight');
-      document.getElementById('Menu2').classList.add('slideOutRight');
-      setTimeout(function(){
-        document.getElementById('Menu2').style.display="none";
-      },400);
-      this.menuOpen = false;
 }
-
-  cerrarSesion(){
-    this.auth.signOut()
-             .then(res => {
-              this.toastr.info('Nos vemos pronto', 'Sesion cerrada')  
-              this.router.navigate(['/transicionlog','out']);
-              this.onClickLinks();
-             })
-             .catch(e => {
-                this.toastr.error('No se pudo cerrar sesion.','Error');
-             })
-  }
-  
-
-  
-
-}
-

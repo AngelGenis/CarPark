@@ -1,7 +1,4 @@
 {
-  "database": {
-    "rules": "database.rules.json"
-  },
   "firestore": {
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
@@ -13,7 +10,7 @@
     ]
   },
   "hosting": {
-    "public": "Estacionamiento/dist/Estacionamiento",
+    "public": "",
     "ignore": [
       "firebase.json",
       "**/.*",

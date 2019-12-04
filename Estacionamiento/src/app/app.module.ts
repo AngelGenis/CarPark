@@ -1,15 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-// import { bcrypt } from 'bcrypt';
-import { HttpClientModule } from '@angular/common/http';
-
-
  
 
 import {  ReactiveFormsModule, FormsModule }   from '@angular/forms';
@@ -28,23 +24,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
 import { InstalacionesComponent } from './instalaciones/instalaciones.component';
 import { RegistroComponent } from './registro/registro.component';
-import { PreciosComponent } from './precios/precios.component';
-import { ReservarComponent } from './reservar/reservar.component';
-import { PresentacionComponent } from './presentacion/presentacion.component';
-import { VisualizarperfilComponent } from './visualizarperfil/visualizarperfil.component';
-import { FirestoreService } from './services/firestore.service';
-import { CdarsebajaComponent } from './cdarsebaja/cdarsebaja.component';
-import { ReservacionesComponent } from './reservaciones/reservaciones.component';
-import { ElevadorComponent } from './elevador/elevador.component';
-import { TransicionlogComponent } from './transicionlog/transicionlog.component';
-import { RouterModule } from '@angular/router';
-import { HistorialComponent } from './historial/historial.component';
-import { GananciasComponent } from './ganancias/ganancias.component';
-import { AdminpreciosComponent } from './adminprecios/adminprecios.component';
-import { AdminperfilesComponent } from './adminperfiles/adminperfiles.component';
-import { AdminparkComponent } from './adminpark/adminpark.component';
-import { AdminnavComponent } from './adminnav/adminnav.component';
-import { AdminloginComponent } from './adminlogin/adminlogin.component';
 
 @NgModule({
   declarations: [
@@ -55,28 +34,10 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
     NavbarComponent,
     AboutComponent,
     InstalacionesComponent,
-    RegistroComponent,
-    PreciosComponent,
-    ReservarComponent,
-    PresentacionComponent,
-    VisualizarperfilComponent,
-    CdarsebajaComponent,
-    ReservacionesComponent,
-    ElevadorComponent,
-    TransicionlogComponent,
-    HistorialComponent,
-    GananciasComponent,
-    AdminpreciosComponent,
-    AdminperfilesComponent,
-    AdminparkComponent,
-    AdminnavComponent,
-    AdminloginComponent
-    // bcrypt
+    RegistroComponent
   ],
   imports: [
     CommonModule,
-    // bcrypt,
-    HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     FormsModule,
@@ -87,10 +48,9 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    ReactiveFormsModule,
-    RouterModule
+    ReactiveFormsModule
   ],
-  providers: [FirestoreService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,9 +2,8 @@ import { Component, OnInit,  } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FirestoreService } from '../services/firestore.service';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
 import * as $ from 'jquery';
-import {FormGroup,FormControl, Validators} from '@angular/forms';
+import { ElementSchemaRegistry } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -14,23 +13,14 @@ import {FormGroup,FormControl, Validators} from '@angular/forms';
 
 
 export class LoginComponent implements OnInit {
-  validatingForm: FormGroup;
 
   constructor(public db:FirestoreService,
               public auth:AuthService,
-              private toastr:ToastrService,
-              private router:Router
+              private toastr:ToastrService
               ) { }
 
   ngOnInit() {
-    this.validatingForm = new FormGroup({
-      correoIn: new FormControl(null,[Validators.required, Validators.email]),
-      passIn: new FormControl(null,[Validators.required, Validators.minLength(6)])
-    });
   }
-
-  get inputCorreo() {return this.validatingForm.get('correoIn');}
-  get inputClave() {return this.validatingForm.get('passIn');}
 
   showSuccess() {
     
@@ -63,35 +53,38 @@ export class LoginComponent implements OnInit {
   }
 
   async login(){
+    
     let log = $("#username").val();
     let pass = $("#pass").val();
 
-    this.auth.logearUsuario(log,pass)
+    let res = this.auth.logearUsuario(log,pass)
              .then( res => {
-              console.log(res); 
+               console.log(res);
              })
              .catch( e =>{
                console.log(e);
              })
+    console.log(res);
+    if(res['code']){
+      this.showFailure();
+    } else if(res['user']) {
+      this.showSuccess();
+    }
+
   }
 
   glogin(){
-    this.auth.googleLogIn()
-             .then(res=>{
-              $(".menu-btn").show();
-              setTimeout(()=>{
-                $(".menu-btn").addClass('animated');
-                $(".menu-btn").addClass('heartBeat');
-              },3000)
-              
-              this.toastr.success('Secion Iniciada', `Bienvenido: ${res.user.displayName}`);
-              console.log(res, 'success');
 
-              this.router.navigate(['/transicionlog','in'])
+    this.auth.googleSignIn()
+             .then(res=>{
+               //Logica cuando el inicio de sesion jale
+              console.log(res, 'success');
+              
              })
              .catch(e =>{
               //cuando no 
               console.log(e,'fail');
+              
              })
 
     }
