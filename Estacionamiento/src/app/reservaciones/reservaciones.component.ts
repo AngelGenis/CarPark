@@ -66,14 +66,20 @@ export class ReservacionesComponent implements OnInit {
 
     //Condiciones para cambiar el estado y mostrar en html
     var resultado = "";
+    console.log("hi: "+ hi);
+    console.log("hf: "+ hf);
+    console.log("now: "+ now);
+    
+    
+    
     if(rsv.estado=="reservado"){
       if (this.fecha == fechab) {
+        
         if(now >= hi && now <hf){
            resultado = "Activo";
            $(".circulo"+id).css("background", "royaleblue");
            $(".estado"+id).text("En curso");
           //Cambiar el estado a "activo", escribir de esa manera
-
         }
         if(now<hi){
           resultado = "Reservado";
@@ -87,6 +93,12 @@ export class ReservacionesComponent implements OnInit {
              $(".estado"+id).text("Finalizado");
           //Cambiar el estado a "finalizado", escribir de esa manera
         }
+       }
+
+       if(this.fecha != fechab && rsv.estado == "reservado"){
+          resultado = "Reservado"
+          $(".circulo"+id).css("background", "yellow");
+          $(".estado"+id).text("Reservado");
        }
     }
     if(rsv == "finalizado"){
@@ -222,9 +234,6 @@ export class ReservacionesComponent implements OnInit {
     console.log("EFDS: "+ horainicioV );
     
     this.horainicio =  horainicioV;
-
-
-
     
   }
 
@@ -277,7 +286,7 @@ export class ReservacionesComponent implements OnInit {
     if (valor == "0") {
       valorobtenido = value.substr(1, 1);
     } else {
-      valorobtenido = value;
+      valorobtenido = value.substr(0, 2);
     }
     return valorobtenido;
   }
