@@ -316,19 +316,21 @@ export class ReservacionesComponent implements OnInit {
   }
 
 
-  onClickIniciarReservacion() {
-    $("#Codigo").fadeIn(300);
+  onClickIniciarReservacion(id) {
+    $(".codigo"+id).fadeIn(300);
   }
 
   onClickCross(cajon, nivel,id) {
 
-    $("#Codigo").fadeOut(300);
-    $("#Iniciar").css("display", "none");
-    $(".tiempo-titulo").css("display", "block");
-    $("#Contador").css("display", "block");
-    $(".status").css("display", "block");
-    this.Timer();
+    console.log(id);
     this.mensajePadre = id;
+    console.log($(".codigo"+id));
+    $(".codigo"+id).fadeOut(300);
+    $("#Iniciar").css("display", "none");
+    $("#tiempo"+id).css("display", "block");
+    $(".contador"+id).css("display", "block");
+    $("#status"+id).css("display", "block");
+    this.Timer();
     this.reserva = 1;
   }
 

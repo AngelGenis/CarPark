@@ -4,7 +4,7 @@
 
     
     <div id="ContenedorTarjetas" *ngFor="let rsv of reservaciones" >
-      <div id="Codigo">
+      <div id="Codigo" class="codigo{{rsv.payload.doc.id}}">
         <div id="Cross">
           <svg
             (click)="onClickCross(rsv.payload.doc.data().cajon, rsv.payload.doc.data().piso, rsv.payload.doc.id)"
@@ -79,7 +79,7 @@
                 <p id="Agno">{{rsv.payload.doc.data().fecha.slice(0,4)}}</p>
               </div>
     
-          <div class="status">
+          <div class="status" id="status{{rsv.payload.doc.id}}">
             <div class="circulo"></div>
             <p id="Estado">En curso</p>
           </div>
@@ -185,16 +185,16 @@
             <p id="Total">ID: {{rsv.payload.doc.id}}</p>
           </div>
           <div id="CodigoAcceso">
-            <a  (click)="onClickIniciarReservacion()">Codigo de acceso</a>
+            <a  (click)="onClickIniciarReservacion(rsv.payload.doc.id)">Codigo de acceso</a>
     
           </div>
           
-          <div class="tiempo-titulo">
+          <div class="tiempo-titulo" id="tiempo{{rsv.payload.doc.id}}">
             <p>Tiempo Restante</p>
             <div></div>
           </div>
     
-          <div id="Contador">
+          <div id="Contador" class="contador{{rsv.payload.doc.id}}">
             <div id="Timer">
               <p id="CountDown">{{temp(rsv.payload.doc.data())}}</p>
             </div>
