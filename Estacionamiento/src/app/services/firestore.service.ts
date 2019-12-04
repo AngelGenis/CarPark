@@ -158,6 +158,9 @@ export class FirestoreService {
                                    console.log(res);
                                    this.toastr.success('Agregado con exito','Listo');
                                  })
+                                 .catch(e =>{
+                                   console.log(e);
+                                 })
                         
                       })
 
