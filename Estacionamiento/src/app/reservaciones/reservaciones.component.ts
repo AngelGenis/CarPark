@@ -23,6 +23,7 @@ export class ReservacionesComponent implements OnInit {
   status: string = "";
   currentHora: number = 0;
   horaRestante : string = "";
+  mensajePadre: string = "";
 
   constructor(private auth: AuthService,
     private db: FirestoreService,
@@ -100,8 +101,6 @@ export class ReservacionesComponent implements OnInit {
         this.temporizador(this.currentHora);
       });
     });
-
-
   }
 
   temp(rsv) {
@@ -321,7 +320,7 @@ export class ReservacionesComponent implements OnInit {
     $("#Codigo").fadeIn(300);
   }
 
-  onClickCross(cajon, nivel) {
+  onClickCross(cajon, nivel,id) {
 
     $("#Codigo").fadeOut(300);
     $("#Iniciar").css("display", "none");
@@ -329,7 +328,7 @@ export class ReservacionesComponent implements OnInit {
     $("#Contador").css("display", "block");
     $(".status").css("display", "block");
     this.Timer();
-
+    this.mensajePadre = id;
     this.reserva = 1;
   }
 

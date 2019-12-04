@@ -7,7 +7,7 @@
       <div id="Codigo">
         <div id="Cross">
           <svg
-            (click)="onClickCross(rsv.payload.doc.data().cajon, rsv.payload.doc.data().piso)"
+            (click)="onClickCross(rsv.payload.doc.data().cajon, rsv.payload.doc.data().piso, rsv.payload.doc.id)"
             width="30"
             height="30"
             viewBox="0 0 52 50"
@@ -220,7 +220,7 @@
     </div>
     
     <ng-template [ngIf]="reserva == 1">
-        <app-elevador > </app-elevador>
+        <app-elevador [childMessage]="mensajePadre" > </app-elevador>
     </ng-template>
    
   
