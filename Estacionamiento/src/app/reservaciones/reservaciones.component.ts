@@ -74,18 +74,21 @@ export class ReservacionesComponent implements OnInit {
            resultado = "En curso";
            $(".circulo"+id).css("background", "royaleblue");
            $(".estado"+id).text("En curso");
+
           //Cambiar el estado a "activo", escribir de esa manera
         }
         if(now<hi){
           resultado = "Reservado";
           $(".circulo"+id).css("background", "yellow");
              $(".estado"+id).text("Reservado");
+             $(".codigoaccesoo"+id).css("display", "none");
           //Cambiar el estado a "reservado", escribir de esa manera
         }
         if(now>=hf){
           resultado = "Finalizado";
           $(".circulo"+id).css("background", "red");
              $(".estado"+id).text("Finalizado");
+             $(".codigoaccesoo"+id).css("display", "none");
           //Cambiar el estado a "finalizado", escribir de esa manera
         }
        }
@@ -94,18 +97,21 @@ export class ReservacionesComponent implements OnInit {
           resultado = "Reservado"
           $(".circulo"+id).css("background", "yellow");
           $(".estado"+id).text("Reservado");
+          $(".codigoaccesoo"+id).css("display", "none");
        }
     }
     if(rsv == "finalizado"){
       resultado = "Finalizado"
       $(".circulo"+id).css("background", "red");
          $(".estado"+id).text("Finalizado");
+         $(".codigoaccesoo"+id).css("display", "none");
     }
 
     if(rsv == "activo"){
       resultado = "En Curso";
       $(".circulo"+id).css("background", "royaleblue");
        $(".estado"+id).text("En curso");
+       
     }
     
     return resultado;
