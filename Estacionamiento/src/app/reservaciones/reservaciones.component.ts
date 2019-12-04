@@ -18,7 +18,7 @@ export class ReservacionesComponent implements OnInit {
   fecha: string = " ";
   precios = [];
   horafinal: string = "";
-  horainicio: string = "";
+  horainicio: number = 0;
   precioss: number = 0;
   status: string = "";
   currentHora: number = 0;
@@ -37,101 +37,74 @@ export class ReservacionesComponent implements OnInit {
     this.auth.user$.subscribe(cliente => {
       this.db.getReservaciones(cliente.email).subscribe(res => {
         this.reservaciones = res;
-        // for (let rsv of this.reservaciones) {
-          // this.temp(rsv.payload.doc.data());
-          // this.fecha = rsv.payload.doc.data().fecha;
-          // this.horainicio = rsv.payload.doc.data().hinicio;
-          // this.horafinal = rsv.payload.doc.data().hfin;
-
-          // var horaenteraini = rsv.payload.doc.data().hinicio.substring(0, 2);
-          // var horaenterafin = rsv.payload.doc.data().hfin.substring(0, 2);
-
-          // horaenteraini = this.quitarCeros(horaenteraini);
-          // horaenterafin = this.quitarCeros(horaenterafin)
-
-          // if (horaenteraini == "0") {
-          //   horaenteraini = 24;
-          // }
-          // if (horaenterafin == "0") {
-          //   horaenterafin = 24;
-
-          // }
-          // horaenteraini = Number(horaenteraini);
-          // horaenterafin = Number(horaenterafin);
-
-          // if (horaenteraini > horaenterafin) {
-          //   this.horastotales = horaenteraini + horaenterafin;
-          // } else {
-          //   this.horastotales = horaenterafin - horaenteraini;
-          // }
-          // this.totalPago = this.horastotales * 15;
-
-          // this.precios.push(this.totalPago);
-
-          //temporizador
-
-        //   var today = new Date();
-
-        //   var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        //   var valorfecha = Number(date.substr(8, 10));
-
-        //   //Obtiene el valor de la fecha aumentando un 0 si el dia es de 1-9, es decir 01, 02...
-
-        //   var fechab = this.fechaCorrecta(today, valorfecha);
-        //   var hora = new Date().getTime();
-        //   console.log(hora);
-        //   console.log(this.currentHora);
-
-
-
-
-        //   if (fechab == this.fecha && this.currentHora <= hora) {
-        //     console.log("Si es");
-        //   } else {
-        //     console.log("no es");
-        //   }
-
-        //   this.status = rsv.payload.doc.data().estado;
-
-        //   if (this.status == "reservado") {
-
-        //   }
-
-        // }
-        this.temporizador(this.currentHora);
+        
       });
     });
   }
 
-  temp(rsv) {
+  temp(rsv,id) {
+    
+   
+    //fecha actual
     var today = new Date();
-
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     var valorfecha = Number(date.substr(8, 10));
-
-    //Obtiene el valor de la fecha aumentando un 0 si el dia es de 1-9, es decir 01, 02...
-
     var fechab = this.fechaCorrecta(today, valorfecha);
-    var hora = new Date().getTime();
 
-    this.fecha = rsv.fecha;
+    //horafinal
+    this.horafinal = rsv.hfin;
+    var hf = this.quitarCeros2(this.horafinal);
 
-    if (fechab == this.fecha && this.currentHora >= hora) {
-      console.log(this.horaRestante);
-      return this.horaRestante;
-     
-    } else {
-      console.log(this.horaRestante);
-      return this.horaRestante;
-      
+    //horaincicio
+    this.horainicio = rsv.hinicio;
+    var hi = this.quitarCeros2(this.horainicio);
+
+    
+    //hora actual
+    var d = new Date();
+    var now = d.getHours();
+
+    //Condiciones para cambiar el estado y mostrar en html
+    var resultado = "";
+    if(rsv.estado=="reservado"){
+      if (this.fecha == fechab) {
+        if(now >= hi && now <hf){
+           resultado = "Activo";
+           $(".circulo"+id).css("background", "royaleblue");
+           $(".estado"+id).text("En curso");
+          //Cambiar el estado a "activo", escribir de esa manera
+
+        }
+        if(now<hi){
+          resultado = "Reservado";
+          $(".circulo"+id).css("background", "yellow");
+             $(".estado"+id).text("Reservado");
+          //Cambiar el estado a "reservado", escribir de esa manera
+        }
+        if(now>=hf){
+          resultado = "Finalizado";
+          $(".circulo"+id).css("background", "red");
+             $(".estado"+id).text("Finalizado");
+          //Cambiar el estado a "finalizado", escribir de esa manera
+        }
+       }
+    }
+    if(rsv == "finalizado"){
+      resultado = "Finalizado"
+      $(".circulo"+id).css("background", "red");
+         $(".estado"+id).text("Finalizado");
     }
 
-    this.status = rsv.estado;
-
-    if (this.status == "reservado") {
-
+    if(rsv == "activo"){
+      resultado = "Activo";
+      $(".circulo"+id).css("background", "royaleblue");
+       $(".estado"+id).text("En curso");
     }
+    
+    return resultado;
+    
   }
+
 
   total(rsv) {
     this.fecha = rsv.fecha;
@@ -158,33 +131,7 @@ export class ReservacionesComponent implements OnInit {
     this.totalPago = this.horastotales * 15;
 
     return this.totalPago;
-    // this.precios.push(this.totalPago);
-
-    // var today = new Date();
-    // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    // var valorfecha = Number(date.substr(8, 10));
-
-    // //Obtiene el valor de la fecha aumentando un 0 si el dia es de 1-9, es decir 01, 02...
-
-    // var fechab = this.fechaCorrecta(today, valorfecha);
-    // var hora = new Date().getTime();
-    // console.log(hora);
-    // console.log(this.currentHora);
-
-
-
-
-    // if(fechab == this.fecha && this.currentHora <= hora){
-    //   console.log("Si es");
-    // }else{
-    //   console.log("no es");
-    // }
-
-    // this.status = rsv.payload.doc.data().estado;
-
-    // if(this.status == "reservado"){
-
-    // }
+  
   }
 
   fechaCorrecta(today, valorfecha) {
@@ -225,6 +172,8 @@ export class ReservacionesComponent implements OnInit {
 
 
   Timer() {
+
+    
     var f = this.fecha.substring(5, 7);
     var d = this.fecha.substring(8, 10);
     var y = this.fecha.substring(0, 4);
@@ -267,9 +216,15 @@ export class ReservacionesComponent implements OnInit {
         b = "Dec";
         break;
     }
-
+    var horainicioV = new Date(b + " " + d + ", " + y + " " + this.horainicio + ":00").getTime();
     var countDownDate = new Date(b + " " + d + ", " + y + " " + this.horafinal + ":00").getTime();
     this.currentHora = countDownDate;
+    console.log("EFDS: "+ horainicioV );
+    
+    this.horainicio =  horainicioV;
+
+
+
     
   }
 
@@ -315,6 +270,18 @@ export class ReservacionesComponent implements OnInit {
 
   }
 
+  quitarCeros2(value){
+    var valorobtenido;
+    var valor = value.substr(0, 1);
+
+    if (valor == "0") {
+      valorobtenido = value.substr(1, 1);
+    } else {
+      valorobtenido = value;
+    }
+    return valorobtenido;
+  }
+
 
   onClickIniciarReservacion(id) {
     $(".codigo"+id).fadeIn(300);
@@ -344,5 +311,33 @@ export class ReservacionesComponent implements OnInit {
     this.db.eliminarReservacion(id).then(res => { console.log(res); })
       .catch(e => { this.toastr.error('Operacion fallida', 'Error') })
   }
+
+  mili(millseconds) {
+    var oneSecond = 1000;
+    var oneMinute = oneSecond * 60;
+    var oneHour = oneMinute * 60;
+    var oneDay = oneHour * 24;
+
+    var seconds = Math.floor((millseconds % oneMinute) / oneSecond);
+    var minutes = Math.floor((millseconds % oneHour) / oneMinute);
+    var hours = Math.floor((millseconds % oneDay) / oneHour);
+    var days = Math.floor(millseconds / oneDay);
+
+    var timeString = '';
+    if (days !== 0) {
+        timeString += (days !== 1) ? (days + ' days ') : (days + ' day ');
+    }
+    if (hours !== 0) {
+        timeString += (hours !== 1) ? (hours + ' hours ') : (hours + ' hour ');
+    }
+    if (minutes !== 0) {
+        timeString += (minutes !== 1) ? (minutes + ' minutes ') : (minutes + ' minute ');
+    }
+    if (seconds !== 0 || millseconds < 1000) {
+        timeString += (seconds !== 1) ? (seconds + ' seconds ') : (seconds + ' second ');
+    }
+
+    return timeString;
+};
 
 }
