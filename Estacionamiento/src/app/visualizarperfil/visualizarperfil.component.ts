@@ -68,34 +68,35 @@ export class VisualizarperfilComponent implements OnInit {
     $(".sololectura").prop('disabled', true);
     $("#Editar").css("display", "block");
     $("#Guardar").css("display", "none");
+
     let name = $("#vnombre").val();
-    let nombre = name.split(' ')[0];
-    let apellido = name.split(' ')[1];
+    let apellido = $("#vapellido").val();
+    let sexo = $("#vsexo").val();
     let telefono = $("#vtelefono").val();
-    let address = $("#vdireccion").val().split(' ');
     let direccion = {
-      calle: address[0],
-      numero: address[1],
-      colonia: address[2],
-      cp:address[3]
+      calle: $("#vcalle").val(),
+      numero: $("#vnumero").val(),
+      colonia: $("#vcolonia").val(),
+      cp: $("#vcp").val()
     }
-    let flag = true;
     let pago = $("#vpago").val();
-    console.log(pago);
+    
+    let flag = true;
 
     this.auth.user$.subscribe(re=>{
       let data = {
-        nombre:nombre,
+        nombre:name,
         apellido:apellido,
         telefono:telefono,
         direccion:direccion,
-        email: re.email 
+        email: re.email,
+        sexo: sexo
       }
       this.db.actualizarUsuario(data)
       .then(res=> {
           if(pago[0] !== '•'){
             let pagos = {
-              numero:pago.numero
+              numero:pago
             }
             this.auth.setPagos(pagos,re.email)
                      .then(resp=>{

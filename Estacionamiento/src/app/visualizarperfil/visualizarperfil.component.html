@@ -50,16 +50,37 @@
                 <div class="info-personal" *ngFor="let perfil of perfiles">
                     <div class="divazul"></div>
                     <label for="">Nombre:</label>
-                    <input class="sololectura noborder" id="vnombre" type="text" disabled value="{{perfil.nombre+' '+perfil.apellido}}">
+                    <input class="sololectura noborder" id="vnombre" type="text" disabled value="{{perfil.nombre}}">
                     <br>
-                    <label for="">Telefono:</label>
+                    <label for="">Apellido:</label>
+                    <input class="sololectura noborder" id="vapellido" type="text" disabled value="{{perfil.apellido}}">
+                    <br>
+                    <label for="">Sexo:</label>
+                    <input class="sololectura noborder" id="vsexo" type="text" disabled value="{{perfil.sexo}}">
+                    <br>
+                    <hr>
+                    <br>
+                    <label for="">Teléfono:</label>
                     <input class="sololectura noborder" id="vtelefono" type="text" disabled value="{{perfil.telefono}}">
                     <br>
                     <label for="">Correo:</label>
                     <input class="sololecturas noborder" id="vemail" type="text" disabled value="{{perfil.correo}}">
                     <br>
-                    <label for="">Dirección:</label>
-                    <input class="sololectura noborder" id="vdireccion" type="text" disabled value=" {{perfil.direccion.calle}} {{perfil.direccion.numero}} {{perfil.direccion.colonia}} {{perfil.direccion.cp}}">
+                    <hr>
+                    <br>
+                    <label for="">Calle:</label>
+                    <input class="sololectura noborder" id="vcalle" type="text" disabled value="{{perfil.direccion.calle}}">
+                    <br>
+                    <label for="">Número:</label>
+                    <input class="sololectura noborder" id="vnumero" type="text" disabled value="{{perfil.direccion.numero}}">
+                    <br>
+                    <label for="">Colonia:</label>
+                    <input class="sololectura noborder" id="vcolonia" type="text" disabled value="{{perfil.direccion.colonia}}">
+                    <br>
+                    <label for="">Código Postal:</label>
+                    <input class="sololectura noborder" id="vcp" type="text" disabled value="{{perfil.direccion.cp}}">
+                    <br>
+                    <hr>
                 </div>
                 
                 <div class="divazul"></div>
