@@ -218,8 +218,64 @@ export class FirestoreService {
                   })
   }
 
+  setStatusActivo(data){
+    return this.db.collection('Reservaciones')
+                  .doc(data.id)
+                  .update({
+                    estado:'activo'
+                  })
+                  .then(res => {
+                    return this.db.collection('Niveles')
+                                  .doc(data.nivel)
+                                  .collection('cajones')
+                                  .doc(data.cajon)
+                                  .update({
+                                    estado:'activo'
+                                  })
+                                  .then(res => {
+                                     
+                                  })
+                                  .catch(e => {
+
+                                  })
+                  })
+                  .catch(e => {
+
+                  })
+  }
+
+  setStatusDisponible(data){
+    return this.db.collection('Reservaciones')
+                  .doc(data.id)
+                  .update({
+                    estado:'disponible'
+                  })
+                  .then(res => {
+                    return this.db.collection('Niveles')
+                                  .doc(data.nivel)
+                                  .collection('cajones')
+                                  .doc(data.cajon)
+                                  .update({
+                                    estado:'disponible'
+                                  })
+                                  .then(res => {
+                                     
+                                  })
+                                  .catch(e => {
+
+                                  })
+                  })
+                  .catch(e => console.log(e))
+  }
 
   //Admin
+  getReservacionesHora(hora){
+    return this.db.collection('Reservaciones', ref => ref.where('hinicioInt','>=',hora * 100)
+                                                         .where('hinicioInt','<',hora * 100 + 100))
+                                                         .snapshotChanges();
+                  
+  }
+
   getUsuarios(){
     return this.db.collection('Clientes', ref => ref.where('estado','==','activo')).snapshotChanges();
   }

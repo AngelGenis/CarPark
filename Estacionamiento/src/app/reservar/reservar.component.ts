@@ -116,6 +116,7 @@ export class ReservarComponent implements OnInit {
     let tlle = $("#tllegada").val()
     let tfin = $("#tsalida").val()
     
+
     let datos = {};
     let cliente= {};
 
@@ -133,10 +134,14 @@ export class ReservarComponent implements OnInit {
         }
       }
     }
-
+    
+    let lleInt = parseInt(tlle.split(':')[0]+tlle.split(':')[1]);
+    let finInt = parseInt(tlle.split(':')[0]+tlle.split(':')[1]);
     let reservacion = {
       fecha: ifecha,
       hinicio: tlle,
+      hinicioInt: lleInt,
+      hfinInt: finInt,
       hfin:tfin,
       tarjeta:this.tarjeta,
       auto: auto
@@ -159,4 +164,11 @@ export class ReservarComponent implements OnInit {
 
     
   }
+  // foo(){
+  //   let tlle = $("#tllegada").val()
+  //   let tfin = $("#tsalida").val()
+
+    
+  //   console.log(parseInt(tlle.split(':')[0]+tlle.split(':')[1]));
+  // }
 }
