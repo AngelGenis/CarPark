@@ -291,7 +291,7 @@ export class ReservacionesComponent implements OnInit {
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       this.horaRestante = hours + ":" + minutes + ":" + seconds;
-      console.log(this.horaRestante);
+      console.log(this.horaRestante + "Esta es la hora restante");
       console.log(hours + ":" + minutes + ":" + seconds);
       
       // If the count down is over, write some text 

@@ -18,40 +18,29 @@ export class ElevadorComponent implements OnInit {
   reservaciones: any;
   @Input() bandera: number = 0;
 
-  constructor(private auth:AuthService,
-    private db:FirestoreService,
-    private toastr:ToastrService) { 
-     
-    }
+  constructor(private auth: AuthService,
+    private db: FirestoreService,
+    private toastr: ToastrService) {
+
+  }
 
   ngOnInit() {
 
-    this.auth.user$.subscribe( cliente => {
-      this.db.getReservaciones(cliente.email).subscribe( res => {
+    this.db.getTarjetaSeleccionada("U6dUXC3Z37lMDlYwnUHQ")
+      .subscribe(res => {
         this.reservaciones = res;
-
-        for(let rsv of this.reservaciones){
-          this.piso = rsv.payload.doc.data().piso;
-          this.cajon = rsv.payload.doc.data().cajon;
-
-          console.log(this.cajon);
-          console.log(this.piso);
-          this.LlenarArray();
-        }
-        
-          
+        this.piso = this.reservaciones.payload.data().piso;
+        this.cajon = this.reservaciones.payload.data().cajon;
+        this.LlenarArray();
       });
-    });
     $("#Con2").fadeOut();
     $("#Con").fadeIn();
     $("#AceptarLugar").css("display", "none");
-    
-    
 
   }
 
   onClickSubir() {
-   
+
     if (this.piso == "nivel-1") {
       $("#RectElevador").addClass("subirprimero");
       this.carro();
@@ -73,15 +62,15 @@ export class ElevadorComponent implements OnInit {
       $("#Con2").css("display", "block");
       $("#AceptarLugar").css("display", "block");
     }, 3000);
-    
+
   }
 
-  onClickAceptarLugar(){
+  onClickAceptarLugar() {
     $("#Con1").fadeOut();
     $("#Con2").fadeOut();
     $("#Con1").css("display", "none");
     $("#Con2").css("display", "none")
-    
+
   }
 
   /*onClickBajar() {
@@ -122,7 +111,6 @@ export class ElevadorComponent implements OnInit {
   LlenarArray() {
     this.idcajon = "#" + this.cajon;
     console.log(this.idcajon);
-    
     $(this.idcajon).css("background", "blue");
     $(this.idcajon).css("color", "white");
   }
