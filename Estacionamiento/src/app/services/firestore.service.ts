@@ -271,9 +271,10 @@ export class FirestoreService {
   }
 
   //Admin
-  getReservacionesHora(hora){
+  getReservacionesHora(hora,fecha){
     return this.db.collection('Reservaciones', ref => ref.where('hinicioInt','>=',hora * 100)
-                                                         .where('hinicioInt','<',hora * 100 + 100))
+                                                         .where('hinicioInt','<',hora * 100 + 100)
+                                                         .where('fecha','==',fecha))
                                                          .snapshotChanges();
                   
   }
