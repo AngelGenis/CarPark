@@ -140,6 +140,8 @@ export class FirestoreService {
                                fecha: rsv.fecha,
                                hinicio: rsv.hinicio,
                                                hfin: rsv.hfin,
+                                               hinicioInt:rsv.hinicioInt,
+                                               hfinInt:rsv.hfinInt,
                                                estado:'reservado',
                                                tarjeta: rsv.tarjeta,
                                                cliente: cli.email,

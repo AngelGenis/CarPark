@@ -1,47 +1,71 @@
 <div id="ContenedorP" class="container-fluid animated fadeIn faster">
   <div id="Bak" class="row justify-content-center mt-5">
-    <div id="Bac" class="col-md-4 mt-5">
-      <form class="text-center border border-light p-5 m-1">
+    <div id="Bac" class="col-md-5 mt-5">
+      <form class="text-center border border-light p-5 m-1" [formGroup]='validatingForm'>
 
-        <p class="h4 mb-4">Registro</p>
+        <p class="h4">Registro</p>
 
-        <div class="form-row mb-4">
+        <div class="form-row">
           <div class="col">
-            <!-- First name -->
-            <input type="text" id="nombreIn" class="form-control" placeholder="Nombre">
+            <div class="md-form">
+              <input mdbInput mdbValidate type="text" formControlName="defReq" id="nombreIn" class="form-control">
+              <label for="form1">Nombre</label>
+              <mdb-error   *ngIf="inputname.invalid && (inputname.dirty || inputname.touched)">Apellido Invalido</mdb-error>
+              <mdb-success *ngIf="inputname.valid && (inputname.dirty || inputname.touched)">Apellido valido</mdb-success>
+            </div>
           </div>
           <div class="col">
             <!-- Last name -->
-            <input type="text" id="apellidoIn" class="form-control" placeholder="Apellido">
+            <div class="md-form">
+              <input mdbInput mdbValidate type="text" formControlName="defReq" id="apellidoIn" class="form-control">
+              <label for="form1">Apellido</label>
+              <mdb-error *ngIf="inputapel.invalid && (inputapel.dirty || inputapel.touched)">Apellido Invalido</mdb-error>
+              <mdb-success *ngIf="inputapel.valid && (inputapel.dirty || inputapel.touched)">Apellido valido</mdb-success>
+            </div>
           </div>
         </div>
-
+        
         <!-- Default inline 1-->
-        <label class="mx-auto mb-3 mr-5 pr-3">Sexo:   </label>
+        <label class="mx-auto pr-3">Sexo:   </label>
         <div class="custom-control custom-radio custom-control-inline">
           <input type="radio" class="custom-control-input" id="sexo1" name="inlineDefaultRadiosExample" mdbInput>
           <label class="custom-control-label" for="sexo1">M</label>
         </div>
-
+        
         <!-- Default inline 2-->
         <div class="custom-control custom-radio custom-control-inline">
           <input type="radio" class="custom-control-input" id="sexo2" name="inlineDefaultRadiosExample" mdbInput>
           <label class="custom-control-label" for="sexo2">F</label>
         </div>
         <!-- E-mail -->
-
-        <input type="email"  id="correoIn" class="form-control mb-4" placeholder="E-mail">
-
+        
+        <div class="md-form">
+          <input mdbInput mdbValidate  type="email" formControlName="correoIn" id="correoIn" class="form-control">
+          <label for="form1">E-mail</label>
+          <mdb-error *ngIf="inputCorreo.invalid && (inputCorreo.dirty || inputCorreo.touched)">Correo invalido</mdb-error>
+          <mdb-success *ngIf="inputCorreo.valid && (inputCorreo.dirty || inputCorreo.touched)">Correo valido</mdb-success>
+        </div>
+        
         <!-- Password -->
-        <input type="password"  id="passIn" class="form-control" placeholder="Contraseña"
-          aria-describedby="defaultRegisterFormPasswordHelpBlock">
+        <div class="md-form">
+          <input mdbInput mdbValidate type="password"  id="passIn" class="form-control" formControlName="passIn" name="passIn"
+            aria-describedby="defaultRegisterFormPasswordHelpBlock">
+          <label for="form1">Contraseña</label>
+          <mdb-error *ngIf="inputClave.invalid && (inputClave.dirty || inputClave.touched)">Contraseña invalida</mdb-error>
+          <mdb-success *ngIf="inputClave.valid && (inputClave.dirty || inputClave.touched)">Contraseña valida</mdb-success>
+        </div>
         <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
           Por lo menos 6 digitos.
         </small>
 
         <!-- Phone number -->
-        <input type="text" id="telefonoIn" class="form-control mb-4" placeholder="Teléfono"
-          aria-describedby="defaultRegisterFormPhoneHelpBlock">
+        <div class="md-form">
+           <input mdbInput mdbValidate type="text" id="telefonoIn" class="form-control" formControlName="telefonoIn"
+              aria-describedby="defaultRegisterFormPhoneHelpBlock">
+          <label for="form1">Teléfono</label>
+          <mdb-error *ngIf="inputtel.invalid && (inputtel.dirty || inputtel.touched)">Teléfono invalido</mdb-error>
+          <mdb-success *ngIf="inputtel.valid && (inputtel.dirty || inputtel.touched)">Teléfono valido</mdb-success>
+        </div>
         <!-- <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
         
       </small> -->
@@ -49,32 +73,64 @@
         <div class="form-row mb-4">
           <div class="col">
             <!-- First name -->
-            <input type="text" id="calleIn" class="form-control" placeholder="Calle">
+            <div class="md-form">
+              <input mdbInput mdbValidate type="text" id="calleIn" class="form-control" formControlName="defReq">
+              <label for="form1">Calle</label>
+              <mdb-error *ngIf="inputcalle.invalid && (inputcalle.dirty || inputcalle.touched)">Calle invalido</mdb-error>
+              <mdb-success *ngIf="inputcalle.valid && (inputcalle.dirty || inputcalle.touched)">Calle valido</mdb-success>
+            </div>
           </div>
           <div class="col">
             <!-- Last name -->
-            <input type="number" id="numeroIn" class="form-control" placeholder="Numero">
+        <div class="md-form">
+           <input mdbInput mdbValidate type="number" id="numeroIn" class="form-control" formControlName="telefonoIn"
+              aria-describedby="defaultRegisterFormPhoneHelpBlock">
+          <label for="form1">Número</label>
+          <mdb-error *ngIf="inputtel.invalid && (inputtel.dirty || inputtel.touched)">Número invalido</mdb-error>
+          <mdb-success *ngIf="inputtel.valid && (inputtel.dirty || inputtel.touched)">Número valido</mdb-success>
+        </div>
           </div>
 
           <div class="col">
-            <!-- Last name -->
-            <input type="number" id="cpIn" class="form-control" placeholder="C.P.">
+        <div class="md-form">
+          <input  mdbInput mdbValidate type="number" id="cpIn" class="form-control" formControlName="cpIn">
+          <label for="form1">C.P.</label>
+          <mdb-error *ngIf="inputcp.invalid && (inputcp.dirty || inputcp.touched)">Código invalido</mdb-error>
+          <mdb-success *ngIf="inputcp.valid && (inputcp.dirty || inputcp.touched)">Código valido</mdb-success>
+        </div>
           </div>
         </div>
+        
+        <div class="md-form">
+          <input type="text" id="coloniaIn" class="form-control">
+          <label for="form1">Colonia</label>
+        </div>
 
-        <input type="text" id="coloniaIn" class="form-control mb-4" placeholder="Colonia">
+        <div class="md-form">
+          <input  mdbInput mdbValidate type="number" id="tarjetaIn" class="form-control" formControlName="tarjetaIn" 
+            aria-describedby="defaultRegisterFormPasswordHelpBlock">
+          <label for="form1">Número de Tarjeta</label>
+          <mdb-error *ngIf="inputtarjeta.invalid && (inputtarjeta.dirty || inputtarjeta.touched)">Tarjeta invalida</mdb-error>
+          <mdb-success *ngIf="inputtarjeta.valid && (inputtarjeta.dirty || inputtarjeta.touched)">Tarjeta valida</mdb-success>
+        </div>
 
-        <input type="number" id="tarjetaIn" class="form-control mb-4" placeholder="Numero de Tarjeta"
-          aria-describedby="defaultRegisterFormPasswordHelpBlock">
-
-        <div class="form-row mb-4">
+        <div class="form-row">
           <div class="col">
             <!-- First name -->
-            <input type="number" id="cvvIn" class="form-control" placeholder="CVV">
+            <div class="md-form">
+                <input mdbInput mdbValidate type="number" id="cvvIn" class="form-control" formControlName="cvvIn">
+              <label for="form1">CVV</label>
+              <mdb-error *ngIf="inputcvv.invalid && (inputcvv.dirty || inputcvv.touched)">Número invalido</mdb-error>
+              <mdb-success *ngIf="inputcvv.valid && (inputcvv.dirty || inputcvv.touched)">Número valido</mdb-success>
+            </div>
           </div>
           <div class="col">
-            <!-- First name -->
-            <input type="text" id="dateIn" class="form-control" placeholder="Fecha">
+            <div class="md-form">
+              <input mdbInput mdbValidate type="text" id="dateIn" class="form-control" formControlName="fechaIn">
+              <label for="form1">Fecha MM/DD</label>
+              <mdb-error *ngIf="inputfecha.invalid && (inputfecha.dirty || inputfecha.touched)">Fecha invalida</mdb-error>
+              <mdb-success *ngIf="inputfecha.valid && (inputfecha.dirty || inputfecha.touched)">Fecha valida</mdb-success>
+            </div>
           </div>
 
         </div>
