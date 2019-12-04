@@ -222,13 +222,13 @@ export class FirestoreService {
   }
 
   setStatusActivo(data){
-    return this.db.collection('Reservaciones')
+    return  this.db.collection('Reservaciones')
                   .doc(data.id)
                   .update({
                     estado:'activo'
                   })
                   .then(res => {
-                    return this.db.collection('Niveles')
+                    this.db.collection('Niveles')
                                   .doc(data.nivel)
                                   .collection('cajones')
                                   .doc(data.cajon)
@@ -247,15 +247,15 @@ export class FirestoreService {
                   })
   }
 
-  setStatusDisponible(data){
-    return this.db.collection('Reservaciones')
+   setStatusDisponible(data){
+    return  this.db.collection('Reservaciones')
                   .doc(data.id)
                   .update({
                     estado:'finalizado',
                     total:data.total
                   })
                   .then(res => {
-                    return this.db.collection('Niveles')
+                    this.db.collection('Niveles')
                                   .doc(data.nivel)
                                   .collection('cajones')
                                   .doc(data.cajon)
