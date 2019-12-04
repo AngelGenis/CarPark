@@ -34,21 +34,26 @@ export class RegistroComponent implements OnInit {
       correoIn: new FormControl(null,[Validators.required, Validators.email]),
       passIn: new FormControl(null,[Validators.required, Validators.minLength(6)]),
       defReq: new FormControl(null, [Validators.required]),
-      telefonoIn: new FormControl(null, [Validators.required,Validators.pattern('^[0-9]+')]),
+      apellidoIn: new FormControl(null, [Validators.required]),
+      calleIn: new FormControl(null, [Validators.required]),
+      coloniaIn: new FormControl(null, [Validators.required]),
+      telefonoIn: new FormControl(null, [Validators.required,Validators.pattern('^[0-9]{7,10}')]),
       tarjetaIn: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]{16}')]),
+      numeroIn:new FormControl(null, [Validators.required,Validators.pattern('^[0-9]+')]),
       cvvIn: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]{3}')]),
       fechaIn: new FormControl(null, [Validators.required,Validators.pattern('^[0-9]{2}/[0-9]{2}')]),
-      cpIn: new FormControl(null, [Validators.required,Validators.pattern('^[0-9]')])
+      cpIn: new FormControl(null, [Validators.required,Validators.pattern('^[0-9]{5}')])
     });
   }
 
-
+  get inputcolonia() {return this.validatingForm.get('coloniaIn');}
+  get inputnum() {return this.validatingForm.get('numeroIn');}
   get inputCorreo() {return this.validatingForm.get('correoIn');}
   get inputClave() {return this.validatingForm.get('passIn');}
   get inputname() {return this.validatingForm.get('defReq');}
-  get inputapel() {return this.validatingForm.get('defReq');}
+  get inputapel() {return this.validatingForm.get('apellidoIn');}
   get inputtel() {return this.validatingForm.get('telefonoIn');}
-  get inputcalle() {return this.validatingForm.get('defReq');}
+  get inputcalle() {return this.validatingForm.get('calleIn');}
   get inputcp() {return this.validatingForm.get('cpIn');}
   get inputtarjeta() {return this.validatingForm.get('tarjetaIn');}
   get inputcvv() {return this.validatingForm.get('cvvIn')}
@@ -113,8 +118,8 @@ export class RegistroComponent implements OnInit {
                             $("#intro").addClass("fadeInUp");
                             $("#intro").show();
                           },500);
-                          
-                          this.router.navigate(['/login'])
+                          this.auth.logearUsuario(value['correo'],value['clave']).then().catch().finally();
+                          // this.router.navigate(['/login'])
                         })
                         .catch(
                             e=>{

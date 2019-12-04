@@ -27,7 +27,7 @@
             <br>
             <div class="tabla">
                 <tr *ngFor="let auto of autos">
-                    <a (click)="selectAuto(auto.payload.doc.data().placas)">
+                    <a id="{{auto.payload.doc.data().placas}}" class="autoclass py-3" (click)="selectAuto(auto.payload.doc.data().placas)">
                         <th class='px-4'>
                             {{auto.payload.doc.data().modelo}}
                         </th>
@@ -57,7 +57,7 @@
             <br>
             <div class="tabla">
                 <tr *ngFor="let cuentas of pagos">
-                    <a (click)="selectTarjeta(cuentas.payload.doc.data().numero)">
+                    <a id="{{cuentas.payload.doc.data().numero}}" class="tarjetaclass" (click)="selectTarjeta(cuentas.payload.doc.data().numero)">
                         <th class='px-4'>
                         <ng-template [ngIf]="cuentas.payload.doc.data().numero.slice(0,2) === '55' || cuentas.payload.doc.data().numero.slice(0,2) === '54' || cuentas.payload.doc.data().numero.slice(0,2) === '53' || cuentas.payload.doc.data().numero.slice(0,2) === '52'  || cuentas.payload.doc.data().numero.slice(0,2) === '51'">
                                 <mdb-icon size="1x" fab icon="cc-mastercard"></mdb-icon>
