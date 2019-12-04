@@ -105,10 +105,14 @@ export class ReservarComponent implements OnInit {
 
   selectAuto(placa){
     this.auto=placa;
+    $(".autoclass").removeClass('border border-primary rounded-pill');
+    $("#"+placa).addClass('border border-primary rounded-pill');
   }
 
   selectTarjeta(val){
     this.tarjeta=val;
+    $(".tarjetaclass").removeClass('border border-primary rounded-pill');
+    $("#"+val).addClass('border border-primary rounded-pill');
   }
 
   reservar(){
@@ -116,59 +120,65 @@ export class ReservarComponent implements OnInit {
     let tlle = $("#tllegada").val()
     let tfin = $("#tsalida").val()
     
+    if(ifecha === '' || tlle === '' || tfin === '' || this.auto === '' || this.tarjeta === ''){
+      this.toastr.error('Existen campos no validos, por favor intente de nuevo','Error');
+    } else {
 
-    let datos = {};
-    let cliente= {};
-
+      
+      let datos = {};
+      let cliente= {};
+      
       cliente = {
         email: this.perfiles.payload.data().correo
       }
-    
-    let auto = {};
-    for(let carro of this.autos){
-      if(carro.payload.doc.data().placas === this.auto){
-        auto = {
-          modelo: carro.payload.doc.data().modelo,
-          placas: this.auto,
-          color: carro.payload.doc.data().color
+      
+      let auto = {};
+      for(let carro of this.autos){
+        if(carro.payload.doc.data().placas === this.auto){
+          auto = {
+            modelo: carro.payload.doc.data().modelo,
+            placas: this.auto,
+            color: carro.payload.doc.data().color
+          }
         }
       }
+      
+      let lleInt = parseInt(tlle.split(':')[0]+tlle.split(':')[1]);
+      let finInt = parseInt(tlle.split(':')[0]+tlle.split(':')[1]);
+      let reservacion = {
+        fecha: ifecha,
+        hinicio: tlle,
+        hinicioInt: lleInt,
+        hfinInt: finInt,
+        hfin:tfin,
+        tarjeta:this.tarjeta,
+        auto: auto
+      };
+      
+      
+      datos['cliente'] = cliente;
+      datos['reservacion'] = reservacion
+      
+      this.db.setReservacion(datos)
+      //        .then(res => {
+        //          this.toastr.success('Reservacion agregada con exito', 'Listo');
+        //        })
+        //        .catch(e => {
+          //          this.toastr.error('No se pudo reservar','Error')
+          //        })
+          // console.log(datos);
+          
+          
+        }
+          
+          
     }
-    
-    let lleInt = parseInt(tlle.split(':')[0]+tlle.split(':')[1]);
-    let finInt = parseInt(tlle.split(':')[0]+tlle.split(':')[1]);
-    let reservacion = {
-      fecha: ifecha,
-      hinicio: tlle,
-      hinicioInt: lleInt,
-      hfinInt: finInt,
-      hfin:tfin,
-      tarjeta:this.tarjeta,
-      auto: auto
-    };
-
-  
-    datos['cliente'] = cliente;
-    datos['reservacion'] = reservacion
-
-    this.db.setReservacion(datos)
-    //        .then(res => {
-    //          this.toastr.success('Reservacion agregada con exito', 'Listo');
-    //        })
-    //        .catch(e => {
-    //          this.toastr.error('No se pudo reservar','Error')
-    //        })
-    // console.log(datos);
-    
-
-
-    
+        // foo(){
+          //   let tlle = $("#tllegada").val()
+          //   let tfin = $("#tsalida").val()
+          
+          
+          //   console.log(parseInt(tlle.split(':')[0]+tlle.split(':')[1]));
+          // }
   }
-  // foo(){
-  //   let tlle = $("#tllegada").val()
-  //   let tfin = $("#tsalida").val()
-
-    
-  //   console.log(parseInt(tlle.split(':')[0]+tlle.split(':')[1]));
-  // }
-}
+        

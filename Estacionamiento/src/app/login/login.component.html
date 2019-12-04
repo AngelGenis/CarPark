@@ -5,14 +5,14 @@
 
                     <p class="h4 mb-4 tituloLogin"><strong>Iniciar Sesión</strong></p>
                     
-        <div class="md-form">
+        <div class="md-form my-4">
           <input mdbInput mdbValidate  type="email" formControlName="correoIn" id="username" class="form-control">
           <label for="form1">E-mail</label>
           <mdb-error *ngIf="inputCorreo.invalid && (inputCorreo.dirty || inputCorreo.touched)">Correo invalido</mdb-error>
           <mdb-success *ngIf="inputCorreo.valid && (inputCorreo.dirty || inputCorreo.touched)">Correo valido</mdb-success>
         </div>
 
-        <div class="md-form">
+        <div class="md-form my-4">
           <input mdbInput mdbValidate type="password"  id="pass" class="form-control" formControlName="passIn" name="passIn"
             aria-describedby="defaultRegisterFormPasswordHelpBlock">
           <label for="form1">Contraseña</label>

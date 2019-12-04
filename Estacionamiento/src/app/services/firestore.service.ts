@@ -250,7 +250,7 @@ export class FirestoreService {
     return this.db.collection('Reservaciones')
                   .doc(data.id)
                   .update({
-                    estado:'disponible'
+                    estado:'finalizado'
                   })
                   .then(res => {
                     return this.db.collection('Niveles')
