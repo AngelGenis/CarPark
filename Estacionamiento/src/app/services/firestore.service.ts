@@ -279,6 +279,11 @@ export class FirestoreService {
                                                          .snapshotChanges();
                   
   }
+  getTarjetaSeleccionada(id){
+    return this.db.collection('Reservaciones')
+                  .doc(id)                                                    
+                  .snapshotChanges();
+  }
 
   getUsuarios(){
     return this.db.collection('Clientes', ref => ref.where('estado','==','activo')).snapshotChanges();
