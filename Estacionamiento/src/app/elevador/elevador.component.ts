@@ -26,7 +26,7 @@ export class ElevadorComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.childMessage);
-    this.db.getTarjetaSeleccionada("U6dUXC3Z37lMDlYwnUHQ")
+    this.db.getTarjetaSeleccionada(this.childMessage)
       .subscribe(res => {
         this.reservaciones = res;
         this.piso = this.reservaciones.payload.data().piso;

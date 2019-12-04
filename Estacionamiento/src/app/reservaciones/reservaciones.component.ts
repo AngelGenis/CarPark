@@ -66,12 +66,7 @@ export class ReservacionesComponent implements OnInit {
 
     //Condiciones para cambiar el estado y mostrar en html
     var resultado = "";
-    console.log("hi: "+ hi);
-    console.log("hf: "+ hf);
-    console.log("now: "+ now);
-    
-    
-    
+      
     if(rsv.estado=="reservado"){
       if (this.fecha == fechab) {
         
@@ -253,14 +248,14 @@ export class ReservacionesComponent implements OnInit {
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      this.horaRestante = hours + ":" + minutes + ":" + seconds;
+      return hours + ":" + minutes + ":" + seconds;
       console.log(this.horaRestante + "Esta es la hora restante");
       console.log(hours + ":" + minutes + ":" + seconds);
       
       // If the count down is over, write some text 
       if (distance < 0) {
         clearInterval(x);
-        this.horaRestante = "EXPIRED";
+      return "EXPIRED";
       }
       // If the count down is over, write some text 
     }, 60000);
@@ -292,8 +287,8 @@ export class ReservacionesComponent implements OnInit {
   }
 
 
-  onClickIniciarReservacion(id) {
-    $(".codigo"+id).fadeIn(300);
+  onClickIniciarReservacion(val) {
+    $(".codigo"+val).fadeIn(300);
   }
 
   onClickCross(cajon, nivel,id) {
@@ -301,6 +296,7 @@ export class ReservacionesComponent implements OnInit {
     console.log(id);
     this.mensajePadre = id;
     console.log($(".codigo"+id));
+
     $(".codigo"+id).fadeOut(300);
     $("#Iniciar").css("display", "none");
     $("#tiempo"+id).css("display", "block");
