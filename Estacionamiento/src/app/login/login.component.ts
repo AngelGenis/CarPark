@@ -4,7 +4,7 @@ import { FirestoreService } from '../services/firestore.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
-import { ElementSchemaRegistry } from '@angular/compiler';
+import {FormGroup,FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +14,7 @@ import { ElementSchemaRegistry } from '@angular/compiler';
 
 
 export class LoginComponent implements OnInit {
+  validatingForm: FormGroup;
 
   constructor(public db:FirestoreService,
               public auth:AuthService,
@@ -22,7 +23,14 @@ export class LoginComponent implements OnInit {
               ) { }
 
   ngOnInit() {
+    this.validatingForm = new FormGroup({
+      correoIn: new FormControl(null,[Validators.required, Validators.email]),
+      passIn: new FormControl(null,[Validators.required, Validators.minLength(6)])
+    });
   }
+
+  get inputCorreo() {return this.validatingForm.get('correoIn');}
+  get inputClave() {return this.validatingForm.get('passIn');}
 
   showSuccess() {
     
