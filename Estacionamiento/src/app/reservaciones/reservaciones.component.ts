@@ -76,7 +76,7 @@ export class ReservacionesComponent implements OnInit {
       if (this.fecha == fechab) {
         
         if(now >= hi && now <hf){
-           resultado = "Activo";
+           resultado = "En curso";
            $(".circulo"+id).css("background", "royaleblue");
            $(".estado"+id).text("En curso");
           //Cambiar el estado a "activo", escribir de esa manera
@@ -108,7 +108,7 @@ export class ReservacionesComponent implements OnInit {
     }
 
     if(rsv == "activo"){
-      resultado = "Activo";
+      resultado = "En Curso";
       $(".circulo"+id).css("background", "royaleblue");
        $(".estado"+id).text("En curso");
     }
